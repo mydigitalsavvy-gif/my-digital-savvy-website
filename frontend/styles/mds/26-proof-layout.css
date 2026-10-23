@@ -1,0 +1,46 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2165-2206 (26-proof-layout).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* One large featured quote + rating stacked left, five smaller supporting
+   voices right — was a single rotating card behind prev/next arrows,
+   which hid five real reviews behind a pagination widget instead of
+   letting them read as a chorus of real people. */
+.proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "featured voices" "rating voices";
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
+}
+.proof-featured { grid-area: featured; }
+.proof-featured .quote { margin-bottom: 16px; }
+.rating { grid-area: rating; }
+.proof-voices { grid-area: voices; display: flex; flex-direction: column; }
+.proof-voices blockquote {
+  padding-block: 22px;
+  border-top: 1px solid var(--rule);
+}
+.proof-voices blockquote:last-child { border-bottom: 1px solid var(--rule); }
+/* controlled asymmetry: alternating indent instead of a uniform list of
+   identical cards */
+.proof-voices blockquote:nth-child(even) { padding-left: clamp(0px, 4vw, 48px); }
+/* Quieter register than the featured quote: normal case, normal weight —
+   .quote's base rule (global, used by .proof-featured too) is bold
+   uppercase display type, right for one hero quote, wrong for five. */
+.proof-voices .quote {
+  text-transform: none; font-weight: 500;
+  font-size: 14.5px; line-height: 1.55; color: var(--ink);
+}
+.proof-voices .who { margin-top: 10px; font-size: 12px; color: var(--ash); }
+
+@media (max-width: 800px) {
+  .proof { grid-template-columns: 1fr; grid-template-areas: "featured" "rating" "voices"; }
+  .proof-voices blockquote:nth-child(even) { padding-left: 0; }
+}
+
+.proof-strip { margin-top: 40px; padding: 11px 0; }
+.proof-strip .track { animation-duration: 30s; }
+.proof-strip .track span {
+  font-weight: 600; text-transform: none; font-size: 13px; letter-spacing: normal;
+}

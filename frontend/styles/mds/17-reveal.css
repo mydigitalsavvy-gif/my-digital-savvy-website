@@ -1,0 +1,39 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 892-927 (17-reveal).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(18px); }
+.reveal.in {
+  opacity: 1; transform: none;
+  transition: opacity 0.6s var(--reveal-ease), transform 0.6s var(--reveal-ease);
+}
+
+/* Grouped reveal: the parent carries .reveal-group and toggles .in (via the
+   same observer that already drives .reveal), but the hidden state and the
+   transition live on the CHILDREN, each with its own delay — a cascade
+   instead of the whole block appearing as one flat unit. Delays are short
+   (70-90ms apart) per taste.md's stagger guidance; anything longer reads as
+   slow rather than considered. */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.reveal-group.in > * { opacity: 1; transform: none; }
+.reveal-group > *:nth-child(1)  { transition-delay: 0ms;   }
+.reveal-group > *:nth-child(2)  { transition-delay: 80ms;  }
+.reveal-group > *:nth-child(3)  { transition-delay: 160ms; }
+.reveal-group > *:nth-child(4)  { transition-delay: 240ms; }
+.reveal-group > *:nth-child(5)  { transition-delay: 300ms; }
+.reveal-group > *:nth-child(6)  { transition-delay: 340ms; }
+.reveal-group > *:nth-child(7)  { transition-delay: 380ms; }
+.reveal-group > *:nth-child(8)  { transition-delay: 420ms; }
+.reveal-group > *:nth-child(9)  { transition-delay: 460ms; }
+.reveal-group > *:nth-child(10) { transition-delay: 500ms; }
+.reveal-group > *:nth-child(11) { transition-delay: 540ms; }
+.reveal-group > *:nth-child(12) { transition-delay: 580ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-group > * { transition-delay: 0ms !important; }
+}

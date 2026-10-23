@@ -1,0 +1,41 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 771-808 (13-process).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── PROCESS ─────────────────────────────────────────────────── */
+/* No bordered box grid here — Results, Process and Why were all reaching
+   for the same "divided cells" component. Process gets an oversized ghost
+   numeral instead: the title sits pulled up into it (a deliberate small
+   overlap), and steps are separated by whitespace, not a rule. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: clamp(20px, 3vw, 40px);
+  row-gap: clamp(36px, 5vw, 48px);
+}
+.step { padding-top: 4px; }
+.step .n {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 6vw, 5.6rem);
+  line-height: 1;
+  color: var(--rule);
+  margin-bottom: -6px;
+  transform-origin: left center;
+  transition: color 0.25s, transform 0.2s var(--ease-out);
+}
+.step:hover .n { color: var(--accent); transform: scale(1.06); }
+.step h5 {
+  position: relative;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+.step p { font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+
+@media (max-width: 840px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }

@@ -1,0 +1,155 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 472-623 (08-hero).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.hero {
+  /* header (81px) is real in-flow content now, and the client-logo
+     marquee strip right after this section (~49px) should also land on
+     the first screen along with the rest of the hero — both subtracted
+     here so header + hero + marquee together still fit in one viewport. */
+  min-height: calc(100svh - 130px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: clamp(32px, 5vw, 56px);
+  padding-bottom: clamp(48px, 6vw, 80px);
+  position: relative;
+  /* .hero::before intentionally bleeds 14px past this box on every side
+     (see below) so its cursor-drift never reveals a hard edge — clipped
+     here so that bleed stays inside the hero instead of becoming a
+     page-wide horizontal scrollbar. */
+  overflow: hidden;
+  --mx: 0.5; --my: 0.5; /* cursor position, 0-1, written by JS below */
+}
+/* dot-grid texture — behind everything. The subtle drift toward the cursor
+   is a depth cue, not decoration: capped at 14px of total travel so it never
+   reads as the background sliding rather than the room having depth. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  transform: translate3d(calc((var(--mx) - 0.5) * -20px), calc((var(--my) - 0.5) * -20px), 0);
+  transition: transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+@media (hover: none), (pointer: coarse) {
+  .hero::before { transform: none !important; transition: none; }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(22px, 4vh, 44px);
+}
+.eyebrow .pip {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dot);
+  flex-shrink: 0;
+}
+
+h1 {
+  /* Inter is measurably wider per character than Anton at the same size —
+     the old clamp(3rem,10vw,10rem) was tuned for Anton's condensed
+     letterforms and, combined with the hardcoded <br> below, was wrapping
+     "Marketing that pays" onto two lines by itself on common widths instead
+     of reading as one. Dialled back and handed to text-wrap: balance so the
+     browser picks break points that read evenly instead of orphaning one
+     word, whatever the rotor word's length ends up being. */
+  font-size: clamp(2.6rem, 8vw, 7.5rem);
+  line-height: 0.98;
+  margin-bottom: clamp(36px, 5vw, 56px);
+  text-wrap: balance;
+}
+/* The 2.6rem floor above is sized for common phone widths, but the rotor
+   word (nowrap, sized to the longest entry — "hospitality" / "real estate")
+   can still run past the edge of the smallest real phones (≤360px, e.g.
+   iPhone SE) and get clipped by .hero's overflow:hidden. Dropping the floor
+   a bit at that width keeps the whole word on screen. */
+@media (max-width: 380px) {
+  h1 { font-size: clamp(2.1rem, 8vw, 7.5rem); }
+}
+.crimson { color: var(--dot); }
+
+/* word rotor */
+.rotor {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.rotor button {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+.rotor .base {
+  display: block;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.rotor .fill {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+  will-change: height;
+}
+.rotor .fill > span {
+  position: absolute;
+  left: 0; bottom: 0;
+  white-space: nowrap;
+  color: var(--accent);
+}
+.rotor.go .fill {
+  height: 100%;
+  transition: height 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* hero foot: sub-copy left, CTAs right */
+.hero-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(24px, 4vw, 60px);
+  align-items: end;
+}
+.hero-sub {
+  max-width: 44ch;
+  font-size: clamp(14px, 1.35vw, 16.5px);
+  line-height: 1.65;
+  color: var(--ash);
+}
+.hero-sub b { color: var(--ink); font-weight: 600; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  padding: 13px 26px;
+  border-radius: 100px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  /* transform is here for the magnetic pull (see the "micro-interactions"
+     script) — merged into this one declaration on purpose. A separate rule
+     of equal specificity setting `transition: transform ...` would win
+     outright over this one (or vice versa) rather than combine with it. */
+  transition: background 0.18s, color 0.18s, transform 0.2s var(--ease-out);
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.solid:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+.btn.ghost { color: var(--ink); background: transparent; }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 640px) {
+  .hero-foot { grid-template-columns: 1fr; gap: 28px; }
+}

@@ -1,0 +1,28 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 116-140 (03-utility).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── UTILITY ─────────────────────────────────────────────────── */
+.display {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.label {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--ash);
+}
+.wrap { padding-left: var(--pad); padding-right: var(--pad); }
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

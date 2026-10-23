@@ -1,0 +1,54 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2974-3024 (30-popup).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.mds-popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 90; }
+.mds-popup {
+  position: fixed;
+  z-index: 91;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 40px));
+  max-height: calc(100svh - 40px);
+  overflow-y: auto;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  padding: clamp(28px, 4vw, 40px);
+}
+.mds-popup[hidden], .mds-popup-overlay[hidden] { display: none; }
+.mds-popup-close {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ash);
+  font-size: 16px;
+  transition: color 0.2s;
+}
+.mds-popup-close:hover { color: var(--ink); }
+.mds-popup h3 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 10px 0 14px; }
+.mds-popup-copy { font-size: 13.5px; line-height: 1.6; color: var(--ash); margin-bottom: 22px; }
+.mds-field { display: block; margin-bottom: 14px; }
+.mds-field span {
+  display: block;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ash);
+  margin-bottom: 6px;
+}
+.mds-field input, .mds-field select {
+  width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  min-height: 44px;
+}
+.mds-field input:focus-visible, .mds-field select:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
+.mds-popup-submit { width: 100%; text-align: center; margin-top: 6px; }
+.mds-popup-note { font-size: 12.5px; color: var(--accent); margin-top: 10px; min-height: 1em; }

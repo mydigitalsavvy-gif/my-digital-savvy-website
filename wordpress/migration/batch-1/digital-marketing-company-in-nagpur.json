@@ -1,0 +1,65 @@
+{
+  "batch": 1,
+  "source": {
+    "page_id": 793,
+    "url": "https://mydigitalsavvy.com/digital-marketing-company-in-nagpur/",
+    "modified": "2026-05-19T16:18:46",
+    "kind": "location"
+  },
+  "target": {
+    "post_type": "location_page",
+    "rest_base": "location-pages"
+  },
+  "body": {
+    "status": "draft",
+    "title": "Top Digital Marketing Company in Nagpur",
+    "slug": "digital-marketing-company-in-nagpur",
+    "content": "<h2>About us</h2>\n<p><strong>At My Digital Savvy</strong>, we blend creativity and strategy to craft impactful digital marketing solutions. Our team is passionate about helping businesses thrive online with tailored strategies that drive real results. As a <strong>Top Digital Marketing Company in Nagpur</strong>, we’re committed to building your digital presence with purpose and performance. Let’s grow together and take your brand to the next level.</p>\n<h2>About My Digital Savvy - Your Partner in Digital Success</h2>\n<h2>Our Team</h2>\n<p>At My Digital Savvy, we believe in fostering a dynamic and collaborative work environment. Our team is not just about achieving goals, but also about learning, enjoying the journey, and celebrating every moment together. With hard work, creativity, and a passion for innovation, we drive digital success for our clients while building lasting relationships. Being Top Digital Marketing Company in Nagpur, Join us as we grow, laugh, and work diligently to shape the future of Digital Marketing in Nagpur and beyond.</p>\n<p>We focus on creating a perfect balance between learning, enjoying, and working hard. Our team is driven by passion, where every challenge is an opportunity to grow, every moment is filled with laughter, and every project is completed with dedication and excellence. Together, we thrive on continuous learning while delivering top-notch Digital Marketing Solutions for our clients.</p>\n<h2>Your Partner in Digital Success</h2>\n<p>Welcome to My Digital Savvy Agency, a Top Digital Marketing agency in Nagpur. We specialize in crafting innovative strategies that drive measurable success for your business. Let’s elevate your brand and make a lasting impact in the digital world.</p>\n<p>At My Digital Savvy, we are passionate about helping businesses thrive in the digital world. We understand that in today’s fast-paced, interconnected world, a strong online presence is crucial for success. That’s why we’ve made it our mission to empower businesses of all sizes to harness the power of digital marketing and achieve their goals.</p>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-12-at-3.56.51-PM-2048x1536.jpeg\" alt=\"my digital savvy team image\" width=\"2048\" height=\"1537\"></figure>\n<h3>Our Mission</h3><p>Our mission is to be the experts in marketing; therefore, we strive to provide the best customer results possible and deliver the Wow Factor through our services. We are committed to constant innovation and exceeding expectations at every turn.</p><h3>Our Vision</h3><p>Our vision is to create a business world full of prosperity, meaning, and connection for all. To achieve this, we are committed to delivering measurable results to our clients, employees, and vendors. In doing so, we strive to build lasting relationships and foster mutual growth.</p>\n<h2>Empower Your Business with My Digital Savvy</h2>\n<h2>Top Digital Marketing Company in Nagpur</h2>\n<p>We look forward to helping you achieve your digital marketing goals and drive exceptional results for your business.</p>\n<h3>Global Reach</h3><p>Up to 100%</p><h3>Big Experience</h3><p>Expert Team Members</p><h3>Convenience</h3><p>To Reach Your Target</p><h3>Team Strength</h3><p>Clients' Satisfaction</p>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2025/09/8_-Efficient-Dictation-and-Note-Taking.jpg\" alt=\"Digital Marketing Company in Nagpur\" width=\"736\" height=\"736\"></figure>\n<h2>Don't Hesitate To Contact Us</h2>\n<h3>Top Digital Marketing Company in Nagpur</h3>\n<h4>To enhance your average revenue, get in touch with us and receive a free proposal from our digital marketing specialists.</h4>",
+    "acf": {
+      "public_path": "/digital-marketing-company-in-nagpur/",
+      "previous_paths": [],
+      "city": "Nagpur",
+      "intro": "",
+      "services_offered": [],
+      "local_proof": "",
+      "faqs": []
+    },
+    "meta": {
+      "_yoast_wpseo_title": "Top Digital Marketing Company in Nagpur | My Digital Savvy",
+      "_yoast_wpseo_metadesc": "My Digital Savvy is a Top Digital Marketing Company in Nagpur, helping businesses grow with strategy, innovative campaign.",
+      "_yoast_wpseo_opengraph-title": "Top Digital Marketing Company in Nagpur | My Digital Savvy",
+      "_yoast_wpseo_opengraph-description": "My Digital Savvy is a Top Digital Marketing Company in Nagpur, helping businesses grow with strategy, innovative campaign.",
+      "_yoast_wpseo_opengraph-image": "https://mydigitalsavvy.com/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-12-at-3.56.51-PM-scaled.jpeg",
+      "_yoast_wpseo_meta-robots-noindex": ""
+    }
+  },
+  "review": {
+    "status": "PENDING_EDITORIAL_REVIEW",
+    "h1": "Top Digital Marketing Company in Nagpur",
+    "editorial_gaps": [
+      "services_offered (link after services are imported)",
+      "local_proof (no verifiable local proof on the page)"
+    ],
+    "dropped_by_design": [
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "Start A Project"
+      },
+      {
+        "widget": "social icons (site-wide footer)",
+        "text": "Facebook Instagram Whatsapp Linkedin"
+      },
+      {
+        "widget": "shortcode",
+        "text": "Full Name *Email AddressPhone Number *Choose ServicesWhat services are you interested in?Social Media Optimization(SMO)S"
+      }
+    ],
+    "stats": {
+      "body_blocks": 19,
+      "process_steps": 0,
+      "faqs": 0,
+      "images": 2,
+      "benefits": 0
+    }
+  }
+}

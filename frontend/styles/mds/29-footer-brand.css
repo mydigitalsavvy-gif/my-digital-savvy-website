@@ -1,0 +1,9 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2536-2541 (29-footer-brand).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+.footer-logo-canvas { display: block; height: 36px; width: auto; }
+.footer-social { display: flex; gap: 22px; }
+.footer-social a { transition: color 0.2s; }
+.footer-social a:hover { color: var(--dot); }

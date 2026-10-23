@@ -1,0 +1,60 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 698-754 (11-about).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── ABOUT ───────────────────────────────────────────────────── */
+/* Text-led, one pulled-out number, no bordered stat grid — Results
+   already owns the "row of editorial numbers" moment; About's job is the
+   narrative (Nagpur, who the team is), with the one figure Results
+   doesn't carry (satisfaction) surfaced as a single large pull-stat
+   instead of three repeated ones. */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  column-gap: clamp(40px, 6vw, 90px);
+  row-gap: clamp(28px, 4vw, 40px);
+}
+.about-lead {
+  grid-column: 1;
+  font-size: clamp(19px, 2.6vw, 28px);
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 46ch;
+}
+/* Deliberately not centred in its column and pulled up against the lead
+   paragraph's cap-height rather than aligned to a shared grid line — the
+   "controlled imperfection" is the point. */
+.about-pull {
+  grid-column: 2; grid-row: 1 / 3;
+  align-self: start;
+  margin-top: clamp(-8px, -1vw, 0px);
+  padding-left: clamp(16px, 2vw, 28px);
+  border-left: 1px solid var(--rule);
+}
+.about-pull-num {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+  color: var(--dot);
+}
+.about-pull-num span { font-size: 0.5em; }
+.about-pull-label {
+  margin-top: 12px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ash);
+}
+.about-note {
+  grid-column: 1;
+  font-size: clamp(14px, 1.4vw, 16.5px);
+  line-height: 1.7;
+  color: var(--ash);
+  max-width: 50ch;
+}
+.about-note b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .about-layout { grid-template-columns: 1fr; }
+  .about-pull { grid-column: 1; grid-row: auto; margin-top: 8px; padding-left: 20px; }
+}

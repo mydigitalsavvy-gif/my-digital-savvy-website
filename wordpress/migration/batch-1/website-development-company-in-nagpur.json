@@ -1,0 +1,122 @@
+{
+  "batch": 1,
+  "source": {
+    "page_id": 8255,
+    "url": "https://mydigitalsavvy.com/website-development-company-in-nagpur/",
+    "modified": "2026-05-08T12:08:33",
+    "kind": "service"
+  },
+  "target": {
+    "post_type": "service",
+    "rest_base": "services"
+  },
+  "body": {
+    "status": "draft",
+    "title": "Website Development",
+    "slug": "website-development-company-in-nagpur",
+    "featured_media": 0,
+    "acf": {
+      "public_path": "/website-development-company-in-nagpur/",
+      "previous_paths": [],
+      "catalogue_slug": "website-development",
+      "hero": {
+        "headline": "Best Website Development Company in Nagpur",
+        "intro": "",
+        "image": null
+      },
+      "short_description": "",
+      "long_description": "<h2>Website Development Solutions That Power Your Online Success</h2>\n<p>My Digital Savvy – The <strong>Best Website Development Company in Nagpur</strong>. We create high-performance, robust, and highly attractive websites which not only draw traffic but ensure that the traffic is converted to customers. If you are looking for a top-notch WordPress website, a highly scalable WooCommerce store, or a completely personalized Shopify store, then our team is ready to provide the best solution according to your requirements.</p>\n<p>In addition to this, we make sure that the websites we develop are fast loading, mobile-friendly, and optimized for SEO. Furthermore, we have a holistic approach wherein we take into account the best design, functionality, and development aspects to ensure that you succeed online.</p>\n<ul><li>Responsive</li><li>SEO-Friendly</li><li>Fast</li><li>Secure</li><li>Conversion-Driven</li></ul>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2025/12/Best-Website-Development-Company-in-Nagpur.jpg\" alt=\"Best Website Development Company in Nagpur\" width=\"760\" height=\"477\"></figure>\n<h2>About Website Development</h2>\n<h3>Your Website Is Not Just a Design — It’s Your Business Identity</h3>\n<p>We focus on user experience, responsive design, strong branding, and clean functionality… so your business can grow online effortlessly.</p>\n<p>We develop fully custom business-oriented websites with the use of <strong>WordPress, WooCommerce, and Shopify</strong>. When working with My Digital Savvy, we start by understanding your brand’s objectives, conducting a thorough analysis of your competition, and comprehending the behavior of your target audience. Using these findings, our professionals design an aesthetically pleasing, safe, and fast-running website that does not only have a premium look but also provides tangible business benefits, such as generating more leads, increasing sales, and building consumer trust.</p>\n<p>Moreover, regardless of whether you require a corporate website, a professional eCommerce store, or a comprehensive web presence, our development services guarantee that your website runs smoothly, is mobile-friendly, and is optimized for conversions. Additionally, we pay particular attention to the user experience, mobile-friendliness, and SEO of your website during the process of development to make sure that your business succeeds online.</p>\n<p><strong>Our websites help you:</strong><br>✔ Rank higher on Google<br>✔ Generate more leads &amp; sales<br>✔ Build strong brand trust<br>✔ Scale digitally with zero barriers<br>✔ Sell products online with ease</p>\n<p>👉 Small Business | Startup | Agency | Corporate | E-commerce</p>\n<h2>What’s Included IN OUR Website Development Services</h2>\n<h2>🔹 WordPress Website Development</h2>\n<ul><li>Business Websites</li><li>Portfolio Websites</li><li>Landing Pages</li><li>Blogs with SEO-Ready Setup</li><li>Speed + Security Optimization</li></ul>\n<h2>🔹 WooCommerce E-Commerce Development</h2>\n<ul><li>Online Store Setup</li><li>Payment Gateway Integration</li><li>Product Upload &amp; Variations</li><li>Cart + Checkout Optimization</li><li>Inventory + Tax Setup</li></ul>\n<h2>🔹 Shopify Store Development</h2>\n<ul><li>Custom Shopify Store Setup</li><li>Product &amp; Collection Design</li><li>Checkout Optimization</li><li>App Integration</li><li>Store Speed Optimization</li></ul>\n<h2>🔹 Website Security &amp; Optimization</h2>\n<ul><li>SSL Setup</li><li>Security Hardening</li><li>Fast Hosting Integration</li></ul>\n<h2>🔹 Maintenance &amp; Updates</h2>\n<ul><li>Monthly backup &amp; monitoring</li><li>Regular plugin/theme updates</li></ul>\n<h2>Our Webiste Development Process – My Digital Savvy</h2>\n<p>We follow a smart, structured and fully client-focused workflow to ensure every website delivers <strong>performance + results</strong>:</p>\n<ul><li>First, we understand your business model, niche, target audience, and branding goals. This helps us define the best platform — WordPress, WooCommerce, or Shopify.</li><li>We finalize the sitemap, key features, product flow (if eCommerce), content structure, and user journey to ensure smooth navigation and high conversions.</li><li>Our team designs and develops your website with modern UI/UX, premium layouts, secure functionality, and complete responsiveness for all devices.</li><li>Optimize your website for fast loading, mobile performance, Google SEO, secure checkout, and maximum lead conversions.</li><li>We test the website across browsers, devices, and use-cases to ensure perfection — then deploy with complete configuration and live setup.</li><li>provide admin training, performance monitoring, updates, and maintenance support — so your business keeps growing smoothly.</li></ul>\n<h2>Websites We Build</h2>\n<h4>Ready To Build A Website That Drives Growth?</h4>\n<h4>Let My Digital Savvy build a website designed for success.</h4>\n<h2>Frequently Asked Questions</h2>\n<h2>Best Website Development Company in Nagpur</h2>",
+      "benefits": [
+        {
+          "title": "WordPress",
+          "body": "",
+          "image_url": "https://mydigitalsavvy.com/wp-content/uploads/2025/12/download-4.png"
+        },
+        {
+          "title": "WooCommerce",
+          "body": "",
+          "image_url": "https://mydigitalsavvy.com/wp-content/uploads/2025/12/download-2-2.png"
+        },
+        {
+          "title": "SEMrush",
+          "body": "",
+          "image_url": "https://mydigitalsavvy.com/wp-content/uploads/2025/12/download-1-2.png"
+        }
+      ],
+      "process": [],
+      "faqs": [],
+      "related_case_studies": [],
+      "industries": [],
+      "cta": {
+        "label": "Get your free audit",
+        "url": "#contact"
+      }
+    },
+    "meta": {
+      "_yoast_wpseo_title": "Website Development Company in Nagpur – My Digital Savvy",
+      "_yoast_wpseo_metadesc": "Looking for a Website Development Company in Nagpur? We create responsive WordPress, WooCommerce & Shopify websites to boost business.",
+      "_yoast_wpseo_opengraph-title": "Website Development Company in Nagpur – My Digital Savvy",
+      "_yoast_wpseo_opengraph-description": "Looking for a Website Development Company in Nagpur? We create responsive WordPress, WooCommerce & Shopify websites to boost business.",
+      "_yoast_wpseo_opengraph-image": "https://mydigitalsavvy.com/wp-content/uploads/2025/12/Best-Website-Development-Company-in-Nagpur.jpg",
+      "_yoast_wpseo_meta-robots-noindex": ""
+    }
+  },
+  "review": {
+    "status": "PENDING_EDITORIAL_REVIEW",
+    "h1": "Best Website Development Company in Nagpur",
+    "editorial_gaps": [
+      "short_description (also changes the homepage panel lede; left empty on purpose)",
+      "faqs (none on the page)",
+      "related_case_studies / industries (no case studies or industries exist yet)"
+    ],
+    "dropped_by_design": [
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Years Of Exellence +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Client Satisfaction %"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Websites Delivered +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Support Available /7"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "CONTACT US"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "CONTACT US"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "Check Our Websites Talk to Our Expert"
+      },
+      {
+        "widget": "social icons (site-wide footer)",
+        "text": "Facebook Instagram Whatsapp Linkedin"
+      },
+      {
+        "widget": "shortcode",
+        "text": ""
+      },
+      {
+        "widget": "shortcode",
+        "text": ""
+      }
+    ],
+    "stats": {
+      "body_blocks": 31,
+      "process_steps": 0,
+      "faqs": 0,
+      "images": 1,
+      "benefits": 3
+    }
+  }
+}

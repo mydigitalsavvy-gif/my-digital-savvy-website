@@ -1,0 +1,12 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2480-2487 (28-audit).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.audit-box {
+  border: 1.5px solid var(--dot);
+  background: var(--paper-hi);
+  padding: clamp(48px, 7vw, 88px) clamp(28px, 5vw, 64px);
+  text-align: center;
+}
+.audit-box h2 { margin: 16px 0 20px; font-size: clamp(2rem, 5vw, 4rem); }
+.audit-copy { max-width: 56ch; margin: 0 auto 32px; color: var(--ash); font-size: clamp(14px, 1.4vw, 16.5px); line-height: 1.6; }

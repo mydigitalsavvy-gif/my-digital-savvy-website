@@ -1,0 +1,10 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 928-933 (18-reduced-motion).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── REDUCED MOTION ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  .rotor .fill { height: 100% !important; }
+}

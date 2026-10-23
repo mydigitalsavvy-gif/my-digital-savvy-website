@@ -1,0 +1,47 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 654-697 (10-sections).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── SECTIONS SHARED ─────────────────────────────────────────── */
+section { padding-top: clamp(80px, 11vw, 144px); }
+
+/* One section on screen at a time. Several sections (Results, Industries,
+   Selected Work, Case Studies, Free Audit especially) are short enough that
+   a normal scroll left the tail of one and the head of the next both
+   visible at once — on a page this visually dense (dark ground, bold
+   display type, coloured tags and borders everywhere) that reads as
+   clutter rather than as a next section coming into view. Giving each of
+   these a floor of one viewport height and centering their content in it
+   means whichever section the reader has scrolled to is the only one
+   substantially on screen. min-height rather than a fixed height: sections
+   with more real content (About's stat grid, Why Us's carousel) simply grow
+   past one viewport instead of clipping. Hero (#top) already has its own
+   min-height; Services (#services) is a pinned sequence, already one
+   viewport per panel by a different mechanism; the marquee and footer are
+   deliberately not full-height, they're not "sections" a reader stops to
+   read. */
+#results, #industries, #work, #case-studies,
+#about, #blog, #process, #proof, #why, #audit, #contact {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.head h2 {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.9rem, 5vw, 4rem);
+  line-height: 0.95;
+}

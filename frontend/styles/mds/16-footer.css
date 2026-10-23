@@ -1,0 +1,15 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 880-891 (16-footer).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(20px, 2.5vw, 32px);
+  padding: 22px var(--pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}

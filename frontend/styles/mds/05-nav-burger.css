@@ -1,0 +1,26 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 268-290 (05-nav-burger).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── NAV BURGER (mobile trigger for .mobile-nav) ────────────────── */
+.nav-burger {
+  grid-column: 3;
+  justify-self: end;
+  display: none;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 5px;
+  width: 44px; height: 44px;
+  background: rgba(8, 8, 8, 0.92);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block; width: 18px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s var(--ease-out), opacity 0.2s;
+}
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (max-width: 860px) { .nav-burger { display: flex; } }

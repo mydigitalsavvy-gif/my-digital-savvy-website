@@ -1,0 +1,17 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 1942-1954 (23-industries).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.industry-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.industry-card {
+  background: var(--paper); padding: 28px 22px 32px;
+  /* merged with the reveal-group entrance transition on purpose — see the
+     .why-card comment near the "Why Us" styles for why a separate rule of
+     equal specificity would silently drop one or the other instead. */
+  transition: background 0.25s, opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.industry-card:hover { background: var(--paper-hi); }
+.industry-tag { display: block; color: var(--c); margin-bottom: 14px; }
+.industry-clients { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+@media (max-width: 900px) { .industry-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .industry-grid { grid-template-columns: 1fr; } }

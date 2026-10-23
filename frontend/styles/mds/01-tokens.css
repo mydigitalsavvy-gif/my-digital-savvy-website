@@ -1,0 +1,30 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 75-101 (01-tokens).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── TOKENS ──────────────────────────────────────────────────── */
+:root {
+  --paper:    #080808;
+  --paper-hi: #0F0F0F;
+  --ink:      #EFEFEF;
+  /* was #7A7A7A: measured 4.47:1 against --paper-hi (Why Us cards, the
+     rating box, Case Studies), just under the 4.5:1 AA floor for body text.
+     This value clears it (4.86:1) while staying visually indistinguishable
+     from the old one against --paper (5.07:1, was 4.67:1). */
+  --ash:      #808080;
+  --rule:     #1A1A1A;
+  --dot:      #01FEFB;
+  --accent:   #01FEFB;
+  --green:    #3BFF45;
+  --blue:     #4DAAFF;
+  --magenta:  #D42DF5;
+  --pad: clamp(20px, 5vw, 80px);
+  /* shared entrance easing for the reveal system below — an expo-out curve
+     reads as considered rather than the default ease's slight sluggishness */
+  --reveal-ease: cubic-bezier(0.16, 0.84, 0.28, 1);
+  /* same curve, separate name: micro-interactions (buttons, hover states,
+     cursor-driven parallax) live on a much shorter timescale than section
+     reveals, and keeping the token distinct makes that intent explicit at
+     the call site rather than implicit in a shared duration. */
+  --ease-out: cubic-bezier(0.16, 0.84, 0.28, 1);
+}

@@ -1,0 +1,104 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2304-2403 (27-why).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── WHY US — card carousel ──────────────────────────────────── */
+.why-shell { position: relative; }
+.why-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.why-track::-webkit-scrollbar { display: none; }
+.why-track:focus-visible { outline: 2px solid var(--dot); outline-offset: 6px; }
+.why-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 4px 4px 10px;
+}
+.why-card {
+  scroll-snap-align: start;
+  flex: 0 0 clamp(240px, 32vw, 320px);
+  /* A coloured top rule instead of a full border box — one flag-line per
+     reason, not another bordered card next to Results/Process/Industries'
+     own boxed grids. */
+  border-top: 2px solid var(--rule);
+  padding: 24px 4px 30px 0;
+  /* the opacity/transform terms here are the reveal-group entrance (see
+     "SCROLL REVEAL" above) — merged into this rule rather than left on the
+     generic .reveal-group > * selector, because the transition shorthand
+     doesn't merge across rules of equal specificity: whichever declares it
+     last wins outright, and .why-card's own border-color transition would
+     otherwise silently swallow the reveal's opacity/transform transition. */
+  transition: border-color 0.25s, opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.why-card:hover, .why-card:focus-within {
+  border-color: var(--c);
+}
+.why-num {
+  display: block;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  line-height: 1;
+  color: var(--c);
+  margin-bottom: 20px;
+}
+.why-card h3 {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 1.5vw, 17px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.why-card p { font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+
+.why-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+.why-arrow {
+  all: unset;
+  cursor: pointer;
+  width: 44px; height: 44px;
+  border: 1.5px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s var(--ease-out);
+}
+.why-arrow:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); transform: scale(1.08); }
+.why-arrow:active { transform: scale(0.96); }
+.why-dots { display: flex; align-items: center; gap: 7px; }
+.why-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: background 0.2s, transform 0.2s;
+}
+.why-dots span.is-on { background: var(--accent); transform: scale(1.4); }
+
+.why-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+@media (max-width: 560px) {
+  .why-card { flex-basis: 78vw; }
+  .why-foot { justify-content: center; text-align: center; }
+}

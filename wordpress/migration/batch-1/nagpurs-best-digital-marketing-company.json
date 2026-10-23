@@ -1,0 +1,73 @@
+{
+  "batch": 1,
+  "source": {
+    "page_id": 1411,
+    "url": "https://mydigitalsavvy.com/nagpurs-best-digital-marketing-company/",
+    "modified": "2026-04-15T22:52:26",
+    "kind": "location"
+  },
+  "target": {
+    "post_type": "location_page",
+    "rest_base": "location-pages"
+  },
+  "body": {
+    "status": "draft",
+    "title": "Nagpur’s Best Digital Marketing Company",
+    "slug": "nagpurs-best-digital-marketing-company",
+    "content": "<h2>Contact Us</h2>\n<p>My Digital Savvy- Nagpur’s Best Digital Marketing Company, help businesses navigate the digital landscape by providing customized strategies, utilizing the latest tools, and focusing on measurable results. These agencies can help businesses improve their online visibility, optimize their websites, and create engaging content to connect with customers.</p>\n<h2>Don't Hesitate To Contact Us</h2>\n<h3>Call us for immediate support to this number.</h3>\n<ul><li>First floor, JB Wing, 15, 16, NMC Complex, Mangalwari, Sadar, Nagpur, Maharashtra 440001</li><li>SHop No.67, 1st Floor, Rahul Complex 2, near Ghat Road, Ganeshpeth Colony, Nagpur, Maharashtra 440018</li><li>+91 ‎8149105083</li><li>mydigitalsavvy@gmail.com</li></ul>\n<h2>Nagpur’s Best Digital Marketing Company</h2>\n<p>Digital marketing presents you with the opportunity to have real conversations with your customers. Whether through email, SMS, social media, or blog comments, you can get feedback from your customers every step of the way. This gives you more opportunities to delight customers, answer questions, and fine-tune your campaigns based on their input. It doesn’t hurt that these conversations also provide you with more customer touchpoints, which can increase conversions and sales.</p>\n<p>Digital marketing is a crucial part of any successful business strategy, and working with My Digital Savvy ; Best Digital Marketing Company in Nagpur can help businesses maximize their online presence, reach their target audience, and achieve their business goals.</p>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2024/08/WhatsApp-Image-2024-08-22-at-12.15.43-PM.jpeg\" alt=\"Nagpur’s Best Digital Marketing Company\" width=\"736\" height=\"526\"></figure>\n<h4>Reach Us</h4>\n<h2>Use the map below to locate our office and plan your visit.</h2>\n<h4>To enhance your average revenue, get in touch with us and receive a free proposal from our digital marketing specialists.</h4>",
+    "acf": {
+      "public_path": "/nagpurs-best-digital-marketing-company/",
+      "previous_paths": [],
+      "city": "Nagpur",
+      "intro": "",
+      "services_offered": [],
+      "local_proof": "",
+      "faqs": []
+    },
+    "meta": {
+      "_yoast_wpseo_title": "Nagpur’s Best Digital Marketing Company",
+      "_yoast_wpseo_metadesc": "Elevate your business with Nagpur’s Best Digital Marketing Company. Professional SEO, PPC, and branding solutions tailored for success.",
+      "_yoast_wpseo_opengraph-title": "Nagpur’s Best Digital Marketing Company",
+      "_yoast_wpseo_opengraph-description": "Elevate your business with Nagpur’s Best Digital Marketing Company. Professional SEO, PPC, and branding solutions tailored for success.",
+      "_yoast_wpseo_opengraph-image": "https://mydigitalsavvy.com/wp-content/uploads/2024/08/WhatsApp-Image-2024-08-22-at-12.15.43-PM.jpeg",
+      "_yoast_wpseo_meta-robots-noindex": ""
+    }
+  },
+  "review": {
+    "status": "PENDING_EDITORIAL_REVIEW",
+    "h1": "Nagpur’s Best Digital Marketing Company",
+    "editorial_gaps": [
+      "services_offered (link after services are imported)",
+      "local_proof (no verifiable local proof on the page)"
+    ],
+    "dropped_by_design": [
+      {
+        "widget": "social icons (site-wide footer)",
+        "text": "Facebook Instagram Whatsapp Linkedin"
+      },
+      {
+        "widget": "social icons (site-wide footer)",
+        "text": "Facebook Instagram Whatsapp Linkedin"
+      },
+      {
+        "widget": "shortcode",
+        "text": "Full Name *Email AddressPhone Number *Choose ServicesWhat services are you interested in?Social Media Optimization(SMO)S"
+      },
+      {
+        "widget": "custom HTML",
+        "text": ""
+      },
+      {
+        "widget": "custom HTML",
+        "text": ""
+      }
+    ],
+    "stats": {
+      "body_blocks": 12,
+      "process_steps": 0,
+      "faqs": 0,
+      "images": 1,
+      "benefits": 0
+    }
+  }
+}

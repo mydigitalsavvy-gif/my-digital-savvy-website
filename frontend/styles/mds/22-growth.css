@@ -1,0 +1,110 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 1756-1861 (22-growth).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.growth-track { position: relative; height: calc(var(--n) * 100svh); }
+.growth-stage {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr;
+  gap: clamp(24px, 4vh, 48px);
+  padding: 96px var(--pad) 60px;
+}
+.growth-head { text-align: left; }
+.growth-head .label { display: block; margin-bottom: 10px; }
+.growth-head h2 {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  line-height: 1.08;
+}
+
+.growth-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  min-height: 0;
+}
+
+/* the whole system, always on screen — a plain flowchart rail, not a
+   dashboard sidebar: a rule with six labelled points, the current one lit,
+   passed ones dimmed to show direction of travel. */
+.growth-rail {
+  display: flex; flex-direction: column; gap: 4px;
+  list-style: none;
+  border-left: 1px solid var(--rule);
+}
+.growth-rail li {
+  position: relative;
+  padding: 13px 0 13px 24px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600; font-size: 13px; letter-spacing: 0.02em;
+  color: var(--ash);
+  transition: color 0.3s;
+}
+.growth-rail li::before {
+  content: ''; position: absolute; left: -5px; top: 50%; transform: translateY(-50%) scale(1);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--paper); border: 1.5px solid var(--rule);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+.growth-rail li.is-on { color: var(--ink); font-weight: 800; }
+.growth-rail li.is-on::before { background: var(--dot); border-color: var(--dot); transform: translateY(-50%) scale(1.35); }
+.growth-rail li.is-done { color: var(--ash); }
+.growth-rail li.is-done::before { background: var(--rule); border-color: var(--rule); }
+
+.growth-cards { position: relative; min-height: 0; height: 100%; }
+/* A decisive slide+scale, not a soft crossfade — the previous 6% shift
+   read as barely-there, which undercut "one stage at a time" storytelling.
+   Distance and scale are big enough here that each stage-change reads as
+   a definite event even though the easing keeps it smooth, not jarring. */
+.growth-card {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transform: translateX(16%) scale(0.97);
+  transition: opacity 0.5s ease, transform 0.75s var(--reveal-ease), visibility 0.75s;
+  color: var(--c, var(--dot));
+}
+.growth-card.is-on { opacity: 1; pointer-events: auto; visibility: visible; transform: translateX(0) scale(1); }
+.growth-card.is-out { opacity: 0; transform: translateX(-16%) scale(0.97); }
+/* number → title → line arrive as a short sequence inside the slide,
+   rather than the whole card appearing as one flat block */
+.growth-card > * {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.5s var(--reveal-ease), transform 0.5s var(--reveal-ease);
+}
+.growth-card.is-on > * { opacity: 1; transform: none; }
+.growth-card.is-on > .growth-num { transition-delay: 0.12s; }
+.growth-card.is-on > h3          { transition-delay: 0.2s; }
+.growth-card.is-on > p           { transition-delay: 0.3s; }
+.growth-num {
+  display: block; margin-bottom: 14px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
+  color: var(--c, var(--dot));
+}
+.growth-card h3 {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; color: var(--ink);
+  text-transform: uppercase; letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  margin-bottom: 16px;
+}
+.growth-card p { font-size: clamp(14px, 1.4vw, 17px); line-height: 1.6; color: var(--ash); max-width: 50ch; }
+
+@media (max-width: 860px), (prefers-reduced-motion: reduce) {
+  .growth-track { height: auto; }
+  .growth-stage { position: static; height: auto; display: block; padding: 56px var(--pad) 8px; }
+  .growth-head { margin-bottom: 32px; }
+  .growth-body { display: block; }
+  .growth-rail { display: none; }
+  .growth-cards { position: static; height: auto; }
+  .growth-card {
+    position: static; opacity: 1 !important; visibility: visible !important; pointer-events: auto;
+    transform: none !important;
+    padding-block: 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .growth-card:first-child { border-top: none; }
+}

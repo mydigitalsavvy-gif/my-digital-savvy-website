@@ -1,0 +1,47 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 809-852 (14-proof).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── PROOF ───────────────────────────────────────────────────── */
+.proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+}
+.quote {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 3.2vw, 2.8rem);
+  line-height: 1.05;
+}
+.quote em { font-style: normal; color: var(--dot); }
+.who { margin-top: 16px; font-size: 13px; color: var(--ash); }
+.rating {
+  display: block;
+  border: 1px solid var(--rule);
+  padding: 32px;
+  background: var(--paper-hi);
+  transition: border-color 0.2s;
+}
+.rating:hover { border-color: var(--accent); }
+.rating .big {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 0.88;
+  transition: color 0.25s;
+}
+.rating:hover .big { color: var(--accent); }
+.rating .stars {
+  color: var(--dot);
+  font-size: 17px;
+  letter-spacing: 3px;
+  margin: 14px 0 18px;
+}
+.rating p { font-size: 13.5px; color: var(--ash); line-height: 1.5; }
+.rating strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 800px) { .proof { grid-template-columns: 1fr; } }

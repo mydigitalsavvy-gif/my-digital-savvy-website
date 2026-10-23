@@ -1,0 +1,111 @@
+{
+  "batch": 1,
+  "source": {
+    "page_id": 7685,
+    "url": "https://mydigitalsavvy.com/local-seo-services-in-nagpur/",
+    "modified": "2025-12-19T17:03:33",
+    "kind": "service"
+  },
+  "target": {
+    "post_type": "service",
+    "rest_base": "services"
+  },
+  "body": {
+    "status": "draft",
+    "title": "Local SEO (Google My Business Optimization)",
+    "slug": "local-seo-services-in-nagpur",
+    "featured_media": 0,
+    "acf": {
+      "public_path": "/local-seo-services-in-nagpur/",
+      "previous_paths": [],
+      "catalogue_slug": "local-seo-gmb-optimization",
+      "hero": {
+        "headline": "Best Local SEO Services in Nagpur",
+        "intro": "",
+        "image": null
+      },
+      "short_description": "",
+      "long_description": "<h2>Local SEO Services That Increase Calls, Visits &amp; Real Customers.</h2>\n<p>At <strong>My Digital Savvy — Local SEO Services in Nagpur</strong> — we help your business appear on top of Google Maps and local search results. We don’t just optimize listings; we build local authority, trust, and long-term visibility for your business. Our strategies focus on real data, real customers, and real conversions.</p>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2025/11/Best-Local-SEO-Services-in-Nagpur.png\" alt=\"Best Local SEO Services in Nagpur\" width=\"600\" height=\"700\"></figure>\n<h2>About Local SEO (Google My Business Optimization)</h2>\n<h3>Your business needs more than just a location — it needs visibility on Google Maps</h3>\n<p>My Digital Savvy is a trusted provider of Local SEO Services in Nagpur, helping businesses get more visibility in local searches, Google Maps, and “near me” results. Our goal is to increase your local presence, bring more calls, store visits, and genuine customers to your business.</p>\n<p>We start by understanding your business location, target audience, and competition. Then we optimize your Google Business Profile, website, and local signals using location-based keywords and local SEO best practices.</p>\n<p><strong>Local SEO helps you:</strong></p>\n<ul><li>Rank higher on Google Maps</li><li>Get more calls from nearby customers</li><li>Increase walk-ins and local inquiries</li><li>Build trust through reviews</li><li>Stay ahead of local competitors</li></ul>\n<h2>What’s Included LOCAL SEO SERVICES</h2>\n<p>Our goal is simple – make your business the top choice in local search results.</p>\n<h2>🔹 GMB Profile Optimization</h2>\n<ul><li>Profile creation &amp; verification</li><li>Keyword optimization</li><li>Business description</li><li>Image &amp; video uploads</li><li>Weekly updates &amp; posts</li></ul>\n<h2>🔹 Local Keyword Research</h2>\n<ul><li>Area / city-based keywords</li><li>“Near Me” optimization</li><li>Pin-code targeting</li></ul>\n<h2>🔹 Local Citations &amp; Listings</h2>\n<ul><li>Justdial, Sulekha, IndiaMart, etc.</li><li>NAP consistency (Name, Address, Phone)</li></ul>\n<h2>🔹 Review &amp; Reputation Management</h2>\n<ul><li>Strategy for more reviews</li><li>Response management</li></ul>\n<h2>🔹Geo-Tagging &amp; Map Signals</h2>\n<ul><li>Location tagging</li><li>Map embedding</li></ul>\n<h2>Our LOCAL SEO Process- Best Local SEO Services in Nagpur</h2>\n<h2>How We Execute Successful LOCAL SEO – My Digital Savvy</h2>\n<p>At My Digital Savvy, we follow a structured, data-driven approach to ensure every Local SEO campaign delivers real and long-term results.</p>\n<ul><li>From our first interaction, we focus on understanding your business type, location, and customer base in Nagpur.</li><li>Then we perform a detailed Local SEO audit, analyzing your current Google Business Profile, local competitors, and online visibility.</li><li>Next, we conduct in-depth local keyword research to find the best city and area-based search terms for your business.</li><li>After that, we optimize your Google Business Profile with accurate information, keywords, service areas, images, and updates.</li><li>We create local citations &amp; backlinks to increase your authority in the Nagpur region.</li><li>We track performance regularly including calls, direction requests, website visits, and ranking improvements.</li></ul>\n<h4>Put Your Business on Top of Google Maps Today ?</h4>\n<h4>Let My Digital Savvy’s Local SEO Services in Nagpur bring your business to the Top of Google Maps &amp; Local Results.</h4>\n<h2>Frequently Asked Questions</h2>\n<h2>Best Website SEO Agency in Nagpur</h2>",
+      "benefits": [],
+      "process": [],
+      "faqs": [],
+      "related_case_studies": [],
+      "industries": [],
+      "cta": {
+        "label": "Get your free audit",
+        "url": "#contact"
+      }
+    },
+    "meta": {
+      "_yoast_wpseo_title": "Local SEO Services in Nagpur – My Digital Savvy",
+      "_yoast_wpseo_metadesc": "My Digital Savvy offers Local SEO Services in Nagpur to help your business rank on Google Maps, get more calls, visits, and local customers.",
+      "_yoast_wpseo_opengraph-title": "Local SEO Services in Nagpur – My Digital Savvy",
+      "_yoast_wpseo_opengraph-description": "My Digital Savvy offers Local SEO Services in Nagpur to help your business rank on Google Maps, get more calls, visits, and local customers.",
+      "_yoast_wpseo_opengraph-image": "https://mydigitalsavvy.com/wp-content/uploads/2025/11/Best-Local-SEO-Services-in-Nagpur.png",
+      "_yoast_wpseo_meta-robots-noindex": ""
+    }
+  },
+  "review": {
+    "status": "PENDING_EDITORIAL_REVIEW",
+    "h1": "Best Local SEO Services in Nagpur",
+    "editorial_gaps": [
+      "short_description (also changes the homepage panel lede; left empty on purpose)",
+      "benefits (no feature cards on the page)",
+      "faqs (none on the page)",
+      "related_case_studies / industries (no case studies or industries exist yet)"
+    ],
+    "dropped_by_design": [
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Years Of Exellence +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Client Satisfaction +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Local Listings Optimized +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Local Businesses Ranked +"
+      },
+      {
+        "widget": "counter (no verifiable number)",
+        "text": "Support Available /7"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "CONTACT US"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "CONTACT US"
+      },
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "Free Local SEO Audit Talk to Our Expert"
+      },
+      {
+        "widget": "social icons (site-wide footer)",
+        "text": "Facebook Instagram Whatsapp Linkedin"
+      },
+      {
+        "widget": "shortcode",
+        "text": ""
+      },
+      {
+        "widget": "shortcode",
+        "text": ""
+      }
+    ],
+    "stats": {
+      "body_blocks": 29,
+      "process_steps": 0,
+      "faqs": 0,
+      "images": 1,
+      "benefits": 0
+    }
+  }
+}

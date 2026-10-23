@@ -1,0 +1,16 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 2020-2031 (25-case-studies).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+.cs-card { border: 1px solid var(--rule); padding: clamp(28px, 4vw, 48px); background: var(--paper-hi); }
+.cs-badge {
+  display: inline-block;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 100px;
+  padding: 6px 14px; margin-bottom: 28px;
+}
+.cs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px; }
+.cs-step p { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+@media (max-width: 800px) { .cs-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .cs-grid { grid-template-columns: 1fr; } }

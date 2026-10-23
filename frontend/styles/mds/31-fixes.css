@@ -1,0 +1,12 @@
+/* Deliberate deviations from my-digital-savvy-v2.html. Keep this list short;
+   every entry is a defect in the reference, not a design change.
+
+   1. Growth system on mobile / reduced motion.
+      The reference stacks all six stage cards here and forces the cards to
+      opacity 1, but their CHILDREN keep `.growth-card > * { opacity: 0 }`
+      and only become visible with .is-on, which the scroll script never
+      sets on mobile. Result in the reference: stages 02-06 render as blank
+      boxes on every phone. This shows them, exactly as stacked. */
+@media (max-width: 860px), (prefers-reduced-motion: reduce) {
+  .growth-card > * { opacity: 1; transform: none; }
+}

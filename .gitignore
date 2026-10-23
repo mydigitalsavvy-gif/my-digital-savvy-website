@@ -1,0 +1,14 @@
+﻿# Local environment files and secrets
+.env
+.env.*
+!.env.example
+**/.env.local
+**/.env.*.local
+
+# Local tool configuration
+.agent/mcp_config.json
+.agents/mcp_config.json
+.cursor/mcp.json
+
+# Local server logs
+server*.log

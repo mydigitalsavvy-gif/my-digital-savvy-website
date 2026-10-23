@@ -1,0 +1,499 @@
+/* ── CONTENT PAGES (service, location, post, archive, generic) ──────
+   Built only from the reference's tokens and type treatments (.display,
+   .label, .head, .btn, --paper/--ink/--ash/--rule/--dot, --pad,
+   --reveal-ease). Kept out of styles/mds/ so the homepage port stays
+   verbatim. Prefix: cx-. */
+
+.cx-hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(56px, 8vw, 112px);
+  padding-bottom: clamp(48px, 6vw, 80px);
+  border-bottom: 1px solid var(--rule);
+}
+.cx-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+.cx-hero > * {
+  position: relative;
+}
+.cx-hero h1 {
+  font-size: clamp(2.2rem, 6.2vw, 5.4rem);
+  line-height: 0.98;
+  max-width: 18ch;
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+.cx-hero .hero-sub {
+  max-width: 60ch;
+}
+.cx-hero .btns {
+  margin-top: 32px;
+}
+.cx-hero-image {
+  margin-top: clamp(36px, 5vw, 56px);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.cx-hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* breadcrumbs */
+.cx-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin-bottom: clamp(22px, 4vh, 40px);
+}
+.cx-crumbs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cx-crumbs li + li::before {
+  content: "/";
+  color: var(--rule);
+}
+.cx-crumbs a {
+  transition: color 0.2s;
+}
+.cx-crumbs a:hover {
+  color: var(--ink);
+}
+.cx-crumbs [aria-current] {
+  color: var(--ink);
+}
+
+/* generic section on content pages — not full-viewport like homepage ids */
+.cx-section {
+  padding-top: clamp(64px, 8vw, 112px);
+}
+
+/* ── article body (structured blocks) ───────────────────────────── */
+.cx-body {
+  max-width: 72ch;
+  color: var(--ash);
+  font-size: clamp(15px, 1.25vw, 17px);
+  line-height: 1.75;
+}
+.cx-body > * + * {
+  margin-top: 1.1em;
+}
+.cx-body h2,
+.cx-body h3,
+.cx-body h4 {
+  color: var(--ink);
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.cx-body h2 {
+  font-size: clamp(1.45rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  margin-top: 2.1em;
+}
+.cx-body h3 {
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  font-weight: 700;
+  margin-top: 1.8em;
+}
+.cx-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 1.6em;
+}
+.cx-body > :first-child {
+  margin-top: 0;
+}
+.cx-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.cx-body em {
+  font-style: normal;
+  color: var(--ink);
+}
+.cx-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--dot);
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.cx-body a:hover {
+  color: var(--dot);
+}
+.cx-body ul,
+.cx-body ol {
+  padding-left: 1.2em;
+}
+.cx-body li + li {
+  margin-top: 0.45em;
+}
+.cx-body li::marker {
+  color: var(--dot);
+}
+.cx-body blockquote {
+  border-left: 2px solid var(--dot);
+  padding-left: 20px;
+  color: var(--ink);
+}
+.cx-figure {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.cx-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+.cx-figure figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ash);
+}
+
+/* two-column layout: body + sticky aside on wide screens */
+.cx-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.cx-aside {
+  position: sticky;
+  top: 32px;
+  border: 1px solid var(--rule);
+  background: var(--paper-hi);
+  padding: 28px;
+}
+.cx-aside .label {
+  display: block;
+  margin-bottom: 14px;
+}
+.cx-aside p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ash);
+  margin-bottom: 20px;
+}
+.cx-aside .wd-tags {
+  justify-content: flex-start;
+  margin-bottom: 22px;
+}
+@media (max-width: 900px) {
+  .cx-layout {
+    grid-template-columns: 1fr;
+  }
+  .cx-aside {
+    position: static;
+  }
+}
+
+/* process steps (from Elementor tabs / process repeater) */
+.cx-steps {
+  list-style: none;
+  counter-reset: cxstep;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+.cx-step {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cx-step-n {
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1;
+  color: var(--rule);
+  transition: color 0.25s;
+}
+.cx-step:hover .cx-step-n {
+  color: var(--accent);
+}
+.cx-step h3 {
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.cx-step .cx-body {
+  font-size: 14.5px;
+}
+@media (max-width: 560px) {
+  .cx-step {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* FAQs */
+.cx-faqs {
+  border-top: 1px solid var(--rule);
+  max-width: 900px;
+}
+.cx-faq {
+  border-bottom: 1px solid var(--rule);
+}
+.cx-faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--ink);
+}
+.cx-faq summary::-webkit-details-marker {
+  display: none;
+}
+.cx-faq summary::after {
+  content: "+";
+  color: var(--dot);
+  font-weight: 400;
+  transition: transform 0.25s var(--ease-out);
+}
+.cx-faq[open] summary::after {
+  transform: rotate(45deg);
+}
+.cx-faq .cx-body {
+  padding-bottom: 24px;
+}
+
+/* ── post lists / archives ──────────────────────────────────────── */
+.cx-posts {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+.cx-post {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: clamp(20px, 4vw, 48px);
+  align-items: start;
+  padding: clamp(24px, 3vw, 36px) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cx-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.cx-post-meta .label + .label::before {
+  content: "·";
+  margin-right: 14px;
+  color: var(--rule);
+}
+.cx-post h2 {
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.25rem, 2.6vw, 2rem);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+.cx-post h2 a {
+  transition: color 0.2s;
+}
+.cx-post:hover h2 a {
+  color: var(--accent);
+}
+.cx-post p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ash);
+  max-width: 64ch;
+}
+.cx-post-thumb {
+  display: block;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  position: relative;
+}
+.cx-post-thumb img {
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+.cx-post:hover .cx-post-thumb img {
+  transform: scale(1.03);
+}
+@media (max-width: 700px) {
+  .cx-post {
+    grid-template-columns: 1fr;
+  }
+  .cx-post-thumb {
+    order: -1;
+  }
+}
+
+.cx-pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0 0;
+}
+.cx-pager .label {
+  color: var(--ash);
+}
+
+.cx-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 40px;
+}
+.cx-terms a {
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 6px 13px;
+  color: var(--ash);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+.cx-terms a:hover {
+  border-color: var(--dot);
+  color: var(--ink);
+}
+
+/* preview bar */
+.cx-preview-bar {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 12px 10px 18px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cx-preview-bar a {
+  text-decoration: underline;
+}
+
+/* feature cards (Elementor image/icon boxes, service benefits) */
+.cx-cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+.cx-card {
+  background: var(--paper);
+  padding: 24px 22px 28px;
+  transition: background 0.25s;
+}
+.cx-card:hover {
+  background: var(--paper-hi);
+}
+.cx-card-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-hi);
+}
+.cx-card-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.cx-card h3 {
+  font-family:
+    var(--font-inter),
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.cx-card p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ash);
+}
+.cx-body .cx-cards {
+  max-width: none;
+}

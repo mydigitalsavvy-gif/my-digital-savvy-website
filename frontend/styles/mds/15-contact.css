@@ -1,0 +1,30 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 853-879 (15-contact).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── CONTACT ─────────────────────────────────────────────────── */
+.contact { padding-bottom: clamp(28px, 3vw, 44px); }
+.contact .display {
+  font-size: clamp(2.4rem, 8vw, 7.5rem);
+  max-width: 14ch;
+  margin-top: 18px;
+}
+.cgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: clamp(36px, 5vw, 60px);
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.cgrid a, .cgrid p {
+  font-size: clamp(13.5px, 1.3vw, 17px);
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+  margin-top: 6px;
+}
+.cgrid a:hover { color: var(--dot); }
+
+@media (max-width: 900px) { .cgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cgrid { grid-template-columns: 1fr; gap: 20px; } }

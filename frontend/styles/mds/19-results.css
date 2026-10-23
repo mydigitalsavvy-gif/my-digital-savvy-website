@@ -1,0 +1,45 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 1106-1146 (19-results).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* Editorial fact strip, not a dashboard: no card boxes, no per-tile
+   background or hover-colour-shift — five numbers set large, separated
+   only by a thin rule, the way a print report or an annual review lists
+   figures rather than the way a SaaS product displays KPIs. */
+.results-row {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: clamp(32px, 5vw, 48px);
+}
+.result-fact {
+  flex: 1 1 160px;
+  padding-inline: clamp(20px, 3vw, 44px);
+  border-left: 1px solid var(--rule);
+}
+.result-fact:first-child { border-left: none; padding-left: 0; }
+.result-num {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.result-num sup { font-size: 0.4em; vertical-align: 0.6em; font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.result-label {
+  margin-top: 14px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.results-note { margin-top: 40px; font-size: 12.5px; color: var(--ash); max-width: 60ch; }
+
+@media (max-width: 760px) {
+  .result-fact { flex: 1 1 45%; border-left: none; padding-left: 0; padding-right: clamp(16px, 4vw, 28px); }
+}
+@media (max-width: 480px) {
+  .result-fact { flex: 1 1 100%; }
+}

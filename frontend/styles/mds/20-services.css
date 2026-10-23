@@ -1,0 +1,188 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 1402-1585 (20-services).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── SERVICES — pinned sequence ───────────────────────────────── */
+#services { --wd-r: 460px; --wd-step: 15deg; }
+
+.wd-track  { position: relative; height: calc(var(--n) * 100svh); }
+.wd-stage  { position: sticky; top: 0; height: 100svh; overflow: hidden;
+             display: flex; align-items: center; justify-content: center; }
+
+/* rotating arc index */
+.wd-rail {
+  position: absolute; left: clamp(60px, 11vw, 190px); top: 50%;
+  /* cursor parallax on the rail as a whole, not on .wd-mark: .wd-mark already
+     carries the wdMark entrance keyframe (transform: scale+rotate, held via
+     fill-mode "both"), and a running/held CSS animation on a property wins
+     over a plain inline style set on the same element for as long as it's
+     in effect — a transform written here from JS would simply be ignored. */
+  --px: 0; --py: 0;
+  transform: translate3d(calc(var(--px) * 1px), calc(var(--py) * 1px), 0);
+  transition: transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+@media (hover: none), (pointer: coarse) {
+  .wd-rail { transform: none !important; transition: none; }
+}
+.wd-ring { position: absolute; left: calc(-1 * var(--wd-r)); top: 0;
+           transition: transform .85s cubic-bezier(.16,.84,.28,1); }
+.wd-arc  { position: absolute; left: calc(-1 * var(--wd-r)); top: calc(-1 * var(--wd-r));
+           width: calc(var(--wd-r) * 2); height: calc(var(--wd-r) * 2);
+           border: 1px solid var(--rule); border-radius: 50%; }
+.wd-num  { position: absolute; left: 0; top: 0;
+           font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 800;
+           font-size: clamp(20px, 2.4vw, 34px);
+           line-height: 1; color: var(--rule);
+           transform: rotate(calc(var(--i) * var(--wd-step))) translateX(var(--wd-r)) translate(-50%, -50%);
+           transform-origin: 0 0;
+           transition: color .5s ease, opacity .5s ease; opacity: .8; }
+.wd-num.is-on { color: var(--ink); opacity: 1; }
+.wd-pip  { position: absolute; left: -26px; top: -3px; width: 7px; height: 7px;
+           border-radius: 50%; background: var(--accent); }
+
+/* compact index (small screens) */
+.wd-mini { position: absolute; left: var(--pad); top: 50%; transform: translateY(-50%);
+           display: none; flex-direction: column; gap: 12px; }
+.wd-mini b { font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); }
+.wd-bars { display: flex; flex-direction: column; gap: 5px; }
+.wd-bars i { width: 2px; height: 22px; background: var(--rule); transition: background .4s; }
+.wd-bars i.is-on { background: var(--accent); }
+
+/* panels */
+.wd-panels { position: relative; width: min(680px, 100%);
+             padding-inline: var(--pad); text-align: center; }
+.wd-panel  { position: absolute; left: 0; right: 0; top: 50%;
+             padding-inline: var(--pad);
+             transform: translateY(calc(-50% + 46px)); opacity: 0;
+             pointer-events: none; visibility: hidden;
+             transition: transform .7s cubic-bezier(.16,.84,.28,1), opacity .5s ease, visibility .7s; }
+.wd-panel.is-on  { transform: translateY(-50%); opacity: 1; pointer-events: auto; visibility: visible; }
+.wd-panel.is-out { transform: translateY(calc(-50% - 46px)); }
+
+/* Every vertical gap from here down is a viewport-height-aware clamp, not a
+   fixed pixel. The five-part narrative (what/how/deliverables/outcome/cta)
+   made each panel noticeably taller than the original icon+title+tags
+   version, and a fixed-px rhythm that looked fine on a tall monitor
+   overflowed the stage on a realistic laptop viewport (browser chrome,
+   bookmarks bar, etc. easily leave well under 700px of actual page height).
+   vh-based gaps shrink automatically with the viewport instead of clipping
+   against .wd-stage's overflow:hidden. */
+.wd-mark { width: clamp(52px, 6vw, 92px); height: auto; display: block;
+           margin: 0 auto clamp(8px, 1.6vh, 20px);
+           color: var(--c); fill: none; stroke: currentColor; stroke-width: 2; }
+.wd-mark .fill { fill: currentColor; stroke: none; }
+.wd-panel.is-on .wd-mark { animation: wdMark .8s cubic-bezier(.16,.84,.28,1) both; }
+@keyframes wdMark { from { opacity: 0; transform: scale(.86) rotate(-6deg); }
+                    to   { opacity: 1; transform: none; } }
+
+.wd-eyebrow { display: block; margin-bottom: clamp(6px, 1vh, 12px); color: var(--c); }
+.wd-title   { font-size: clamp(1.8rem, 4.6vw, 3.6rem); margin-bottom: clamp(6px, 1.2vh, 14px); }
+.wd-sub     { font-size: clamp(13.5px, 1.4vw, 16px); line-height: 1.5; color: var(--ash);
+              max-width: 46ch; margin: 0 auto clamp(8px, 1.2vh, 16px); }
+
+/* "how we do it" — sits between the what-we-do lede and the deliverables,
+   its own line so the five-part narrative (what / how / deliverables /
+   outcome / cta) stays visually distinct rather than blurring into one
+   paragraph */
+.wd-how { font-size: clamp(12.5px, 1.25vw, 14px); line-height: 1.45; color: var(--ink);
+          max-width: 46ch; margin: 0 auto clamp(8px, 1.4vh, 18px); }
+.wd-how b { display: inline-block; color: var(--c); font-weight: 600; font-size: 10.5px;
+            letter-spacing: .1em; text-transform: uppercase; font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-right: 8px; transition: color .5s ease; }
+
+.wd-deliverables  { margin-bottom: clamp(8px, 1.4vh, 18px); }
+.wd-deliv-label   { display: block; margin-bottom: clamp(5px, 0.8vh, 10px); }
+.wd-tags    { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+.wd-tags b  { font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; font-size: 10.5px;
+              letter-spacing: .1em; text-transform: uppercase;
+              border: 1px solid var(--rule); border-radius: 100px; padding: 6px 13px; color: var(--ash);
+              cursor: default;
+              transition: border-color .5s ease, background .18s var(--ease-out),
+                          color .18s var(--ease-out), transform .15s var(--ease-out); }
+.wd-panel.is-on .wd-tags b { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+.wd-tags b:hover { background: var(--c); color: #050505; border-color: var(--c); transform: translateY(-2px); }
+
+/* "business outcome" — set apart with a hairline so it reads as the
+   takeaway line, not a fifth tag or a second sub-headline */
+.wd-outcome {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  max-width: 42ch; margin: 0 auto clamp(8px, 1.4vh, 18px);
+  padding-top: clamp(6px, 1vh, 14px);
+  border-top: 1px solid var(--rule);
+}
+
+.wd-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.wd-case-link {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: .05em; color: var(--ash); text-decoration: underline;
+  text-underline-offset: 3px; transition: color .2s var(--ease-out);
+}
+.wd-case-link:hover { color: var(--c); }
+
+/* stronger transition choreography: the panel itself already crossfades
+   (see .wd-panel above); its own children cascade in on a short stagger on
+   top of that so the five parts of the narrative arrive as a sequence, not
+   all at once. .wd-mark is exempt on purpose — it already carries its own
+   entrance keyframe (see wdMark below), and a CSS animation on a property
+   always wins over a transition on that same property/element, so a rule
+   here would just be a no-op for it. */
+.wd-panel > *:not(.wd-mark) {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .5s var(--reveal-ease), transform .5s var(--reveal-ease);
+}
+.wd-panel.is-on > *:not(.wd-mark) { opacity: 1; transform: none; }
+.wd-panel.is-on > .wd-eyebrow      { transition-delay: .05s; }
+.wd-panel.is-on > .wd-title        { transition-delay: .1s; }
+.wd-panel.is-on > .wd-sub          { transition-delay: .16s; }
+.wd-panel.is-on > .wd-how          { transition-delay: .22s; }
+.wd-panel.is-on > .wd-deliverables { transition-delay: .28s; }
+.wd-panel.is-on > .wd-outcome      { transition-delay: .34s; }
+.wd-panel.is-on > .wd-actions      { transition-delay: .4s; }
+
+/* service-specific visual treatment: a very soft wash of the active
+   service's own colour behind the panel. --accent is already updated to
+   match the active panel by the existing setActive() script, so this needs
+   no JS of its own. */
+.wd-stage::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(640px circle at 50% 42%,
+              color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  transition: background .6s ease;
+}
+
+/* subtle progress indicator — how far through the nine services, distinct
+   from the arc/mini-index (which show which one). Width is written by the
+   existing read() loop, one extra line, no separate scroll listener. */
+.wd-progress { position: absolute; left: 0; right: 0; top: 0; height: 2px;
+               background: var(--rule); z-index: 3; }
+.wd-progress-fill { height: 100%; width: 0%; background: var(--accent);
+                    transition: width .1s linear, background .4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wd-panel > *:not(.wd-mark) { opacity: 1; transform: none; transition: none; }
+}
+
+/* small screens */
+@media (max-width: 860px) {
+  .wd-rail  { display: none; }
+  .wd-mini  { display: flex; }
+  .wd-panels { padding-left: calc(var(--pad) + 34px); }
+  .wd-panel  { padding-left: calc(var(--pad) + 34px); text-align: left; }
+  .wd-mark   { margin-left: 0; }
+  .wd-tags   { justify-content: flex-start; }
+  .wd-sub, .wd-how, .wd-outcome { margin-left: 0; }
+  .wd-actions { justify-content: flex-start; }
+}
+
+/* reduced motion: unpin and stack */
+@media (prefers-reduced-motion: reduce) {
+  .wd-track  { height: auto; }
+  .wd-stage  { position: static; height: auto; display: block; }
+  .wd-rail, .wd-mini, .wd-progress { display: none; }
+  .wd-panels { width: 100%; }
+  .wd-panel  { position: static; opacity: 1; visibility: visible; transform: none;
+               pointer-events: auto; padding-block: 48px; border-top: 1px solid var(--rule); }
+  .wd-panel .wd-mark { animation: none; }
+}

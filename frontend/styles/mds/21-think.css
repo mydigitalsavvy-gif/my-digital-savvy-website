@@ -1,0 +1,39 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 1658-1692 (21-think).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* Editorial, not a card: a big opinionated headline set against body copy
+   in a simple two-column split, one horizontal rule, no border/background
+   block around either side. */
+.think-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+  padding-block: clamp(60px, 9vw, 110px);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.think-line {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+  line-height: 0.98; letter-spacing: -0.02em;
+}
+.think-body p {
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.65;
+  color: var(--ash);
+  max-width: 52ch;
+}
+.think-body p + p { margin-top: 20px; }
+.think-body b { color: var(--ink); font-weight: 600; }
+.think-note {
+  margin-top: 28px !important;
+  font-size: 13px !important;
+  color: var(--ash);
+  font-style: italic;
+}
+@media (max-width: 800px) {
+  .think-grid { grid-template-columns: 1fr; gap: 28px; }
+}

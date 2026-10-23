@@ -1,0 +1,132 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 343-471 (07-mega-menu).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── SERVICES MEGA MENU — full-screen takeover ───────────────────────
+   Was a small dropdown anchored under the "Services" link; its own
+   top-offset math put it 65px down while the header is 81px tall, so it
+   visibly cut across the header's bottom edge instead of sitting cleanly
+   below it. Rebuilt as a full-viewport overlay instead of trying to
+   re-tune that offset — at this size there's no "below the trigger" to
+   contain it against. Click-triggered rather than hover: a takeover this
+   size opening from a mouse graze reads as accidental, not premium. */
+.nav-item { position: relative; display: flex; align-items: center; }
+
+.mega-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: #08090a;
+  overflow-y: auto;
+  /* Circular reveal centred on wherever "Services" was clicked (--ox/--oy,
+     set from JS) — the "crazy" part: the menu doesn't fade in, it expands
+     out of the exact point the user clicked, like a hole opening in the
+     page. clip-path itself is instant-or-nothing per frame, which is what
+     makes it read as a wipe rather than a cross-fade. */
+  clip-path: circle(0% at var(--ox, 50%) var(--oy, 0%));
+  transition: clip-path 0.85s cubic-bezier(0.16, 0.84, 0.28, 1);
+  pointer-events: none;
+}
+.mega-menu.is-open {
+  clip-path: circle(150% at var(--ox, 50%) var(--oy, 0%));
+  pointer-events: auto;
+}
+
+.mega-close {
+  position: fixed;
+  top: 26px; right: var(--pad);
+  z-index: 71;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0; transform: rotate(-45deg);
+  transition: opacity 0.4s var(--ease-out) 0.3s, transform 0.4s var(--ease-out) 0.3s, border-color 0.2s, background 0.2s;
+}
+.mega-close:hover { background: var(--ink); color: #000; border-color: var(--ink); }
+.mega-menu.is-open .mega-close { opacity: 1; transform: rotate(0deg); }
+
+.mega-inner {
+  min-height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(90px, 12vh, 140px) var(--pad) 80px;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+.mega-head { margin-bottom: clamp(32px, 5vw, 56px); }
+.mega-head .label { display: block; margin-bottom: 10px; }
+.mega-head h2 {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.mega-link {
+  position: relative;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: #08090a;
+  color: var(--ink);
+  /* staggered entrance — each tile starts lifted/hidden, .is-open cascades
+     them in on a short per-index delay set inline below */
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.5s var(--reveal-ease), transform 0.5s var(--reveal-ease), background 0.2s;
+}
+.mega-menu.is-open .mega-link { opacity: 1; transform: none; }
+.mega-grid .mega-link:nth-child(1) { transition-delay: 0.12s; }
+.mega-grid .mega-link:nth-child(2) { transition-delay: 0.17s; }
+.mega-grid .mega-link:nth-child(3) { transition-delay: 0.22s; }
+.mega-grid .mega-link:nth-child(4) { transition-delay: 0.27s; }
+.mega-grid .mega-link:nth-child(5) { transition-delay: 0.32s; }
+.mega-grid .mega-link:nth-child(6) { transition-delay: 0.37s; }
+.mega-grid .mega-link:nth-child(7) { transition-delay: 0.42s; }
+.mega-grid .mega-link:nth-child(8) { transition-delay: 0.47s; }
+.mega-grid .mega-link:nth-child(9) { transition-delay: 0.52s; }
+.mega-link:hover { background: #101113; }
+.mega-num {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; font-size: 13px; color: var(--c, var(--dot));
+}
+.mega-title {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700; font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+}
+.mega-desc { font-size: 13px; line-height: 1.5; color: var(--ash); }
+.mega-link::after {
+  content: '→';
+  position: absolute; top: clamp(22px, 2.4vw, 30px); right: clamp(22px, 2.4vw, 30px);
+  color: var(--c, var(--dot));
+  opacity: 0; transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.mega-link:hover::after { opacity: 1; transform: translateX(0); }
+
+.mega-cta {
+  margin-top: clamp(32px, 5vw, 48px);
+  align-self: flex-start;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s var(--reveal-ease) 0.58s, transform 0.5s var(--reveal-ease) 0.58s;
+}
+.mega-menu.is-open .mega-cta { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .mega-grid { grid-template-columns: 1fr 1fr; }
+}
+/* No reduced-motion override needed here: the sitewide
+   *{transition:none!important} rule already turns every transition above
+   (clip-path, opacity, transform) into an instant show/hide instead of an
+   animated one, which is exactly what reduced motion asks for — the menu
+   still opens and closes, just without the wipe or stagger. */

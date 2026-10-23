@@ -1,0 +1,69 @@
+{
+  "batch": 1,
+  "source": {
+    "page_id": 8688,
+    "url": "https://mydigitalsavvy.com/best-digital-marketing-company-in-indore/",
+    "modified": "2026-04-12T21:14:18",
+    "kind": "location"
+  },
+  "target": {
+    "post_type": "location_page",
+    "rest_base": "location-pages"
+  },
+  "body": {
+    "status": "draft",
+    "title": "Best Digital Marketing Company in Indore",
+    "slug": "best-digital-marketing-company-in-indore",
+    "content": "<h3>Helping businesses in Indore grow with result-driven digital marketing strategies.</h3>\n<h2>My Digital Savvy – Best Digital Marketing Company in Indore</h2>\n<p><a href=\"/\">My Digital Savvy </a>is proud to expand its presence in Indore- Best Digital Marketing Company in Indore, bringing top-notch digital marketing services closer to local businesses. Whether you’re a startup, small business, or established brand, our expert team helps you grow your online visibility, generate leads, and boost revenue.</p>\n<p>We understand the local Indore market, audience behavior, and competition — which helps us create strategies that actually work.</p>\n<figure><img src=\"https://mydigitalsavvy.com/wp-content/uploads/2026/03/my-digital-savvy-indore-logo.png\" alt=\"Best Digital Marketing Company in Indore\" width=\"181\" height=\"149\"></figure>\n<p>&lt;!DOCTYPE html&gt;</p>\n<p>What We Do</p>\n<h2>Our Services</h2>\n<p>&lt;!DOCTYPE html&gt;</p>\n<p>What We Do</p>\n<h2>Our Services</h2>\n<p>01</p>\n<p><a href=\"/services/social-media-marketing\">Social Media Marketing</a></p>\n<p>Grow your brand reach and drive real results across every social platform.</p>\n<p>01</p>\n<p>02</p>\n<p><a href=\"/services/social-media-management\">Social Media Management</a></p>\n<p>Consistent content, community engagement and analytics — all handled for you.</p>\n<p>03</p>\n<p><a href=\"/services/seo\">SEO — Search Engine Optimization</a></p>\n<p>Rank higher on Google with proven on-page, off-page and technical SEO strategies.</p>\n<p>03</p>\n<p>04</p>\n<p><a href=\"/services/sem\">SEM — Search Engine Marketing</a></p>\n<p>Drive targeted, high-intent traffic through paid search campaigns on Google &amp; Bing.</p>\n<p>05</p>\n<p><a href=\"/services/graphic-designing\">Graphic Designing</a></p>\n<p>Eye-catching logos, social creatives and banners that speak your brand language.</p>\n<p>05</p>\n<p>06</p>\n<p><a href=\"/services/video-editing\">Video Editing</a></p>\n<p>Professional cuts, transitions, motion graphics and colour grading for every platform.</p>\n<p>07</p>\n<p><a href=\"/services/youtube-management\">YouTube Management</a></p>\n<p>End-to-end channel growth — uploads, thumbnails, SEO, analytics and monetisation.</p>\n<p>07</p>\n<p>08</p>\n<p><a href=\"/services/website-development\">Website Development</a></p>\n<p>Fast, responsive and conversion-optimised websites built to grow your business online.</p>\n<p>09</p>\n<p><a href=\"/services/local-seo-gmb\">Local SEO &amp; GMB Optimization</a></p>\n<p>Dominate local search results with Google Business Profile optimisation and citation building.</p>\n<p>09</p>",
+    "acf": {
+      "public_path": "/best-digital-marketing-company-in-indore/",
+      "previous_paths": [],
+      "city": "Indore",
+      "intro": "",
+      "services_offered": [],
+      "local_proof": "",
+      "faqs": []
+    },
+    "meta": {
+      "_yoast_wpseo_title": "Best Digital Marketing Company in Indore | My Digital Savvy",
+      "_yoast_wpseo_metadesc": "Looking for the best digital marketing company in Indore? We offers SEO, social media marketing, and PPC services .",
+      "_yoast_wpseo_opengraph-title": "Best Digital Marketing Company in Indore | My Digital Savvy",
+      "_yoast_wpseo_opengraph-description": "Looking for the best digital marketing company in Indore? We offers SEO, social media marketing, and PPC services .",
+      "_yoast_wpseo_opengraph-image": "https://mydigitalsavvy.com/wp-content/uploads/2026/03/my-digital-savvy-indore-logo.png",
+      "_yoast_wpseo_meta-robots-noindex": ""
+    }
+  },
+  "review": {
+    "status": "PENDING_EDITORIAL_REVIEW",
+    "h1": "Best Digital Marketing Company in Indore",
+    "editorial_gaps": [
+      "services_offered (link after services are imported)",
+      "local_proof (no verifiable local proof on the page)"
+    ],
+    "dropped_by_design": [
+      {
+        "widget": "button (CTA is design-owned)",
+        "text": "Contact Us"
+      },
+      {
+        "widget": "custom HTML",
+        "text": "<!DOCTYPE html> Our Services — My Digital Savvy @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500"
+      },
+      {
+        "widget": "custom HTML",
+        "text": ""
+      },
+      {
+        "widget": "custom HTML",
+        "text": ""
+      }
+    ],
+    "stats": {
+      "body_blocks": 43,
+      "process_steps": 0,
+      "faqs": 0,
+      "images": 1,
+      "benefits": 0
+    }
+  }
+}

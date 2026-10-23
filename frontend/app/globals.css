@@ -1,0 +1,109 @@
+/* Tailwind without its preflight reset: the reference design
+   (my-digital-savvy-v2.html) was built on its own reset and on browser
+   defaults (line-height: normal, heading sizes, list markers). Preflight
+   would silently change those, so only theme + utilities are loaded. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* The visual contract. Unlayered on purpose, so it wins over every
+   Tailwind layer exactly as the inline <style> blocks did. */
+@import "../styles/mds/index.css";
+
+/* Non-homepage templates (cx- prefix only, no element selectors). */
+@import "../styles/pages/content.css";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── TOKEN ALIASES ───────────────────────────────────────────────
+   The real values live in styles/mds/01-tokens.css (--paper, --ink, --dot…).
+   These aliases keep the existing mds-* Tailwind utilities and the shadcn
+   semantic slots pointing at the same values, so nothing defines a colour
+   twice. --accent is NOT redefined here: the services scroll rewrites it
+   at runtime on <html>. The hero rotor's colour is local to the hero
+   (--hero-accent, see styles/mds/32-visuals.css). */
+:root {
+  --mds-paper: var(--paper);
+  --mds-paper-hi: var(--paper-hi);
+  --mds-ink: var(--ink);
+  --mds-ash: var(--ash);
+  --mds-rule: var(--rule);
+  --mds-dot: var(--dot);
+  --mds-green: var(--green);
+  --mds-blue: var(--blue);
+  --mds-magenta: var(--magenta);
+  --mds-pad: var(--pad);
+  --mds-ease-reveal: var(--reveal-ease);
+  --mds-ease-out: var(--ease-out);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-hi);
+  --card-foreground: var(--ink);
+  --popover: var(--paper-hi);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-hi);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-hi);
+  --muted-foreground: var(--ash);
+  --accent-foreground: #000000;
+  --destructive: #ff5c5c;
+  --destructive-foreground: var(--ink);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--dot);
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans:
+    var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  --font-heading: var(--font-sans);
+
+  --color-mds-paper: var(--mds-paper);
+  --color-mds-paper-hi: var(--mds-paper-hi);
+  --color-mds-ink: var(--mds-ink);
+  --color-mds-ash: var(--mds-ash);
+  --color-mds-rule: var(--mds-rule);
+  --color-mds-dot: var(--mds-dot);
+  --color-mds-green: var(--mds-green);
+  --color-mds-blue: var(--mds-blue);
+  --color-mds-magenta: var(--mds-magenta);
+  --spacing-mds-pad: var(--mds-pad);
+  --ease-mds-reveal: var(--mds-ease-reveal);
+  --ease-mds-out: var(--mds-ease-out);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}

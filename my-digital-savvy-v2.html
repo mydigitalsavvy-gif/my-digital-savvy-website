@@ -1,0 +1,3132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- No favicon was declared, so the browser silently requests the default
+     /favicon.ico path and 404s — the source of the intermittent console
+     404 found during audit. Inline data URI: zero added files, zero added
+     requests, just stops the browser guessing. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><circle cx='16' cy='16' r='6' fill='%2301FEFB'/></svg>">
+<title>My Digital Savvy — Digital marketing agency in Nagpur</title>
+<meta name="description" content="My Digital Savvy runs Meta Ads, builds websites and creates content for businesses across Nagpur, Indore, Raipur, Hyderabad and Jabalpur.">
+<link rel="canonical" href="https://mydigitalsavvy.com/">
+
+<!-- Open Graph / Twitter — reusing the same real title and description
+     above rather than writing separate copy. No og:image: no real product
+     shot or brand image exists yet to point one at, and a broken or
+     placeholder image URL is worse than no preview image at all. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="My Digital Savvy">
+<meta property="og:title" content="My Digital Savvy — Digital marketing agency in Nagpur">
+<meta property="og:description" content="My Digital Savvy runs Meta Ads, builds websites and creates content for businesses across Nagpur, Indore, Raipur, Hyderabad and Jabalpur.">
+<meta property="og:url" content="https://mydigitalsavvy.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="My Digital Savvy — Digital marketing agency in Nagpur">
+<meta name="twitter:description" content="My Digital Savvy runs Meta Ads, builds websites and creates content for businesses across Nagpur, Indore, Raipur, Hyderabad and Jabalpur.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Switched from Anton/Archivo/Archivo Narrow to Inter: the free,
+     metrically-similar substitute for Apple's San Francisco (SF Pro) —
+     SF Pro itself isn't licensed for general web embedding outside Apple's
+     own properties. One family, multiple weights, matching how SF Pro is
+     used across Apple's own sites (one typeface, weight carries hierarchy
+     instead of a separate display face). -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- LocalBusiness schema — every field below is a fact already published
+     elsewhere on this page (Contact section, footer). No "image" or
+     "priceRange": no real logo file or verified pricing exists yet, and an
+     invented value there would be exactly the kind of fake claim this
+     audit was told not to introduce. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "My Digital Savvy",
+  "url": "https://mydigitalsavvy.com/",
+  "telephone": "+91-8149105083",
+  "email": "hello@mydigitalsavvy.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Shop No 67, 1st Floor, Rahul Complex 2, Ganeshpeth",
+    "addressLocality": "Nagpur",
+    "postalCode": "440018",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Nagpur", "Indore", "Raipur", "Hyderabad", "Jabalpur"],
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61553360870147",
+    "https://www.instagram.com/mydigitalsavvy/",
+    "https://www.linkedin.com/company/my-digital-savvy/"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "320",
+    "bestRating": "5"
+  }
+}
+</script>
+
+<style>
+/* ── TOKENS ──────────────────────────────────────────────────── */
+:root {
+  --paper:    #080808;
+  --paper-hi: #0F0F0F;
+  --ink:      #EFEFEF;
+  /* was #7A7A7A: measured 4.47:1 against --paper-hi (Why Us cards, the
+     rating box, Case Studies), just under the 4.5:1 AA floor for body text.
+     This value clears it (4.86:1) while staying visually indistinguishable
+     from the old one against --paper (5.07:1, was 4.67:1). */
+  --ash:      #808080;
+  --rule:     #1A1A1A;
+  --dot:      #01FEFB;
+  --accent:   #01FEFB;
+  --green:    #3BFF45;
+  --blue:     #4DAAFF;
+  --magenta:  #D42DF5;
+  --pad: clamp(20px, 5vw, 80px);
+  /* shared entrance easing for the reveal system below — an expo-out curve
+     reads as considered rather than the default ease's slight sluggishness */
+  --reveal-ease: cubic-bezier(0.16, 0.84, 0.28, 1);
+  /* same curve, separate name: micro-interactions (buttons, hover states,
+     cursor-driven parallax) live on a much shorter timescale than section
+     reveals, and keeping the token distinct makes that intent explicit at
+     the call site rather than implicit in a shared duration. */
+  --ease-out: cubic-bezier(0.16, 0.84, 0.28, 1);
+}
+
+/* ── RESET ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--accent); color: #000; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--dot); outline-offset: 4px; }
+
+/* ── UTILITY ─────────────────────────────────────────────────── */
+.display {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: var(--ash);
+}
+.wrap { padding-left: var(--pad); padding-right: var(--pad); }
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── HEADER — a normal in-flow bar, not fixed; it scrolls away with the
+   page like the rest of the content instead of pinning to the viewport. */
+header {
+  /* Grid rather than flex space-between: with only 3 visual slots but the
+     logo and CTA rarely matching widths, space-between leaves the centre
+     nav links off-centre. A fixed middle column keeps them dead-centre
+     regardless of how wide the logo or CTA end up being. */
+  position: relative; /* containing block for the logo, see below */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  padding: 19px var(--pad);
+  /* Soft off-white rather than pure #fff — flat white read as harsh next
+     to the page's own near-black sections. */
+  background: #f6f5f2;
+}
+
+.nav {
+  grid-column: 2;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nav-links a {
+  position: relative;
+  padding-bottom: 2px;
+  color: #3c3c3c;
+  transition: color 0.2s;
+}
+/* Enlarges the tap target without touching layout: a generated box has no
+   effect on the flow it sits in, so the link's own spacing, gap and font
+   size are untouched, but a tap landing in the invisible margin around the
+   visible text still registers on this element. Sized to stay inside half
+   the smallest inter-link gap (16px at the narrowest breakpoint) so two
+   adjacent hit areas never overlap. */
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: -10px; bottom: -10px; left: -6px; right: -6px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--dot);
+  transition: width 0.22s;
+}
+.nav-links a:hover { color: #0a0a0a; }
+.nav-links a:hover::after { width: 100%; }
+
+/* Desktop-only pill nav is replaced below 860px by the hamburger + full
+   screen drawer (.nav-burger / .mobile-nav) — no responsive tuning of the
+   pill itself is needed once it's simply hidden at that width. */
+@media (max-width: 860px) {
+  .nav { display: none; }
+}
+
+/* The logo is sized bigger than the (now much shorter) header bar on
+   purpose, so it's taken out of the grid row entirely and positioned by
+   hand — left in the grid it would force the row to stretch to its own
+   height, undoing the shorter header. Absolute + vertically centered lets
+   it bleed above/below the bar's own background instead. */
+.site-logo {
+  position: absolute;
+  left: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+/* The source <video> is only ever a frame supply for the canvas beside it
+   (see the chroma-key script) — visually hidden, but NOT display:none.
+   Several browsers stop decoding a display:none video entirely, which
+   would freeze the exact frames the canvas is copying from. */
+.logo-source-video {
+  position: absolute; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none; overflow: hidden;
+}
+/* Fallback for when the chroma-key canvas can't read the video's pixels
+   (e.g. opened as a local file:// page, where Chromium treats the video
+   as cross-origin and taints the canvas) — the JS below swaps to this
+   class instead of leaving a frozen, half-drawn canvas on screen. Plain
+   un-keyed video, so it carries its own white background rather than a
+   transparent cutout. */
+.logo-source-video.chroma-fallback {
+  position: static; opacity: 1; overflow: visible;
+  width: auto; height: 132px;
+}
+.site-logo-canvas { display: block; height: 132px; width: auto; }
+.site-logo:hover { opacity: 0.8; }
+.nav-cta {
+  grid-column: 3;
+  justify-self: end;
+  padding: 11px 22px;
+  font-size: 11px;
+}
+/* .btn.solid (2 classes) would otherwise outrank a plain .nav-cta rule
+   (1 class) regardless of order — bumped with the extra element+class here
+   so this dark override reliably wins over --ink's near-white fill, which
+   was built for a dark page and nearly vanishes on the header's light bg. */
+a.btn.nav-cta { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
+a.btn.nav-cta:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+/* a.nav-cta (element + class = 0,0,1,1) deliberately outranks the generic
+   .btn{display:inline-block} rule (0,0,1,0) declared later in the file —
+   equal-specificity `.nav-cta{display:none}` alone lost that tie by source
+   order, leaving this button visibly overlapping the mobile drawer/nav. */
+@media (max-width: 860px) {
+  .site-logo-canvas { height: 72px; }
+  .logo-source-video.chroma-fallback { height: 72px; }
+  a.nav-cta { display: none; }
+}
+
+/* ── NAV BURGER (mobile trigger for .mobile-nav) ────────────────── */
+.nav-burger {
+  grid-column: 3;
+  justify-self: end;
+  display: none;
+  align-items: center; justify-content: center;
+  flex-direction: column; gap: 5px;
+  width: 44px; height: 44px;
+  background: rgba(8, 8, 8, 0.92);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block; width: 18px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s var(--ease-out), opacity 0.2s;
+}
+.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+@media (max-width: 860px) { .nav-burger { display: flex; } }
+
+/* ── MOBILE NAV DRAWER ───────────────────────────────────────────── */
+.mobile-nav {
+  position: fixed; inset: 0;
+  z-index: 59;
+  display: flex; flex-direction: column; justify-content: center; gap: 36px;
+  padding: 100px var(--pad) 60px;
+  background: rgba(4, 4, 5, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.3s var(--ease-out), visibility 0.3s;
+  overflow-y: auto;
+}
+.mobile-nav.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+.mobile-nav-links { display: flex; flex-direction: column; }
+.mobile-nav-links > a,
+.mobile-nav-toggle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 8vw, 38px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.mobile-nav-links > a {
+  display: block; padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.mobile-nav-group { border-bottom: 1px solid var(--rule); }
+.mobile-nav-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  background: none; border: none; cursor: pointer;
+}
+.mobile-nav-toggle svg { flex-shrink: 0; transition: transform 0.25s var(--ease-out); }
+.mobile-nav-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-nav-panel {
+  display: flex; flex-direction: column; gap: 2px;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s var(--ease-out);
+}
+.mobile-nav-panel.is-open { max-height: 480px; }
+.mobile-nav-panel a {
+  padding: 10px 4px 10px 16px;
+  border-left: 1px solid var(--rule);
+  font-size: 14.5px; color: var(--ash);
+  transition: color 0.18s;
+}
+.mobile-nav-panel a:hover, .mobile-nav-panel a:focus-visible { color: var(--ink); }
+.mobile-nav-cta { align-self: flex-start; }
+@media (min-width: 861px) { .mobile-nav { display: none; } }
+
+/* ── SERVICES MEGA MENU — full-screen takeover ───────────────────────
+   Was a small dropdown anchored under the "Services" link; its own
+   top-offset math put it 65px down while the header is 81px tall, so it
+   visibly cut across the header's bottom edge instead of sitting cleanly
+   below it. Rebuilt as a full-viewport overlay instead of trying to
+   re-tune that offset — at this size there's no "below the trigger" to
+   contain it against. Click-triggered rather than hover: a takeover this
+   size opening from a mouse graze reads as accidental, not premium. */
+.nav-item { position: relative; display: flex; align-items: center; }
+
+.mega-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: #08090a;
+  overflow-y: auto;
+  /* Circular reveal centred on wherever "Services" was clicked (--ox/--oy,
+     set from JS) — the "crazy" part: the menu doesn't fade in, it expands
+     out of the exact point the user clicked, like a hole opening in the
+     page. clip-path itself is instant-or-nothing per frame, which is what
+     makes it read as a wipe rather than a cross-fade. */
+  clip-path: circle(0% at var(--ox, 50%) var(--oy, 0%));
+  transition: clip-path 0.85s cubic-bezier(0.16, 0.84, 0.28, 1);
+  pointer-events: none;
+}
+.mega-menu.is-open {
+  clip-path: circle(150% at var(--ox, 50%) var(--oy, 0%));
+  pointer-events: auto;
+}
+
+.mega-close {
+  position: fixed;
+  top: 26px; right: var(--pad);
+  z-index: 71;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0; transform: rotate(-45deg);
+  transition: opacity 0.4s var(--ease-out) 0.3s, transform 0.4s var(--ease-out) 0.3s, border-color 0.2s, background 0.2s;
+}
+.mega-close:hover { background: var(--ink); color: #000; border-color: var(--ink); }
+.mega-menu.is-open .mega-close { opacity: 1; transform: rotate(0deg); }
+
+.mega-inner {
+  min-height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(90px, 12vh, 140px) var(--pad) 80px;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+.mega-head { margin-bottom: clamp(32px, 5vw, 56px); }
+.mega-head .label { display: block; margin-bottom: 10px; }
+.mega-head h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+}
+
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.mega-link {
+  position: relative;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: #08090a;
+  color: var(--ink);
+  /* staggered entrance — each tile starts lifted/hidden, .is-open cascades
+     them in on a short per-index delay set inline below */
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.5s var(--reveal-ease), transform 0.5s var(--reveal-ease), background 0.2s;
+}
+.mega-menu.is-open .mega-link { opacity: 1; transform: none; }
+.mega-grid .mega-link:nth-child(1) { transition-delay: 0.12s; }
+.mega-grid .mega-link:nth-child(2) { transition-delay: 0.17s; }
+.mega-grid .mega-link:nth-child(3) { transition-delay: 0.22s; }
+.mega-grid .mega-link:nth-child(4) { transition-delay: 0.27s; }
+.mega-grid .mega-link:nth-child(5) { transition-delay: 0.32s; }
+.mega-grid .mega-link:nth-child(6) { transition-delay: 0.37s; }
+.mega-grid .mega-link:nth-child(7) { transition-delay: 0.42s; }
+.mega-grid .mega-link:nth-child(8) { transition-delay: 0.47s; }
+.mega-grid .mega-link:nth-child(9) { transition-delay: 0.52s; }
+.mega-link:hover { background: #101113; }
+.mega-num {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; font-size: 13px; color: var(--c, var(--dot));
+}
+.mega-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700; font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+}
+.mega-desc { font-size: 13px; line-height: 1.5; color: var(--ash); }
+.mega-link::after {
+  content: '→';
+  position: absolute; top: clamp(22px, 2.4vw, 30px); right: clamp(22px, 2.4vw, 30px);
+  color: var(--c, var(--dot));
+  opacity: 0; transform: translateX(-6px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.mega-link:hover::after { opacity: 1; transform: translateX(0); }
+
+.mega-cta {
+  margin-top: clamp(32px, 5vw, 48px);
+  align-self: flex-start;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.5s var(--reveal-ease) 0.58s, transform 0.5s var(--reveal-ease) 0.58s;
+}
+.mega-menu.is-open .mega-cta { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .mega-grid { grid-template-columns: 1fr 1fr; }
+}
+/* No reduced-motion override needed here: the sitewide
+   *{transition:none!important} rule already turns every transition above
+   (clip-path, opacity, transform) into an instant show/hide instead of an
+   animated one, which is exactly what reduced motion asks for — the menu
+   still opens and closes, just without the wipe or stagger. */
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.hero {
+  /* header (81px) is real in-flow content now, and the client-logo
+     marquee strip right after this section (~49px) should also land on
+     the first screen along with the rest of the hero — both subtracted
+     here so header + hero + marquee together still fit in one viewport. */
+  min-height: calc(100svh - 130px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: clamp(32px, 5vw, 56px);
+  padding-bottom: clamp(48px, 6vw, 80px);
+  position: relative;
+  /* .hero::before intentionally bleeds 14px past this box on every side
+     (see below) so its cursor-drift never reveals a hard edge — clipped
+     here so that bleed stays inside the hero instead of becoming a
+     page-wide horizontal scrollbar. */
+  overflow: hidden;
+  --mx: 0.5; --my: 0.5; /* cursor position, 0-1, written by JS below */
+}
+/* dot-grid texture — behind everything. The subtle drift toward the cursor
+   is a depth cue, not decoration: capped at 14px of total travel so it never
+   reads as the background sliding rather than the room having depth. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  transform: translate3d(calc((var(--mx) - 0.5) * -20px), calc((var(--my) - 0.5) * -20px), 0);
+  transition: transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+@media (hover: none), (pointer: coarse) {
+  .hero::before { transform: none !important; transition: none; }
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: clamp(22px, 4vh, 44px);
+}
+.eyebrow .pip {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dot);
+  flex-shrink: 0;
+}
+
+h1 {
+  /* Inter is measurably wider per character than Anton at the same size —
+     the old clamp(3rem,10vw,10rem) was tuned for Anton's condensed
+     letterforms and, combined with the hardcoded <br> below, was wrapping
+     "Marketing that pays" onto two lines by itself on common widths instead
+     of reading as one. Dialled back and handed to text-wrap: balance so the
+     browser picks break points that read evenly instead of orphaning one
+     word, whatever the rotor word's length ends up being. */
+  font-size: clamp(2.6rem, 8vw, 7.5rem);
+  line-height: 0.98;
+  margin-bottom: clamp(36px, 5vw, 56px);
+  text-wrap: balance;
+}
+/* The 2.6rem floor above is sized for common phone widths, but the rotor
+   word (nowrap, sized to the longest entry — "hospitality" / "real estate")
+   can still run past the edge of the smallest real phones (≤360px, e.g.
+   iPhone SE) and get clipped by .hero's overflow:hidden. Dropping the floor
+   a bit at that width keeps the whole word on screen. */
+@media (max-width: 380px) {
+  h1 { font-size: clamp(2.1rem, 8vw, 7.5rem); }
+}
+.crimson { color: var(--dot); }
+
+/* word rotor */
+.rotor {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.rotor button {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+.rotor .base {
+  display: block;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.rotor .fill {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 0;
+  will-change: height;
+}
+.rotor .fill span {
+  position: absolute;
+  left: 0; bottom: 0;
+  white-space: nowrap;
+  color: var(--accent);
+}
+.rotor.go .fill {
+  height: 100%;
+  transition: height 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* hero foot: sub-copy left, CTAs right */
+.hero-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(24px, 4vw, 60px);
+  align-items: end;
+}
+.hero-sub {
+  max-width: 44ch;
+  font-size: clamp(14px, 1.35vw, 16.5px);
+  line-height: 1.65;
+  color: var(--ash);
+}
+.hero-sub b { color: var(--ink); font-weight: 600; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn {
+  padding: 13px 26px;
+  border-radius: 100px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  /* transform is here for the magnetic pull (see the "micro-interactions"
+     script) — merged into this one declaration on purpose. A separate rule
+     of equal specificity setting `transition: transform ...` would win
+     outright over this one (or vice versa) rather than combine with it. */
+  transition: background 0.18s, color 0.18s, transform 0.2s var(--ease-out);
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.solid:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+.btn.ghost { color: var(--ink); background: transparent; }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 640px) {
+  .hero-foot { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* ── MARQUEE ─────────────────────────────────────────────────── */
+.strip {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 13px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 72px, #000 calc(100% - 72px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 72px, #000 calc(100% - 72px), transparent 100%);
+}
+.strip:hover .track,
+.strip:focus-within .track { animation-play-state: paused; }
+.track {
+  display: inline-block;
+  animation: slide 38s linear infinite;
+}
+.track span {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(12px, 1.4vw, 18px);
+  padding: 0 20px;
+  color: var(--ash);
+  transition: color 0.2s;
+}
+.track span:hover { color: var(--ink); }
+.track i { color: var(--dot); font-style: normal; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* ── SECTIONS SHARED ─────────────────────────────────────────── */
+section { padding-top: clamp(80px, 11vw, 144px); }
+
+/* One section on screen at a time. Several sections (Results, Industries,
+   Selected Work, Case Studies, Free Audit especially) are short enough that
+   a normal scroll left the tail of one and the head of the next both
+   visible at once — on a page this visually dense (dark ground, bold
+   display type, coloured tags and borders everywhere) that reads as
+   clutter rather than as a next section coming into view. Giving each of
+   these a floor of one viewport height and centering their content in it
+   means whichever section the reader has scrolled to is the only one
+   substantially on screen. min-height rather than a fixed height: sections
+   with more real content (About's stat grid, Why Us's carousel) simply grow
+   past one viewport instead of clipping. Hero (#top) already has its own
+   min-height; Services (#services) is a pinned sequence, already one
+   viewport per panel by a different mechanism; the marquee and footer are
+   deliberately not full-height, they're not "sections" a reader stops to
+   read. */
+#results, #industries, #work, #case-studies,
+#about, #blog, #process, #proof, #why, #audit, #contact {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+}
+.head h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.9rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+/* ── ABOUT ───────────────────────────────────────────────────── */
+/* Text-led, one pulled-out number, no bordered stat grid — Results
+   already owns the "row of editorial numbers" moment; About's job is the
+   narrative (Nagpur, who the team is), with the one figure Results
+   doesn't carry (satisfaction) surfaced as a single large pull-stat
+   instead of three repeated ones. */
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  column-gap: clamp(40px, 6vw, 90px);
+  row-gap: clamp(28px, 4vw, 40px);
+}
+.about-lead {
+  grid-column: 1;
+  font-size: clamp(19px, 2.6vw, 28px);
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 46ch;
+}
+/* Deliberately not centred in its column and pulled up against the lead
+   paragraph's cap-height rather than aligned to a shared grid line — the
+   "controlled imperfection" is the point. */
+.about-pull {
+  grid-column: 2; grid-row: 1 / 3;
+  align-self: start;
+  margin-top: clamp(-8px, -1vw, 0px);
+  padding-left: clamp(16px, 2vw, 28px);
+  border-left: 1px solid var(--rule);
+}
+.about-pull-num {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9;
+  color: var(--dot);
+}
+.about-pull-num span { font-size: 0.5em; }
+.about-pull-label {
+  margin-top: 12px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ash);
+}
+.about-note {
+  grid-column: 1;
+  font-size: clamp(14px, 1.4vw, 16.5px);
+  line-height: 1.7;
+  color: var(--ash);
+  max-width: 50ch;
+}
+.about-note b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .about-layout { grid-template-columns: 1fr; }
+  .about-pull { grid-column: 1; grid-row: auto; margin-top: 8px; padding-left: 20px; }
+}
+
+/* ── BLOG ────────────────────────────────────────────────────── */
+.blog-coming {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+.blog-coming p {
+  max-width: 52ch;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.65;
+  color: var(--ash);
+}
+
+/* ── PROCESS ─────────────────────────────────────────────────── */
+/* No bordered box grid here — Results, Process and Why were all reaching
+   for the same "divided cells" component. Process gets an oversized ghost
+   numeral instead: the title sits pulled up into it (a deliberate small
+   overlap), and steps are separated by whitespace, not a rule. */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: clamp(20px, 3vw, 40px);
+  row-gap: clamp(36px, 5vw, 48px);
+}
+.step { padding-top: 4px; }
+.step .n {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.4rem, 6vw, 5.6rem);
+  line-height: 1;
+  color: var(--rule);
+  margin-bottom: -6px;
+  transform-origin: left center;
+  transition: color 0.25s, transform 0.2s var(--ease-out);
+}
+.step:hover .n { color: var(--accent); transform: scale(1.06); }
+.step h5 {
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+.step p { font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+
+@media (max-width: 840px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .steps { grid-template-columns: 1fr; } }
+
+/* ── PROOF ───────────────────────────────────────────────────── */
+.proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+}
+.quote {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 3.2vw, 2.8rem);
+  line-height: 1.05;
+}
+.quote em { font-style: normal; color: var(--dot); }
+.who { margin-top: 16px; font-size: 13px; color: var(--ash); }
+.rating {
+  display: block;
+  border: 1px solid var(--rule);
+  padding: 32px;
+  background: var(--paper-hi);
+  transition: border-color 0.2s;
+}
+.rating:hover { border-color: var(--accent); }
+.rating .big {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 0.88;
+  transition: color 0.25s;
+}
+.rating:hover .big { color: var(--accent); }
+.rating .stars {
+  color: var(--dot);
+  font-size: 17px;
+  letter-spacing: 3px;
+  margin: 14px 0 18px;
+}
+.rating p { font-size: 13.5px; color: var(--ash); line-height: 1.5; }
+.rating strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 800px) { .proof { grid-template-columns: 1fr; } }
+
+/* ── CONTACT ─────────────────────────────────────────────────── */
+.contact { padding-bottom: clamp(28px, 3vw, 44px); }
+.contact .display {
+  font-size: clamp(2.4rem, 8vw, 7.5rem);
+  max-width: 14ch;
+  margin-top: 18px;
+}
+.cgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: clamp(36px, 5vw, 60px);
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.cgrid a, .cgrid p {
+  font-size: clamp(13.5px, 1.3vw, 17px);
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+  margin-top: 6px;
+}
+.cgrid a:hover { color: var(--dot); }
+
+@media (max-width: 900px) { .cgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .cgrid { grid-template-columns: 1fr; gap: 20px; } }
+
+/* ── FOOTER ──────────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(20px, 2.5vw, 32px);
+  padding: 22px var(--pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(18px); }
+.reveal.in {
+  opacity: 1; transform: none;
+  transition: opacity 0.6s var(--reveal-ease), transform 0.6s var(--reveal-ease);
+}
+
+/* Grouped reveal: the parent carries .reveal-group and toggles .in (via the
+   same observer that already drives .reveal), but the hidden state and the
+   transition live on the CHILDREN, each with its own delay — a cascade
+   instead of the whole block appearing as one flat unit. Delays are short
+   (70-90ms apart) per taste.md's stagger guidance; anything longer reads as
+   slow rather than considered. */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.reveal-group.in > * { opacity: 1; transform: none; }
+.reveal-group > *:nth-child(1)  { transition-delay: 0ms;   }
+.reveal-group > *:nth-child(2)  { transition-delay: 80ms;  }
+.reveal-group > *:nth-child(3)  { transition-delay: 160ms; }
+.reveal-group > *:nth-child(4)  { transition-delay: 240ms; }
+.reveal-group > *:nth-child(5)  { transition-delay: 300ms; }
+.reveal-group > *:nth-child(6)  { transition-delay: 340ms; }
+.reveal-group > *:nth-child(7)  { transition-delay: 380ms; }
+.reveal-group > *:nth-child(8)  { transition-delay: 420ms; }
+.reveal-group > *:nth-child(9)  { transition-delay: 460ms; }
+.reveal-group > *:nth-child(10) { transition-delay: 500ms; }
+.reveal-group > *:nth-child(11) { transition-delay: 540ms; }
+.reveal-group > *:nth-child(12) { transition-delay: 580ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-group > * { transition-delay: 0ms !important; }
+}
+
+/* ── REDUCED MOTION ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  .rotor .fill { height: 100% !important; }
+}
+</style>
+</head>
+<body>
+
+<span class="sr-only" aria-live="polite" aria-atomic="true" id="srLive"></span>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<!-- The site chrome is the real <header> landmark; the old markup used
+     <header> for the hero content section below instead, which left no
+     header landmark at all and mislabeled a content section as one.
+     .site-logo/.nav/.nav-cta are all position:fixed, so this wrapper
+     changes nothing visually — a plain element with no transform/filter
+     doesn't create a new containing block for fixed descendants. -->
+<header>
+  <a href="#top" class="site-logo" aria-label="My Digital Savvy — home">
+    <video class="logo-source-video" id="siteLogoVideo" src="logo-animation.mp4" muted loop playsinline preload="auto"></video>
+    <canvas class="site-logo-canvas" id="siteLogoCanvas" width="480" height="270" aria-hidden="true"></canvas>
+  </a>
+
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="nav-links">
+      <a href="#top">Home</a>
+      <div class="nav-item">
+        <a href="#services" id="megaTrigger" aria-expanded="false" aria-controls="megaMenu">Services</a>
+      </div>
+      <a href="#about">About Us</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </nav>
+
+  <a href="#contact" class="btn solid nav-cta">Book a free audit</a>
+
+  <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-links">
+      <a href="#top">Home</a>
+      <div class="mobile-nav-group">
+        <button class="mobile-nav-toggle" id="mobileServicesToggle" type="button" aria-expanded="false" aria-controls="mobileServicesPanel">
+          Services
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mobile-nav-panel" id="mobileServicesPanel">
+          <a href="#services">Social Media Marketing</a>
+          <a href="#services">Social Media Management</a>
+          <a href="#services">Search Engine Optimization</a>
+          <a href="#services">Search Engine Marketing</a>
+          <a href="#services">Graphic Designing</a>
+          <a href="#services">Video Editing</a>
+          <a href="#services">YouTube Management</a>
+          <a href="#services">Website Development</a>
+          <a href="#services">Local SEO &amp; GMB Optimization</a>
+        </div>
+      </div>
+      <a href="#about">About Us</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+    <a href="#contact" class="btn solid mobile-nav-cta">Book a free audit</a>
+  </div>
+
+  <!-- Full-screen Services mega menu — click-triggered (not hover), since
+       a takeover this size firing from a mouse graze reads as accidental,
+       not premium. Desktop only: .nav (its trigger's home) is display:none
+       below 860px, mobile already has this same list in the drawer above. -->
+  <div class="mega-menu" id="megaMenu" role="menu" aria-label="Services">
+    <button class="mega-close" id="megaClose" type="button" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mega-inner">
+      <div class="mega-head">
+        <span class="label">Nine services, one team</span>
+        <h2>What we do</h2>
+      </div>
+      <div class="mega-grid">
+        <a href="#services" class="mega-link" style="--c:var(--dot)"><span class="mega-num">01</span><span class="mega-title">Social Media Marketing</span><span class="mega-desc">Paid and organic campaigns across Instagram and Facebook.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--green)"><span class="mega-num">02</span><span class="mega-title">Social Media Management</span><span class="mega-desc">Consistent posting and content calendars, handled for you.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--blue)"><span class="mega-num">03</span><span class="mega-title">Search Engine Optimization</span><span class="mega-desc">On-page SEO, technical fixes and content strategy.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--magenta)"><span class="mega-num">04</span><span class="mega-title">Search Engine Marketing</span><span class="mega-desc">Google Ads in front of people already searching.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--dot)"><span class="mega-num">05</span><span class="mega-title">Graphic Designing</span><span class="mega-desc">On-brand creative for every channel.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--green)"><span class="mega-num">06</span><span class="mega-title">Video Editing</span><span class="mega-desc">Reels and long-form video, edited to hold attention.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--blue)"><span class="mega-num">07</span><span class="mega-title">YouTube Management</span><span class="mega-desc">End-to-end channel growth and management.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--magenta)"><span class="mega-num">08</span><span class="mega-title">Website Development</span><span class="mega-desc">Fast, mobile-first sites tracked from day one.</span></a>
+        <a href="#services" class="mega-link" style="--c:var(--dot)"><span class="mega-num">09</span><span class="mega-title">Local SEO &amp; GMB Optimization</span><span class="mega-desc">Show up first for customers searching in your city.</span></a>
+      </div>
+      <a href="#contact" class="btn solid mega-cta">Book a free audit</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="hero wrap" id="top">
+
+  <div class="eyebrow reveal">
+    <span class="pip" aria-hidden="true"></span>
+    <span class="label">Digital marketing agency &nbsp;·&nbsp; Nagpur, Maharashtra</span>
+  </div>
+
+  <h1 class="display reveal">
+    Marketing that pays for itself in
+    <span class="rotor" id="rotor">
+      <button
+        type="button"
+        id="rotorBtn"
+        aria-label="Show hospitality work — click to filter"
+      >
+        <span class="base" id="rotorBase">hospitality<span class="crimson">.</span></span>
+        <span class="fill" id="rotorFill" aria-hidden="true">
+          <span id="rotorTop">hospitality<span class="crimson">.</span></span>
+        </span>
+      </button>
+    </span>
+  </h1>
+
+  <div class="hero-foot reveal">
+    <p class="hero-sub">
+      We run <b>Meta Ads</b>, build the site the ads land on, and write the content
+      that keeps people coming back — for hotels, coaching academies, jewellers and
+      builders across Maharashtra. One team, one thread, no handoffs.
+    </p>
+    <div class="btns">
+      <a href="#contact" class="btn solid">Get your free audit</a>
+      <a href="#services" class="btn ghost">See what we do</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── MARQUEE ──────────────────────────────────────────────── -->
+<div class="strip reveal" aria-label="Some of our clients" role="marquee">
+  <div class="track" id="track" aria-hidden="true"></div>
+</div>
+
+<!-- ── RESULTS — real, verifiable numbers only. No revenue/ROAS/leads
+     figures here because none exist that we can stand behind; every number
+     below is one already used and sourced elsewhere on this page. ── -->
+<section class="wrap" id="results" aria-labelledby="results-heading">
+  <div class="head reveal">
+    <h2 id="results-heading">Results, not promises</h2>
+    <span class="label">Every number below is publicly verifiable</span>
+  </div>
+  <div class="results-row reveal-group">
+    <div class="result-fact">
+      <div class="result-num"><span id="resClients">0</span><sup>+</sup></div>
+      <div class="result-label">Clients served</div>
+    </div>
+    <div class="result-fact">
+      <div class="result-num"><span id="resYears">0</span><sup>+</sup></div>
+      <div class="result-label">Years in business</div>
+    </div>
+    <div class="result-fact">
+      <div class="result-num"><span id="resReviews">0</span><sup>+</sup></div>
+      <div class="result-label">Five-star reviews</div>
+    </div>
+    <div class="result-fact">
+      <div class="result-num">4.9</div>
+      <div class="result-label">Average Google rating</div>
+    </div>
+    <div class="result-fact">
+      <div class="result-num"><span id="resSat">0</span>%</div>
+      <div class="result-label">Client satisfaction</div>
+    </div>
+  </div>
+  <p class="results-note">Review and rating figures are verifiable across our two Google Business listings, not screenshots we control.</p>
+</section>
+
+<style>
+/* Editorial fact strip, not a dashboard: no card boxes, no per-tile
+   background or hover-colour-shift — five numbers set large, separated
+   only by a thin rule, the way a print report or an annual review lists
+   figures rather than the way a SaaS product displays KPIs. */
+.results-row {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: clamp(32px, 5vw, 48px);
+}
+.result-fact {
+  flex: 1 1 160px;
+  padding-inline: clamp(20px, 3vw, 44px);
+  border-left: 1px solid var(--rule);
+}
+.result-fact:first-child { border-left: none; padding-left: 0; }
+.result-num {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.result-num sup { font-size: 0.4em; vertical-align: 0.6em; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+.result-label {
+  margin-top: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.results-note { margin-top: 40px; font-size: 12.5px; color: var(--ash); max-width: 60ch; }
+
+@media (max-width: 760px) {
+  .result-fact { flex: 1 1 45%; border-left: none; padding-left: 0; padding-right: clamp(16px, 4vw, 28px); }
+}
+@media (max-width: 480px) {
+  .result-fact { flex: 1 1 100%; }
+}
+</style>
+
+<!-- ── SERVICES — pinned scroll sequence with rotating arc index ── -->
+<section id="services" aria-labelledby="svc-heading">
+
+  <div class="wrap">
+    <div class="head reveal">
+      <h2 id="svc-heading">What we do</h2>
+      <span class="label">Nine services, one focused team</span>
+    </div>
+  </div>
+
+  <div class="wd-track" id="wdTrack" style="--n:9">
+    <div class="wd-stage">
+
+      <!-- rotating arc index -->
+      <div class="wd-rail" aria-hidden="true">
+        <div class="wd-ring" id="wdRing">
+          <span class="wd-arc"></span>
+          <b class="wd-num" style="--i:0">01</b>
+          <b class="wd-num" style="--i:1">02</b>
+          <b class="wd-num" style="--i:2">03</b>
+          <b class="wd-num" style="--i:3">04</b>
+          <b class="wd-num" style="--i:4">05</b>
+          <b class="wd-num" style="--i:5">06</b>
+          <b class="wd-num" style="--i:6">07</b>
+          <b class="wd-num" style="--i:7">08</b>
+          <b class="wd-num" style="--i:8">09</b>
+        </div>
+        <span class="wd-pip"></span>
+      </div>
+
+      <!-- subtle progress indicator: how far through the nine services,
+           distinct from the arc/mini-index which show WHICH one -->
+      <div class="wd-progress" aria-hidden="true"><div class="wd-progress-fill" id="wdProgressFill"></div></div>
+
+      <!-- compact index for small screens -->
+      <div class="wd-mini" aria-hidden="true">
+        <b id="wdMiniNum">01</b>
+        <span class="wd-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+
+      <!-- panels -->
+      <div class="wd-panels" id="wdPanels">
+
+        <article class="wd-panel is-on" style="--c:var(--dot)" data-i="0">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="30" y="16" width="60" height="88" rx="8"/>
+            <circle class="fill" cx="60" cy="88" r="5"/>
+            <path d="M42 40 L78 40 M42 52 L78 52"/>
+            <circle class="fill" cx="44" cy="68" r="8"/>
+            <circle class="fill" cx="60" cy="68" r="8"/>
+            <circle class="fill" cx="76" cy="68" r="8"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 01</span>
+          <h3 class="display wd-title">Social Media<br>Marketing</h3>
+          <p class="wd-sub">Paid and organic campaigns across Instagram and Facebook designed to grow your reach, engagement and customer base.</p>
+          <p class="wd-how"><b>How</b>Creative, audience targeting and weekly optimisation, handled end-to-end by our own team.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Instagram Ads</b><b>Facebook Ads</b><b>Audience Targeting</b><b>Campaign Strategy</b></div>
+          </div>
+          <p class="wd-outcome">A steadily growing audience that actually converts, not just follows.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my social ads →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--green)" data-i="1">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="12" y="22" width="96" height="76" rx="4"/>
+            <path d="M12 42 L108 42"/>
+            <path d="M40 22 L40 42 M80 22 L80 42"/>
+            <rect class="fill" x="24" y="56" width="16" height="16" rx="2"/>
+            <rect class="fill" x="52" y="56" width="16" height="16" rx="2"/>
+            <rect x="24" y="78" width="16" height="14" rx="2"/>
+            <rect class="fill" x="52" y="78" width="16" height="14" rx="2"/>
+            <rect x="80" y="56" width="16" height="16" rx="2"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 02</span>
+          <h3 class="display wd-title">Social Media<br>Management</h3>
+          <p class="wd-sub">Consistent posting, community management and content calendars across all your platforms.</p>
+          <p class="wd-how"><b>How</b>Content calendars, community replies and scheduling, run consistently across every platform.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Content Calendar</b><b>Community Mgmt</b><b>Scheduling</b><b>Analytics</b></div>
+          </div>
+          <p class="wd-outcome">A brand that stays active and relevant without it falling on you.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my socials →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--blue)" data-i="2">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="50" cy="50" r="30"/>
+            <path d="M72 72 L100 100" stroke-linecap="round"/>
+            <path class="fill" d="M36 60 L44 46 L54 54 L66 36 L70 44"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 03</span>
+          <h3 class="display wd-title">Search Engine<br>Optimization</h3>
+          <p class="wd-sub">We optimise your website to rank higher on Google through on-page SEO, technical fixes, content strategy and quality backlinks.</p>
+          <p class="wd-how"><b>How</b>On-page fixes, technical cleanup, content strategy and quality backlinks, worked on continuously.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>On-page SEO</b><b>Technical SEO</b><b>Link Building</b><b>Keyword Research</b></div>
+          </div>
+          <p class="wd-outcome">Higher rankings that put you ahead of competitors chasing the same keywords.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my SEO →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--magenta)" data-i="3">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="10" y="18" width="100" height="64" rx="4"/>
+            <path d="M10 36 L110 36"/>
+            <rect class="fill" x="10" y="18" width="100" height="18"/>
+            <path d="M28 56 L72 56 M28 70 L52 70"/>
+            <path class="fill" d="M76 60 L104 76 L92 78 L86 98 Z"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 04</span>
+          <h3 class="display wd-title">Search Engine<br>Marketing</h3>
+          <p class="wd-sub">Google Ads campaigns that put your business in front of people actively searching for what you offer.</p>
+          <p class="wd-how"><b>How</b>Campaigns built around tight budget control and clear monthly reporting.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Google Ads</b><b>PPC</b><b>Display Ads</b><b>Shopping Campaigns</b></div>
+          </div>
+          <p class="wd-outcome">Qualified traffic from people already searching for what you offer.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my ad spend →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--dot)" data-i="4">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M24 96 L16 104 L30 104 Z"/>
+            <rect x="22" y="24" width="22" height="74" rx="4" transform="rotate(-45 60 60)"/>
+            <circle cx="90" cy="30" r="16"/>
+            <circle class="fill" cx="90" cy="30" r="7"/>
+            <path d="M83 23 L97 37 M97 23 L83 37"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 05</span>
+          <h3 class="display wd-title">Graphic<br>Designing</h3>
+          <p class="wd-sub">From social media creatives to brand collateral — visually sharp, on-brand designs for every channel.</p>
+          <p class="wd-how"><b>How</b>Creative built to your brand's own visual language, not a generic template.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Social Creatives</b><b>Brand Collateral</b><b>Print Design</b><b>Infographics</b></div>
+          </div>
+          <p class="wd-outcome">Consistent, sharp visuals across every channel your audience sees you on.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my creative →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--green)" data-i="5">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="10" y="28" width="100" height="64" rx="4"/>
+            <rect class="fill" x="10" y="28" width="16" height="64"/>
+            <rect class="fill" x="94" y="28" width="16" height="64"/>
+            <path d="M18 44 L18 56 M18 64 L18 76 M102 44 L102 56 M102 64 L102 76"/>
+            <path class="fill" d="M48 46 L80 60 L48 74 Z"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 06</span>
+          <h3 class="display wd-title">Video<br>Editing</h3>
+          <p class="wd-sub">Short-form reels, long-form videos and everything in between, edited to hold attention.</p>
+          <p class="wd-how"><b>How</b>Edited for the platform it's going on, matched to your brand tone, not a one-size cut.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Reels Editing</b><b>YouTube Videos</b><b>Motion Graphics</b><b>Colour Grading</b></div>
+          </div>
+          <p class="wd-outcome">Content that holds attention long enough to actually be remembered.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my video content →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--magenta)" data-i="6">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="8" y="28" width="104" height="64" rx="12"/>
+            <path class="fill" d="M46 46 L82 60 L46 74 Z"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 07</span>
+          <h3 class="display wd-title">YouTube<br>Management</h3>
+          <p class="wd-sub">End-to-end YouTube channel management, built to grow your subscriber base consistently.</p>
+          <p class="wd-how"><b>How</b>Strategy, SEO-optimised titles and descriptions, thumbnails and a consistent upload schedule.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Channel Strategy</b><b>SEO Titles</b><b>Thumbnails</b><b>Upload Scheduling</b></div>
+          </div>
+          <p class="wd-outcome">A channel that keeps growing instead of stalling after a few uploads.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my channel →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--blue)" data-i="7">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="8" y="18" width="104" height="84" rx="4"/>
+            <path d="M8 38 L112 38"/>
+            <circle class="fill" cx="22" cy="28" r="4"/>
+            <circle class="fill" cx="36" cy="28" r="4"/>
+            <path d="M38 56 L32 68 L38 80 M82 56 L88 68 L82 80" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M58 52 L54 84" stroke-linecap="round"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 08</span>
+          <h3 class="display wd-title">Website<br>Development</h3>
+          <p class="wd-sub">Fast, mobile-first websites built on WordPress and Elementor, tracked from day one.</p>
+          <p class="wd-how"><b>How</b>Built fast and mobile-first, with tracking wired in before the site ever goes live.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>WordPress</b><b>Elementor</b><b>Landing Pages</b><b>Speed &amp; Tracking</b></div>
+          </div>
+          <p class="wd-outcome">A site that turns ad spend into measurable enquiries, not just visits.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my website →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+        <article class="wd-panel" style="--c:var(--dot)" data-i="8">
+          <svg class="wd-mark" viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M60 12 C42 12 28 26 28 44 C28 68 60 108 60 108 C60 108 92 68 92 44 C92 26 78 12 60 12 Z"/>
+            <circle class="fill" cx="60" cy="44" r="14"/>
+          </svg>
+          <span class="label wd-eyebrow">Service 09</span>
+          <h3 class="display wd-title">Local SEO &amp;<br>GMB Optimization</h3>
+          <p class="wd-sub">We optimise your Google Business Profile and local listings so customers in your city find you first.</p>
+          <p class="wd-how"><b>How</b>Google Business Profile and local listings optimised for map and &ldquo;near me&rdquo; searches.</p>
+          <div class="wd-deliverables">
+            <span class="label wd-deliv-label">Key deliverables</span>
+            <div class="wd-tags"><b>Google Business Profile</b><b>Local Citations</b><b>Map Rankings</b><b>Reviews</b></div>
+          </div>
+          <p class="wd-outcome">Customers in your own city finding you before a competitor.</p>
+          <div class="wd-actions">
+            <a href="#audit" class="btn solid wd-cta">Audit my listings →</a>
+            <a href="#case-studies" class="wd-case-link">See how we work →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── SERVICES — pinned sequence ───────────────────────────────── */
+#services { --wd-r: 460px; --wd-step: 15deg; }
+
+.wd-track  { position: relative; height: calc(var(--n) * 100svh); }
+.wd-stage  { position: sticky; top: 0; height: 100svh; overflow: hidden;
+             display: flex; align-items: center; justify-content: center; }
+
+/* rotating arc index */
+.wd-rail {
+  position: absolute; left: clamp(60px, 11vw, 190px); top: 50%;
+  /* cursor parallax on the rail as a whole, not on .wd-mark: .wd-mark already
+     carries the wdMark entrance keyframe (transform: scale+rotate, held via
+     fill-mode "both"), and a running/held CSS animation on a property wins
+     over a plain inline style set on the same element for as long as it's
+     in effect — a transform written here from JS would simply be ignored. */
+  --px: 0; --py: 0;
+  transform: translate3d(calc(var(--px) * 1px), calc(var(--py) * 1px), 0);
+  transition: transform 0.5s var(--ease-out);
+  will-change: transform;
+}
+@media (hover: none), (pointer: coarse) {
+  .wd-rail { transform: none !important; transition: none; }
+}
+.wd-ring { position: absolute; left: calc(-1 * var(--wd-r)); top: 0;
+           transition: transform .85s cubic-bezier(.16,.84,.28,1); }
+.wd-arc  { position: absolute; left: calc(-1 * var(--wd-r)); top: calc(-1 * var(--wd-r));
+           width: calc(var(--wd-r) * 2); height: calc(var(--wd-r) * 2);
+           border: 1px solid var(--rule); border-radius: 50%; }
+.wd-num  { position: absolute; left: 0; top: 0;
+           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 800;
+           font-size: clamp(20px, 2.4vw, 34px);
+           line-height: 1; color: var(--rule);
+           transform: rotate(calc(var(--i) * var(--wd-step))) translateX(var(--wd-r)) translate(-50%, -50%);
+           transform-origin: 0 0;
+           transition: color .5s ease, opacity .5s ease; opacity: .8; }
+.wd-num.is-on { color: var(--ink); opacity: 1; }
+.wd-pip  { position: absolute; left: -26px; top: -3px; width: 7px; height: 7px;
+           border-radius: 50%; background: var(--accent); }
+
+/* compact index (small screens) */
+.wd-mini { position: absolute; left: var(--pad); top: 50%; transform: translateY(-50%);
+           display: none; flex-direction: column; gap: 12px; }
+.wd-mini b { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); }
+.wd-bars { display: flex; flex-direction: column; gap: 5px; }
+.wd-bars i { width: 2px; height: 22px; background: var(--rule); transition: background .4s; }
+.wd-bars i.is-on { background: var(--accent); }
+
+/* panels */
+.wd-panels { position: relative; width: min(680px, 100%);
+             padding-inline: var(--pad); text-align: center; }
+.wd-panel  { position: absolute; left: 0; right: 0; top: 50%;
+             padding-inline: var(--pad);
+             transform: translateY(calc(-50% + 46px)); opacity: 0;
+             pointer-events: none; visibility: hidden;
+             transition: transform .7s cubic-bezier(.16,.84,.28,1), opacity .5s ease, visibility .7s; }
+.wd-panel.is-on  { transform: translateY(-50%); opacity: 1; pointer-events: auto; visibility: visible; }
+.wd-panel.is-out { transform: translateY(calc(-50% - 46px)); }
+
+/* Every vertical gap from here down is a viewport-height-aware clamp, not a
+   fixed pixel. The five-part narrative (what/how/deliverables/outcome/cta)
+   made each panel noticeably taller than the original icon+title+tags
+   version, and a fixed-px rhythm that looked fine on a tall monitor
+   overflowed the stage on a realistic laptop viewport (browser chrome,
+   bookmarks bar, etc. easily leave well under 700px of actual page height).
+   vh-based gaps shrink automatically with the viewport instead of clipping
+   against .wd-stage's overflow:hidden. */
+.wd-mark { width: clamp(52px, 6vw, 92px); height: auto; display: block;
+           margin: 0 auto clamp(8px, 1.6vh, 20px);
+           color: var(--c); fill: none; stroke: currentColor; stroke-width: 2; }
+.wd-mark .fill { fill: currentColor; stroke: none; }
+.wd-panel.is-on .wd-mark { animation: wdMark .8s cubic-bezier(.16,.84,.28,1) both; }
+@keyframes wdMark { from { opacity: 0; transform: scale(.86) rotate(-6deg); }
+                    to   { opacity: 1; transform: none; } }
+
+.wd-eyebrow { display: block; margin-bottom: clamp(6px, 1vh, 12px); color: var(--c); }
+.wd-title   { font-size: clamp(1.8rem, 4.6vw, 3.6rem); margin-bottom: clamp(6px, 1.2vh, 14px); }
+.wd-sub     { font-size: clamp(13.5px, 1.4vw, 16px); line-height: 1.5; color: var(--ash);
+              max-width: 46ch; margin: 0 auto clamp(8px, 1.2vh, 16px); }
+
+/* "how we do it" — sits between the what-we-do lede and the deliverables,
+   its own line so the five-part narrative (what / how / deliverables /
+   outcome / cta) stays visually distinct rather than blurring into one
+   paragraph */
+.wd-how { font-size: clamp(12.5px, 1.25vw, 14px); line-height: 1.45; color: var(--ink);
+          max-width: 46ch; margin: 0 auto clamp(8px, 1.4vh, 18px); }
+.wd-how b { display: inline-block; color: var(--c); font-weight: 600; font-size: 10.5px;
+            letter-spacing: .1em; text-transform: uppercase; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin-right: 8px; transition: color .5s ease; }
+
+.wd-deliverables  { margin-bottom: clamp(8px, 1.4vh, 18px); }
+.wd-deliv-label   { display: block; margin-bottom: clamp(5px, 0.8vh, 10px); }
+.wd-tags    { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+.wd-tags b  { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 600; font-size: 10.5px;
+              letter-spacing: .1em; text-transform: uppercase;
+              border: 1px solid var(--rule); border-radius: 100px; padding: 6px 13px; color: var(--ash);
+              cursor: default;
+              transition: border-color .5s ease, background .18s var(--ease-out),
+                          color .18s var(--ease-out), transform .15s var(--ease-out); }
+.wd-panel.is-on .wd-tags b { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+.wd-tags b:hover { background: var(--c); color: #050505; border-color: var(--c); transform: translateY(-2px); }
+
+/* "business outcome" — set apart with a hairline so it reads as the
+   takeaway line, not a fifth tag or a second sub-headline */
+.wd-outcome {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  max-width: 42ch; margin: 0 auto clamp(8px, 1.4vh, 18px);
+  padding-top: clamp(6px, 1vh, 14px);
+  border-top: 1px solid var(--rule);
+}
+
+.wd-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.wd-case-link {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: .05em; color: var(--ash); text-decoration: underline;
+  text-underline-offset: 3px; transition: color .2s var(--ease-out);
+}
+.wd-case-link:hover { color: var(--c); }
+
+/* stronger transition choreography: the panel itself already crossfades
+   (see .wd-panel above); its own children cascade in on a short stagger on
+   top of that so the five parts of the narrative arrive as a sequence, not
+   all at once. .wd-mark is exempt on purpose — it already carries its own
+   entrance keyframe (see wdMark below), and a CSS animation on a property
+   always wins over a transition on that same property/element, so a rule
+   here would just be a no-op for it. */
+.wd-panel > *:not(.wd-mark) {
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .5s var(--reveal-ease), transform .5s var(--reveal-ease);
+}
+.wd-panel.is-on > *:not(.wd-mark) { opacity: 1; transform: none; }
+.wd-panel.is-on > .wd-eyebrow      { transition-delay: .05s; }
+.wd-panel.is-on > .wd-title        { transition-delay: .1s; }
+.wd-panel.is-on > .wd-sub          { transition-delay: .16s; }
+.wd-panel.is-on > .wd-how          { transition-delay: .22s; }
+.wd-panel.is-on > .wd-deliverables { transition-delay: .28s; }
+.wd-panel.is-on > .wd-outcome      { transition-delay: .34s; }
+.wd-panel.is-on > .wd-actions      { transition-delay: .4s; }
+
+/* service-specific visual treatment: a very soft wash of the active
+   service's own colour behind the panel. --accent is already updated to
+   match the active panel by the existing setActive() script, so this needs
+   no JS of its own. */
+.wd-stage::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(640px circle at 50% 42%,
+              color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  transition: background .6s ease;
+}
+
+/* subtle progress indicator — how far through the nine services, distinct
+   from the arc/mini-index (which show which one). Width is written by the
+   existing read() loop, one extra line, no separate scroll listener. */
+.wd-progress { position: absolute; left: 0; right: 0; top: 0; height: 2px;
+               background: var(--rule); z-index: 3; }
+.wd-progress-fill { height: 100%; width: 0%; background: var(--accent);
+                    transition: width .1s linear, background .4s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wd-panel > *:not(.wd-mark) { opacity: 1; transform: none; transition: none; }
+}
+
+/* small screens */
+@media (max-width: 860px) {
+  .wd-rail  { display: none; }
+  .wd-mini  { display: flex; }
+  .wd-panels { padding-left: calc(var(--pad) + 34px); }
+  .wd-panel  { padding-left: calc(var(--pad) + 34px); text-align: left; }
+  .wd-mark   { margin-left: 0; }
+  .wd-tags   { justify-content: flex-start; }
+  .wd-sub, .wd-how, .wd-outcome { margin-left: 0; }
+  .wd-actions { justify-content: flex-start; }
+}
+
+/* reduced motion: unpin and stack */
+@media (prefers-reduced-motion: reduce) {
+  .wd-track  { height: auto; }
+  .wd-stage  { position: static; height: auto; display: block; }
+  .wd-rail, .wd-mini, .wd-progress { display: none; }
+  .wd-panels { width: 100%; }
+  .wd-panel  { position: static; opacity: 1; visibility: visible; transform: none;
+               pointer-events: auto; padding-block: 48px; border-top: 1px solid var(--rule); }
+  .wd-panel .wd-mark { animation: none; }
+}
+</style>
+
+<script>
+(function () {
+  var track  = document.getElementById('wdTrack');
+  if (!track) return;
+  var ring   = document.getElementById('wdRing');
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.wd-panel'));
+  var nums   = Array.prototype.slice.call(document.querySelectorAll('.wd-num'));
+  var bars   = Array.prototype.slice.call(document.querySelectorAll('.wd-bars i'));
+  var mini   = document.getElementById('wdMiniNum');
+  var progressFill = document.getElementById('wdProgressFill');
+  var n      = panels.length;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var step   = 15;
+  var active = -1, ticking = false;
+
+  function setActive(i) {
+    if (i === active) return;
+    var prev = active;
+    active = i;
+    panels.forEach(function (p, k) {
+      p.classList.toggle('is-on', k === i);
+      p.classList.toggle('is-out', k < i);
+    });
+    nums.forEach(function (b, k) { b.classList.toggle('is-on', k === i); });
+    bars.forEach(function (b, k) { b.classList.toggle('is-on', k <= i); });
+    if (mini) mini.textContent = (i + 1 < 10 ? '0' : '') + (i + 1);
+    if (ring) ring.style.transform = 'rotate(' + (-i * step) + 'deg)';
+    var c = getComputedStyle(panels[i]).getPropertyValue('--c').trim();
+    if (c) document.documentElement.style.setProperty('--accent', c);
+    if (prev === -1) return;
+  }
+
+  function read() {
+    ticking = false;
+    var rect  = track.getBoundingClientRect();
+    var total = track.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    var p = Math.min(1, Math.max(0, -rect.top / total));
+    setActive(Math.min(n - 1, Math.floor(p * n)));
+    if (progressFill) progressFill.style.width = (p * 100).toFixed(2) + '%';
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(read); }
+  }
+
+  if (reduce) { return; }
+  setActive(0);
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  read();
+})();
+</script>
+
+<!-- ── HOW WE THINK — the one opinionated, non-card section on the page.
+     Built entirely from positioning already stated elsewhere (hero's "one
+     team, one thread, no handoffs", About's "you talk to the people doing
+     the work"), pulled into its own moment instead of invented fresh. ── -->
+<section class="wrap think" id="think" aria-labelledby="think-heading">
+  <div class="think-grid reveal-group">
+    <h2 id="think-heading" class="think-line">One team.<br>No handoffs<span class="crimson">.</span></h2>
+    <div class="think-body">
+      <p>Most agencies hand you between a strategist, a media buyer and an account manager reading a report someone else wrote. That's where budgets get lost in translation.</p>
+      <p>We don't work that way. The same people who run your ads build your site and write the content it needs — <b>you talk to the people doing the work</b>, every time, not whoever picked up the account this quarter.</p>
+      <p class="think-note">— this is why the audit, the plan and the build all sit inside one team, not three vendors.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Editorial, not a card: a big opinionated headline set against body copy
+   in a simple two-column split, one horizontal rule, no border/background
+   block around either side. */
+.think-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 100px);
+  align-items: start;
+  padding-block: clamp(60px, 9vw, 110px);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.think-line {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+  line-height: 0.98; letter-spacing: -0.02em;
+}
+.think-body p {
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.65;
+  color: var(--ash);
+  max-width: 52ch;
+}
+.think-body p + p { margin-top: 20px; }
+.think-body b { color: var(--ink); font-weight: 600; }
+.think-note {
+  margin-top: 28px !important;
+  font-size: 13px !important;
+  color: var(--ash);
+  font-style: italic;
+}
+@media (max-width: 800px) {
+  .think-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+</style>
+
+<!-- ── MARKETING GROWTH SYSTEM — how the nine services above connect,
+     shown as a diagram someone from MDS would actually draw for a client:
+     a plain flow of six stages down the side, one expanded at a time.
+     No screen/device mockup, no dashboard icons, no invented numbers —
+     the visual IS the six real stage names and their existing copy. ── -->
+<section id="growth-system" aria-labelledby="growth-heading">
+  <div class="growth-track" id="growthTrack" style="--n:6">
+    <div class="growth-stage">
+      <div class="growth-head reveal">
+        <span class="label">Scroll — one stage at a time</span>
+        <h2 id="growth-heading">How the system connects</h2>
+      </div>
+
+      <div class="growth-body">
+        <ol class="growth-rail" id="growthRail" aria-hidden="true">
+          <li data-i="0">Traffic</li>
+          <li data-i="1">Ads / SEO</li>
+          <li data-i="2">Website</li>
+          <li data-i="3">Lead</li>
+          <li data-i="4">WhatsApp / Sales</li>
+          <li data-i="5">Growth</li>
+        </ol>
+
+        <div class="growth-cards" id="growthCards">
+          <article class="growth-card is-on" data-i="0" style="--c:var(--dot)">
+            <span class="growth-num">01 / 06</span>
+            <h3>Traffic</h3>
+            <p>People searching, scrolling, actively looking for what you offer.</p>
+          </article>
+          <article class="growth-card" data-i="1" style="--c:var(--green)">
+            <span class="growth-num">02 / 06</span>
+            <h3>Ads &amp; SEO</h3>
+            <p>Meta Ads, Google Ads and SEO put you in front of them.</p>
+          </article>
+          <article class="growth-card" data-i="2" style="--c:var(--blue)">
+            <span class="growth-num">03 / 06</span>
+            <h3>Website</h3>
+            <p>A fast, tracked site that answers the ad's exact promise.</p>
+          </article>
+          <article class="growth-card" data-i="3" style="--c:var(--magenta)">
+            <span class="growth-num">04 / 06</span>
+            <h3>Lead</h3>
+            <p>A form, a call, a message — captured, not lost.</p>
+          </article>
+          <article class="growth-card" data-i="4" style="--c:var(--green)">
+            <span class="growth-num">05 / 06</span>
+            <h3>WhatsApp &amp; Sales</h3>
+            <p>Routed straight to your phone, in real time.</p>
+          </article>
+          <article class="growth-card" data-i="5" style="--c:var(--dot)">
+            <span class="growth-num">06 / 06</span>
+            <h3>Growth</h3>
+            <p>More clients, more reviews, more budget to reinvest.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.growth-track { position: relative; height: calc(var(--n) * 100svh); }
+.growth-stage {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr;
+  gap: clamp(24px, 4vh, 48px);
+  padding: 96px var(--pad) 60px;
+}
+.growth-head { text-align: left; }
+.growth-head .label { display: block; margin-bottom: 10px; }
+.growth-head h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  line-height: 1.08;
+}
+
+.growth-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  min-height: 0;
+}
+
+/* the whole system, always on screen — a plain flowchart rail, not a
+   dashboard sidebar: a rule with six labelled points, the current one lit,
+   passed ones dimmed to show direction of travel. */
+.growth-rail {
+  display: flex; flex-direction: column; gap: 4px;
+  list-style: none;
+  border-left: 1px solid var(--rule);
+}
+.growth-rail li {
+  position: relative;
+  padding: 13px 0 13px 24px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600; font-size: 13px; letter-spacing: 0.02em;
+  color: var(--ash);
+  transition: color 0.3s;
+}
+.growth-rail li::before {
+  content: ''; position: absolute; left: -5px; top: 50%; transform: translateY(-50%) scale(1);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--paper); border: 1.5px solid var(--rule);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+.growth-rail li.is-on { color: var(--ink); font-weight: 800; }
+.growth-rail li.is-on::before { background: var(--dot); border-color: var(--dot); transform: translateY(-50%) scale(1.35); }
+.growth-rail li.is-done { color: var(--ash); }
+.growth-rail li.is-done::before { background: var(--rule); border-color: var(--rule); }
+
+.growth-cards { position: relative; min-height: 0; height: 100%; }
+/* A decisive slide+scale, not a soft crossfade — the previous 6% shift
+   read as barely-there, which undercut "one stage at a time" storytelling.
+   Distance and scale are big enough here that each stage-change reads as
+   a definite event even though the easing keeps it smooth, not jarring. */
+.growth-card {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transform: translateX(16%) scale(0.97);
+  transition: opacity 0.5s ease, transform 0.75s var(--reveal-ease), visibility 0.75s;
+  color: var(--c, var(--dot));
+}
+.growth-card.is-on { opacity: 1; pointer-events: auto; visibility: visible; transform: translateX(0) scale(1); }
+.growth-card.is-out { opacity: 0; transform: translateX(-16%) scale(0.97); }
+/* number → title → line arrive as a short sequence inside the slide,
+   rather than the whole card appearing as one flat block */
+.growth-card > * {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.5s var(--reveal-ease), transform 0.5s var(--reveal-ease);
+}
+.growth-card.is-on > * { opacity: 1; transform: none; }
+.growth-card.is-on > .growth-num { transition-delay: 0.12s; }
+.growth-card.is-on > h3          { transition-delay: 0.2s; }
+.growth-card.is-on > p           { transition-delay: 0.3s; }
+.growth-num {
+  display: block; margin-bottom: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
+  color: var(--c, var(--dot));
+}
+.growth-card h3 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800; color: var(--ink);
+  text-transform: uppercase; letter-spacing: -0.02em;
+  font-size: clamp(2rem, 4.6vw, 3.6rem);
+  margin-bottom: 16px;
+}
+.growth-card p { font-size: clamp(14px, 1.4vw, 17px); line-height: 1.6; color: var(--ash); max-width: 50ch; }
+
+@media (max-width: 860px), (prefers-reduced-motion: reduce) {
+  .growth-track { height: auto; }
+  .growth-stage { position: static; height: auto; display: block; padding: 56px var(--pad) 8px; }
+  .growth-head { margin-bottom: 32px; }
+  .growth-body { display: block; }
+  .growth-rail { display: none; }
+  .growth-cards { position: static; height: auto; }
+  .growth-card {
+    position: static; opacity: 1 !important; visibility: visible !important; pointer-events: auto;
+    transform: none !important;
+    padding-block: 36px;
+    border-top: 1px solid var(--rule);
+  }
+  .growth-card:first-child { border-top: none; }
+}
+</style>
+
+<script>
+(function () {
+  var track = document.getElementById('growthTrack');
+  if (!track) return;
+  var cards  = Array.prototype.slice.call(document.querySelectorAll('.growth-card'));
+  var rail   = Array.prototype.slice.call(document.querySelectorAll('#growthRail li'));
+  var n      = cards.length;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isMobile = window.matchMedia('(max-width: 860px)').matches;
+  var active = -1, ticking = false;
+
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    cards.forEach(function (c, k) {
+      c.classList.toggle('is-on', k === i);
+      c.classList.toggle('is-out', k < i);
+    });
+    rail.forEach(function (r, k) {
+      r.classList.toggle('is-on', k === i);
+      r.classList.toggle('is-done', k < i);
+    });
+  }
+
+  function read() {
+    ticking = false;
+    var rect  = track.getBoundingClientRect();
+    var total = track.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    var p = Math.min(1, Math.max(0, -rect.top / total));
+    setActive(Math.min(n - 1, Math.floor(p * n)));
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(read); }
+  }
+
+  if (reduce || isMobile) { return; }
+  setActive(0);
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  read();
+})();
+</script>
+
+<!-- ── INDUSTRIES — the industries MDS actually serves, each backed by a
+     real client already named in the marquee above. No industry is listed
+     here without a real client behind it. ── -->
+<section class="wrap" id="industries" aria-labelledby="industries-heading">
+  <div class="head reveal">
+    <h2 id="industries-heading">Industries we know</h2>
+    <span class="label">Real clients, not a generic list</span>
+  </div>
+  <div class="industry-grid reveal-group">
+    <div class="industry-card" style="--c:var(--dot)">
+      <span class="label industry-tag">Hospitality</span>
+      <p class="industry-clients">Hotel Sunrise · Farm Villa 007</p>
+    </div>
+    <div class="industry-card" style="--c:var(--green)">
+      <span class="label industry-tag">Education</span>
+      <p class="industry-clients">Garbha Sanskar Academy · Vidyadoot Career Institute · 1 to 1 Home Tutors</p>
+    </div>
+    <div class="industry-card" style="--c:var(--blue)">
+      <span class="label industry-tag">Real estate &amp; builders</span>
+      <p class="industry-clients">Archi Builders</p>
+    </div>
+    <div class="industry-card" style="--c:var(--magenta)">
+      <span class="label industry-tag">Jewellery</span>
+      <p class="industry-clients">Aura Jewels</p>
+    </div>
+    <div class="industry-card" style="--c:var(--dot)">
+      <span class="label industry-tag">Trading &amp; retail</span>
+      <p class="industry-clients">Tejaswi Trades</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.industry-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.industry-card {
+  background: var(--paper); padding: 28px 22px 32px;
+  /* merged with the reveal-group entrance transition on purpose — see the
+     .why-card comment near the "Why Us" styles for why a separate rule of
+     equal specificity would silently drop one or the other instead. */
+  transition: background 0.25s, opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.industry-card:hover { background: var(--paper-hi); }
+.industry-tag { display: block; color: var(--c); margin-bottom: 14px; }
+.industry-clients { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+@media (max-width: 900px) { .industry-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .industry-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- ── SELECTED WORK — real client names only, typographic rather than
+     image cards because no project photography/screenshots exist yet to
+     show honestly. No results are attached to any name below. ── -->
+<section class="wrap" id="work" aria-labelledby="work-heading">
+  <div class="head reveal">
+    <h2 id="work-heading">Selected work</h2>
+    <span class="label">Full case studies in progress</span>
+  </div>
+  <ul class="work-list reveal-group">
+    <li class="work-row"><span class="work-name">Hotel Sunrise</span><span class="work-tag">Hospitality</span></li>
+    <li class="work-row"><span class="work-name">Aura Jewels</span><span class="work-tag">Jewellery</span></li>
+    <li class="work-row"><span class="work-name">Archi Builders</span><span class="work-tag">Real estate</span></li>
+    <li class="work-row"><span class="work-name">Vidyadoot Career Institute</span><span class="work-tag">Education</span></li>
+  </ul>
+  <p class="work-note">We're compiling documented results for these and other partners — real numbers, published once verified, not before.</p>
+</section>
+
+<style>
+.work-list { list-style: none; }
+.work-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  padding: 22px 0; border-bottom: 1px solid var(--rule);
+}
+.work-row:first-child { padding-top: 0; }
+.work-name {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.work-row:hover .work-name { color: var(--accent); }
+.work-tag {
+  flex-shrink: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash);
+}
+.work-note { margin-top: 24px; font-size: 13px; color: var(--ash); max-width: 60ch; }
+</style>
+
+<!-- ── CASE STUDIES — no published case study exists yet, so this section
+     is explicitly framed as a preview of the format rather than a real
+     case study. Before/after comparisons live inside the Result step once
+     a real one is published, rather than as a separate placeholder section
+     saying the same "coming soon" thing twice. ── -->
+<section class="wrap" id="case-studies" aria-labelledby="case-studies-heading">
+  <div class="head reveal">
+    <h2 id="case-studies-heading">Case studies</h2>
+    <span class="label">The format, ahead of the first publish</span>
+  </div>
+  <div class="cs-card reveal">
+    <span class="cs-badge">Preview — not a live case study</span>
+    <div class="cs-grid">
+      <div class="cs-step"><span class="label">Problem</span><p>The specific challenge a real client brought to us.</p></div>
+      <div class="cs-step"><span class="label">Strategy</span><p>What we recommended, and why.</p></div>
+      <div class="cs-step"><span class="label">Execution</span><p>What we actually built and ran.</p></div>
+      <div class="cs-step"><span class="label">Result</span><p>The verified before-and-after numbers, once published.</p></div>
+    </div>
+    <a href="#contact" class="btn ghost">Ask us for a walkthrough →</a>
+  </div>
+</section>
+
+<style>
+.cs-card { border: 1px solid var(--rule); padding: clamp(28px, 4vw, 48px); background: var(--paper-hi); }
+.cs-badge {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent); border-radius: 100px;
+  padding: 6px 14px; margin-bottom: 28px;
+}
+.cs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px; }
+.cs-step p { margin-top: 10px; font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+@media (max-width: 800px) { .cs-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .cs-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────── -->
+<section class="wrap" id="about" aria-labelledby="about-heading">
+  <div class="head reveal">
+    <h2 id="about-heading">Who we are</h2>
+    <span class="label">The team</span>
+  </div>
+  <!-- Was a 4-column bordered grid — three of these four numbers (clients,
+       years, reviews) are the same figures Results already gave their own
+       full editorial moment to; repeating them here as a second stat-box
+       row was the site quoting itself. Only the one figure Results
+       doesn't carry (client satisfaction) gets pulled out here, and the
+       real narrative text — Nagpur, service area, how the team works —
+       now leads instead of sitting beside a wall of boxes. -->
+  <div class="about-layout reveal-group">
+    <p class="about-lead">My Digital Savvy is a digital marketing agency based in Nagpur, working with hospitality brands, coaching academies, builders and retailers across Maharashtra, Madhya Pradesh and Telangana — from Nagpur to Indore, Raipur, Hyderabad and Jabalpur.</p>
+    <div class="about-pull">
+      <!-- CONFIRM: verify this figure before launch -->
+      <div class="about-pull-num">98<span>%</span></div>
+      <div class="about-pull-label">Client satisfaction<br>across our engagements</div>
+    </div>
+    <p class="about-note">We are a small, senior team. When you hire us, <b>you talk to the people doing the work</b> — not an account manager reading a report someone else wrote.</p>
+  </div>
+</section>
+
+<!-- ── BLOG ──────────────────────────────────────────────────── -->
+<!-- Placeholder hrefs point at blog.html — wire these up once the dedicated Blog page/template exists -->
+<section class="wrap" id="blog" aria-labelledby="blog-heading">
+  <div class="head reveal">
+    <h2 id="blog-heading">Insights</h2>
+    <span class="label">From the blog</span>
+  </div>
+  <div class="blog-coming reveal-group">
+    <p>Honest writing on what actually moves the needle for Indian businesses — recent posts cover Google Ads vs. Meta Ads, why agency-hopping resets your momentum, and what's actually working in SEO this year.</p>
+    <!-- wrapped rather than making .btn a direct reveal-group child: .btn
+         already owns its own transition (background/color on hover), and the
+         shorthand would otherwise get overwritten wholesale by the reveal's
+         opacity/transform transition instead of gaining it -->
+    <div><a href="blog.html" class="btn ghost">Read the blog</a></div>
+  </div>
+</section>
+
+<!-- ── PROCESS ────────────────────────────────────────────────── -->
+<section class="wrap" id="process" aria-labelledby="process-heading">
+  <div class="head reveal">
+    <h2 id="process-heading">How a project runs</h2>
+    <span class="label">First 30 days</span>
+  </div>
+
+  <div class="steps reveal-group">
+    <div class="step">
+      <div class="n" aria-hidden="true">01</div>
+      <h5>Audit</h5>
+      <p>We open your ad account, site and analytics and tell you what's leaking. Free, and yours to keep either way.</p>
+    </div>
+    <div class="step">
+      <div class="n" aria-hidden="true">02</div>
+      <h5>Plan</h5>
+      <p>One goal, one budget, one set of creatives to test first. Written down so we're both looking at the same page.</p>
+    </div>
+    <div class="step">
+      <div class="n" aria-hidden="true">03</div>
+      <h5>Build</h5>
+      <p>Site, tracking and creative go live together. Nothing runs until we can measure what it did.</p>
+    </div>
+    <div class="step">
+      <div class="n" aria-hidden="true">04</div>
+      <h5>Report</h5>
+      <p>A weekly note in plain language: what we spent, what came back, what changes next week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROOF ──────────────────────────────────────────────────── -->
+<section class="wrap" id="proof" aria-labelledby="proof-heading">
+  <div class="head reveal">
+    <h2 id="proof-heading">What clients say</h2>
+    <span class="label">Google reviews</span>
+  </div>
+
+  <div class="proof reveal-group">
+    <blockquote class="proof-featured">
+      <p class="quote">Best digital marketing company in Nagpur. Team is very confident — give them the job and they deliver <em>more</em> than expected.</p>
+      <p class="who">— Harwinder Bhatia · Google review</p>
+    </blockquote>
+
+    <!-- CONFIRM: Replace href with your actual Google Maps review link -->
+    <a
+      href="https://g.page/r/REPLACE_WITH_YOUR_GBP_REVIEW_LINK"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rating"
+      aria-label="320 five-star Google reviews — view on Google Maps"
+    >
+      <div class="big" id="ratingNum">4.9</div>
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p><strong id="reviewCount">0</strong> five-star reviews across two Google Business listings.</p>
+    </a>
+
+    <div class="proof-voices">
+      <blockquote>
+        <p class="quote">"I took social media marketing services and I got amazing response by the third month — all organic."</p>
+        <p class="who">— Vinisha Ahuja · Google review</p>
+      </blockquote>
+      <blockquote>
+        <p class="quote">"My Digital Savvy's web design team did an outstanding job on our website. The new design is <em>sleek, modern, and user-friendly.</em>"</p>
+        <p class="who">— Shiv Naik · Google review</p>
+      </blockquote>
+      <blockquote>
+        <p class="quote">"They helped us reach a wider audience with <em>smart, well-executed campaigns.</em>"</p>
+        <p class="who">— Piyush Lalwani · Google review</p>
+      </blockquote>
+      <blockquote>
+        <p class="quote">"I've worked with several digital marketing agencies, but My Digital Savvy stands out. Their social media efforts <em>doubled our follower count.</em>"</p>
+        <p class="who">— Santosh Yadav · Google review</p>
+      </blockquote>
+      <blockquote>
+        <p class="quote">"An exceptional partner in helping us navigate the digital marketing world — proactive, detail-oriented, and skilled."</p>
+        <p class="who">— Devanshi Khandelwal · Google review</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- Reviewer marquee — same names already quoted above, just skimmable at
+       a glance rather than read one at a time. Reuses the .strip/.track
+       marquee mechanism the client-logo strip uses elsewhere on the page. -->
+  <div class="strip proof-strip reveal" aria-hidden="true">
+    <div class="track" id="proofTrack"></div>
+  </div>
+</section>
+
+<style>
+/* One large featured quote + rating stacked left, five smaller supporting
+   voices right — was a single rotating card behind prev/next arrows,
+   which hid five real reviews behind a pagination widget instead of
+   letting them read as a chorus of real people. */
+.proof {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "featured voices" "rating voices";
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
+}
+.proof-featured { grid-area: featured; }
+.proof-featured .quote { margin-bottom: 16px; }
+.rating { grid-area: rating; }
+.proof-voices { grid-area: voices; display: flex; flex-direction: column; }
+.proof-voices blockquote {
+  padding-block: 22px;
+  border-top: 1px solid var(--rule);
+}
+.proof-voices blockquote:last-child { border-bottom: 1px solid var(--rule); }
+/* controlled asymmetry: alternating indent instead of a uniform list of
+   identical cards */
+.proof-voices blockquote:nth-child(even) { padding-left: clamp(0px, 4vw, 48px); }
+/* Quieter register than the featured quote: normal case, normal weight —
+   .quote's base rule (global, used by .proof-featured too) is bold
+   uppercase display type, right for one hero quote, wrong for five. */
+.proof-voices .quote {
+  text-transform: none; font-weight: 500;
+  font-size: 14.5px; line-height: 1.55; color: var(--ink);
+}
+.proof-voices .who { margin-top: 10px; font-size: 12px; color: var(--ash); }
+
+@media (max-width: 800px) {
+  .proof { grid-template-columns: 1fr; grid-template-areas: "featured" "rating" "voices"; }
+  .proof-voices blockquote:nth-child(even) { padding-left: 0; }
+}
+
+.proof-strip { margin-top: 40px; padding: 11px 0; }
+.proof-strip .track { animation-duration: 30s; }
+.proof-strip .track span {
+  font-weight: 600; text-transform: none; font-size: 13px; letter-spacing: normal;
+}
+</style>
+
+<!-- ── WHY US ─────────────────────────────────────────────────── -->
+<!-- CONFIRM: verify every claim below against current figures before launch -->
+<section class="wrap" id="why" aria-labelledby="why-heading">
+  <div class="head reveal">
+    <h2 id="why-heading">Why My Digital Savvy</h2>
+    <span class="label">12 reasons, one team</span>
+  </div>
+
+  <div class="why-shell reveal">
+    <div class="why-track" id="whyTrack" tabindex="0" role="region" aria-roledescription="carousel" aria-label="12 reasons to choose My Digital Savvy">
+      <ul class="why-list reveal-group" id="whyList">
+        <!-- "One team, no handoffs" and "you talk to who does the work" —
+             previously reasons 01-02 — moved to the end of this list. Both
+             now have their own dedicated editorial section (#think) higher
+             up the page; leading this carousel with them again read as
+             the site repeating itself within two scrolls. Evidence-based
+             reasons lead instead; nothing here was deleted or invented,
+             just reordered and renumbered. -->
+        <li class="why-card" style="--c:var(--dot)">
+          <span class="why-num" aria-hidden="true">01</span>
+          <h3>Free audit, no strings</h3>
+          <p>We open your ad account, site and analytics and tell you what's leaking — yours to keep either way.</p>
+        </li>
+        <li class="why-card" style="--c:var(--green)">
+          <span class="why-num" aria-hidden="true">02</span>
+          <h3>₹2Cr+ ad spend managed</h3>
+          <p>Real budgets across real industries — not theory borrowed from a case-study deck.</p>
+        </li>
+        <li class="why-card" style="--c:var(--blue)">
+          <span class="why-num" aria-hidden="true">03</span>
+          <h3>320+ five-star reviews</h3>
+          <p>Verifiable across two Google Business listings — not screenshots we control.</p>
+        </li>
+        <li class="why-card" style="--c:var(--magenta)">
+          <span class="why-num" aria-hidden="true">04</span>
+          <h3>50+ active clients</h3>
+          <p>Hospitality, education, trading, retail and real estate — across Maharashtra and beyond.</p>
+        </li>
+        <li class="why-card" style="--c:var(--dot)">
+          <span class="why-num" aria-hidden="true">05</span>
+          <h3>Weekly reporting, plain language</h3>
+          <p>What we spent, what came back, what changes next week — no jargon to hide behind.</p>
+        </li>
+        <li class="why-card" style="--c:var(--green)">
+          <span class="why-num" aria-hidden="true">06</span>
+          <h3>Tracking from day one</h3>
+          <p>Site, tracking and creative go live together, so every rupee of ad spend is measurable.</p>
+        </li>
+        <li class="why-card" style="--c:var(--blue)">
+          <span class="why-num" aria-hidden="true">07</span>
+          <h3>Creative refreshed on performance</h3>
+          <p>Not a fixed monthly schedule — we swap creative when it fatigues, not when the calendar says to.</p>
+        </li>
+        <li class="why-card" style="--c:var(--magenta)">
+          <span class="why-num" aria-hidden="true">08</span>
+          <h3>Leads land on WhatsApp</h3>
+          <p>Enquiries route straight to your phone in real time — not a weekly spreadsheet export.</p>
+        </li>
+        <li class="why-card" style="--c:var(--dot)">
+          <span class="why-num" aria-hidden="true">09</span>
+          <h3>Two offices, always reachable</h3>
+          <p>Ganeshpeth and Sadar — walk in, or reach us on WhatsApp the same day.</p>
+        </li>
+        <li class="why-card" style="--c:var(--green)">
+          <span class="why-num" aria-hidden="true">10</span>
+          <h3>Nagpur-based, pan-India reach</h3>
+          <p>Local enough to sit across the table, experienced enough to run your growth from anywhere.</p>
+        </li>
+        <li class="why-card" style="--c:var(--blue)">
+          <span class="why-num" aria-hidden="true">11</span>
+          <h3>One team, no handoffs</h3>
+          <p>The people who run your ads build your site and write your content — nothing gets lost between departments.</p>
+        </li>
+        <li class="why-card" style="--c:var(--magenta)">
+          <span class="why-num" aria-hidden="true">12</span>
+          <h3>You talk to who does the work</h3>
+          <p>No account manager reading a report someone else wrote — you get the people actually in your ad account.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="why-controls">
+      <button type="button" class="why-arrow" id="whyPrev" aria-label="Previous reason">←</button>
+      <div class="why-dots" id="whyDots" aria-hidden="true"></div>
+      <button type="button" class="why-arrow" id="whyNext" aria-label="Next reason">→</button>
+    </div>
+
+    <div class="why-foot">
+      <span class="label" id="whyCount" aria-hidden="true">01 / 12</span>
+      <a href="#contact" class="btn solid">Claim your free audit →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── WHY US — card carousel ──────────────────────────────────── */
+.why-shell { position: relative; }
+.why-track {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.why-track::-webkit-scrollbar { display: none; }
+.why-track:focus-visible { outline: 2px solid var(--dot); outline-offset: 6px; }
+.why-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 4px 4px 10px;
+}
+.why-card {
+  scroll-snap-align: start;
+  flex: 0 0 clamp(240px, 32vw, 320px);
+  /* A coloured top rule instead of a full border box — one flag-line per
+     reason, not another bordered card next to Results/Process/Industries'
+     own boxed grids. */
+  border-top: 2px solid var(--rule);
+  padding: 24px 4px 30px 0;
+  /* the opacity/transform terms here are the reveal-group entrance (see
+     "SCROLL REVEAL" above) — merged into this rule rather than left on the
+     generic .reveal-group > * selector, because the transition shorthand
+     doesn't merge across rules of equal specificity: whichever declares it
+     last wins outright, and .why-card's own border-color transition would
+     otherwise silently swallow the reveal's opacity/transform transition. */
+  transition: border-color 0.25s, opacity 0.55s var(--reveal-ease), transform 0.55s var(--reveal-ease);
+}
+.why-card:hover, .why-card:focus-within {
+  border-color: var(--c);
+}
+.why-num {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  line-height: 1;
+  color: var(--c);
+  margin-bottom: 20px;
+}
+.why-card h3 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  font-size: clamp(15px, 1.5vw, 17px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.why-card p { font-size: 13.5px; line-height: 1.6; color: var(--ash); }
+
+.why-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+.why-arrow {
+  all: unset;
+  cursor: pointer;
+  width: 44px; height: 44px;
+  border: 1.5px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s, color 0.2s, transform 0.15s var(--ease-out);
+}
+.why-arrow:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); transform: scale(1.08); }
+.why-arrow:active { transform: scale(0.96); }
+.why-dots { display: flex; align-items: center; gap: 7px; }
+.why-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: background 0.2s, transform 0.2s;
+}
+.why-dots span.is-on { background: var(--accent); transform: scale(1.4); }
+
+.why-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+@media (max-width: 560px) {
+  .why-card { flex-basis: 78vw; }
+  .why-foot { justify-content: center; text-align: center; }
+}
+</style>
+
+<script>
+(function () {
+  var track = document.getElementById('whyTrack');
+  if (!track) return;
+  var list     = document.getElementById('whyList');
+  var cards    = Array.prototype.slice.call(list.children);
+  var dotsWrap = document.getElementById('whyDots');
+  var countEl  = document.getElementById('whyCount');
+  var prevBtn  = document.getElementById('whyPrev');
+  var nextBtn  = document.getElementById('whyNext');
+  var n = cards.length;
+
+  cards.forEach(function () {
+    var d = document.createElement('span');
+    dotsWrap.appendChild(d);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function currentIndex() {
+    var scrollLeft = track.scrollLeft;
+    var best = 0, bestDist = Infinity;
+    cards.forEach(function (c, i) {
+      var dist = Math.abs(c.offsetLeft - list.offsetLeft - scrollLeft);
+      if (dist < bestDist) { bestDist = dist; best = i; }
+    });
+    return best;
+  }
+
+  function paint() {
+    var i = currentIndex();
+    dots.forEach(function (d, k) { d.classList.toggle('is-on', k === i); });
+    if (countEl) countEl.textContent = (i + 1 < 10 ? '0' : '') + (i + 1) + ' / ' + n;
+  }
+
+  function goTo(i) {
+    i = Math.max(0, Math.min(n - 1, i));
+    var card = cards[i];
+    track.scrollTo({ left: card.offsetLeft - list.offsetLeft, behavior: 'smooth' });
+  }
+
+  var ticking = false;
+  track.addEventListener('scroll', function () {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () { paint(); ticking = false; });
+    }
+  }, { passive: true });
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(currentIndex() - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(currentIndex() + 1); });
+
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(currentIndex() - 1); }
+  });
+
+  paint();
+})();
+</script>
+
+<!-- ── FREE DIGITAL AUDIT — a dedicated push on the offer that already runs
+     through the rest of the page (Process step 01, both nav CTAs), not a
+     new claim. Bordered rather than colour-inverted so contrast doesn't
+     need re-deriving for a one-off palette. ── -->
+<section class="wrap" id="audit" aria-labelledby="audit-heading">
+  <div class="audit-box reveal">
+    <span class="label">No strings</span>
+    <h2 id="audit-heading" class="display">Get a free digital audit<span class="crimson">.</span></h2>
+    <p class="audit-copy">We open your ad account, site and analytics and tell you exactly what's leaking — free, and yours to keep either way.</p>
+    <a href="#contact" class="btn solid">Get my free audit →</a>
+  </div>
+</section>
+
+<style>
+.audit-box {
+  border: 1.5px solid var(--dot);
+  background: var(--paper-hi);
+  padding: clamp(48px, 7vw, 88px) clamp(28px, 5vw, 64px);
+  text-align: center;
+}
+.audit-box h2 { margin: 16px 0 20px; font-size: clamp(2rem, 5vw, 4rem); }
+.audit-copy { max-width: 56ch; margin: 0 auto 32px; color: var(--ash); font-size: clamp(14px, 1.4vw, 16.5px); line-height: 1.6; }
+</style>
+
+<!-- ── CONTACT ────────────────────────────────────────────────── -->
+<section class="wrap contact" id="contact" aria-labelledby="contact-heading">
+  <div class="reveal">
+    <span class="label">Next step</span>
+    <h2 id="contact-heading" class="display">
+      Tell us what's<br>not working<span class="crimson">.</span>
+    </h2>
+  </div>
+  <div class="cgrid reveal-group">
+    <div>
+      <span class="label">Email</span>
+      <a href="mailto:hello@mydigitalsavvy.com">hello@mydigitalsavvy.com</a>
+    </div>
+    <div>
+      <span class="label">WhatsApp</span>
+      <a href="https://wa.me/918149105083" target="_blank" rel="noopener">+91 81491 05083</a>
+    </div>
+    <div>
+      <span class="label">Ganeshpeth office</span>
+      <p>Shop No 67, 1st Floor,<br>Rahul Complex 2, Ganeshpeth,<br>Nagpur 440018</p>
+    </div>
+    <div>
+      <span class="label">Sadar office</span>
+      <p>15/16, NMC Complex, 1st Floor,<br>J.B. Wing, Mangalwari,<br>Sadar, Nagpur</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="wrap">
+  <div class="footer-brand">
+    <video class="logo-source-video" id="footerLogoVideo" src="logo-animation.mp4" muted loop playsinline preload="auto"></video>
+    <canvas class="footer-logo-canvas" id="footerLogoCanvas" width="480" height="270" aria-hidden="true"></canvas>
+    <span class="label">© 2026 My Digital Savvy</span>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.facebook.com/profile.php?id=61553360870147" target="_blank" rel="noopener" class="label">Facebook</a>
+    <a href="https://www.instagram.com/mydigitalsavvy/" target="_blank" rel="noopener" class="label">Instagram</a>
+    <a href="https://www.linkedin.com/company/my-digital-savvy/" target="_blank" rel="noopener" class="label">LinkedIn</a>
+  </div>
+  <span class="label">Digital marketing · Nagpur</span>
+</footer>
+
+<style>
+.footer-brand { display: flex; align-items: center; gap: 10px; }
+.footer-logo-canvas { display: block; height: 36px; width: auto; }
+.footer-brand .logo-source-video.chroma-fallback { height: 36px; }
+.footer-social { display: flex; gap: 22px; }
+.footer-social a { transition: color 0.2s; }
+.footer-social a:hover { color: var(--dot); }
+</style>
+
+<!-- ── JAVASCRIPT ─────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  var WORDS = [
+    { w: 'hospitality', c: '#43FF4C' },
+    { w: 'education',   c: '#4DAAFF' },
+    { w: 'trading',     c: '#D42DF5' },
+    { w: 'jewellery',   c: '#EB1C52' },
+    { w: 'real estate', c: '#43FF4C' }
+  ];
+
+  var idx    = 0;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root   = document.documentElement;
+
+  /* Animated logo (nav + footer): the source video renders on a flat white
+     canvas, and there's no video-editing tool in this environment to key it
+     out at the file level. This does it live instead, in real time: draw
+     each frame to a small offscreen-sized <canvas>, then walk its pixels —
+     anything low-saturation and bright (the white background, and the soft
+     white halo around the mark) gets its alpha zeroed, with a short
+     feathered band so the cutout edge doesn't look jagged. The <video>
+     itself is visually hidden (not display:none — some browsers stop
+     decoding a display:none video, which would freeze the source the
+     canvas is copying from) and only exists as the frame source.
+     Plays and loops normally; under prefers-reduced-motion it draws one
+     settled frame instead of running the per-frame loop forever. */
+  function chromaKeyLogo(video, canvas) {
+    var ctx = canvas.getContext('2d', { willReadFrequently: true });
+    var W = canvas.width, H = canvas.height;
+    var failed = false;
+    // Falls back to the plain (un-keyed) video if the canvas can't read its
+    // own pixels back — happens when the page is opened as a local file://
+    // document, where Chromium gives the video an opaque origin and any
+    // getImageData/putImageData call throws a SecurityError. Without this,
+    // that error was uncaught inside the rAF loop: it silently killed the
+    // loop after the first frame and left the canvas showing a frozen,
+    // un-keyed frame (solid white halo) forever instead of the animated,
+    // transparent-background logo.
+    function fallbackToPlainVideo() {
+      if (failed) return;
+      failed = true;
+      canvas.style.display = 'none';
+      video.classList.add('chroma-fallback');
+    }
+    function keyFrame() {
+      if (failed) return;
+      try {
+        ctx.drawImage(video, 0, 0, W, H);
+        var frame = ctx.getImageData(0, 0, W, H);
+        var d = frame.data;
+        for (var i = 0; i < d.length; i += 4) {
+          var r = d[i], g = d[i + 1], b = d[i + 2];
+          var lo = Math.min(r, g, b), hi = Math.max(r, g, b);
+          var neutral = (hi - lo) < 18; // low saturation = white/grey, not a brand colour
+          var bright = (r + g + b) / 3;
+          if (neutral && bright > 224) {
+            d[i + 3] = 0;
+          } else if (neutral && bright > 194) {
+            d[i + 3] = Math.round(255 * (1 - (bright - 194) / (224 - 194)));
+          }
+        }
+        ctx.putImageData(frame, 0, 0);
+      } catch (e) {
+        fallbackToPlainVideo();
+      }
+    }
+    if (reduce) {
+      var settleAt = Math.min(7, video.duration || 7);
+      var settle = function () {
+        video.currentTime = settleAt;
+        video.addEventListener('seeked', function once() {
+          video.removeEventListener('seeked', once);
+          keyFrame();
+        });
+      };
+      if (video.readyState >= 1 && video.duration) settle();
+      else video.addEventListener('loadedmetadata', settle, { once: true });
+      return;
+    }
+    var raf = null;
+    function loop() { keyFrame(); if (!failed) raf = requestAnimationFrame(loop); }
+    function start() { if (!raf) loop(); }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+    video.addEventListener('playing', start);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else if (!video.paused) start();
+    });
+    var tryPlay = function () { video.play().catch(function () {}); };
+    if (video.readyState >= 2) tryPlay(); else video.addEventListener('loadeddata', tryPlay, { once: true });
+  }
+
+  var navLogoV = document.getElementById('siteLogoVideo'), navLogoC = document.getElementById('siteLogoCanvas');
+  var footLogoV = document.getElementById('footerLogoVideo'), footLogoC = document.getElementById('footerLogoCanvas');
+  if (navLogoV && navLogoC) chromaKeyLogo(navLogoV, navLogoC);
+  if (footLogoV && footLogoC) chromaKeyLogo(footLogoV, footLogoC);
+
+  var rotor    = document.getElementById('rotor');
+  var rotorBtn = document.getElementById('rotorBtn');
+  var base     = document.getElementById('rotorBase');
+  var top_     = document.getElementById('rotorTop');
+  var srLive   = document.getElementById('srLive');
+
+  if (!rotor) { return; }
+
+  function paint(n) {
+    var d = WORDS[n];
+    base.innerHTML = d.w + '<span class="crimson">.</span>';
+    top_.innerHTML = d.w + '<span class="crimson">.</span>';
+    top_.style.color = d.c;
+    root.style.setProperty('--accent', d.c);
+    rotorBtn.setAttribute('aria-label', 'See how we help ' + d.w + ' businesses');
+    if (srLive) { srLive.textContent = ''; srLive.textContent = d.w; }
+  }
+
+  function reserveWidth() {
+    var maxW = 0;
+    WORDS.forEach(function (d) {
+      base.innerHTML = d.w + '<span class="crimson">.</span>';
+      top_.innerHTML = d.w + '<span class="crimson">.</span>';
+      maxW = Math.max(maxW, rotorBtn.offsetWidth);
+    });
+    rotorBtn.style.minWidth = maxW + 'px';
+    paint(0);
+  }
+
+  function cycle() {
+    rotor.classList.remove('go');
+    paint(idx);
+    void rotor.offsetWidth;
+    setTimeout(function () { rotor.classList.add('go'); }, 260);
+    idx = (idx + 1) % WORDS.length;
+  }
+
+  reserveWidth();
+
+  if (!reduce) {
+    cycle();
+    setInterval(cycle, 3200);
+  } else {
+    rotor.classList.add('go');
+    idx = 1;
+  }
+
+  rotorBtn.addEventListener('click', function () {
+    var services = document.getElementById('services');
+    if (services) { services.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+  });
+
+  /* marquee */
+  var clients = [
+    'Hotel Sunrise', 'Garbha Sanskar Academy', 'House of Trader Academy',
+    'Farm Villa 007', 'Aura Jewels', 'The Plan C',
+    'Sansa', 'Vidyadoot Career Institute', 'Archi Builders',
+    '1 to 1 Home Tutors', 'Tejaswi Trades'
+  ];
+  var marqueeHTML = clients.map(function (name) {
+    return '<span>' + name + ' <i>·</i></span>';
+  }).join('');
+  var trackEl = document.getElementById('track');
+  if (trackEl) { trackEl.innerHTML = marqueeHTML + marqueeHTML; }
+
+  /* proof marquee — the same six reviewers quoted above, same real names,
+     just skimmable as a strip rather than read one at a time. */
+  var reviewers = [
+    'Vinisha Ahuja ★★★★★', 'Harwinder Bhatia ★★★★★', 'Shiv Naik ★★★★★',
+    'Piyush Lalwani ★★★★★', 'Santosh Yadav ★★★★★', 'Devanshi Khandelwal ★★★★★'
+  ];
+  var proofHTML = reviewers.map(function (name) {
+    return '<span>' + name + ' <i>·</i></span>';
+  }).join('');
+  var proofTrackEl = document.getElementById('proofTrack');
+  if (proofTrackEl) { proofTrackEl.innerHTML = proofHTML + proofHTML; }
+
+  /* mobile nav: hamburger opens a full-screen drawer, Services expands
+     in place as an accordion (the same 9 services as the desktop mega
+     menu — no separate content to keep in sync). */
+  (function () {
+    var burger = document.getElementById('navBurger');
+    var drawer = document.getElementById('mobileNav');
+    if (!burger || !drawer) return;
+
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
+    }
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      document.documentElement.style.overflow = 'hidden';
+    }
+    burger.addEventListener('click', function () {
+      if (drawer.classList.contains('is-open')) closeDrawer(); else openDrawer();
+    });
+    Array.prototype.slice.call(drawer.querySelectorAll('a')).forEach(function (a) {
+      a.addEventListener('click', closeDrawer);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) closeDrawer();
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860) closeDrawer();
+    });
+
+    var svcToggle = document.getElementById('mobileServicesToggle');
+    var svcPanel = document.getElementById('mobileServicesPanel');
+    if (svcToggle && svcPanel) {
+      svcToggle.addEventListener('click', function () {
+        var open = svcPanel.classList.toggle('is-open');
+        svcToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+  })();
+
+  /* Full-screen Services mega menu — the "Services" link still has a real
+     #services href (works with JS off or before this runs), but with JS
+     active a click opens the takeover instead of jumping straight there.
+     --ox/--oy are set to the exact click point so the CSS circle-reveal
+     wipes out from under the cursor rather than from a fixed corner. */
+  (function () {
+    var trigger = document.getElementById('megaTrigger');
+    var menu = document.getElementById('megaMenu');
+    var closeBtn = document.getElementById('megaClose');
+    if (!trigger || !menu || !closeBtn) return;
+
+    function openMenu(x, y) {
+      menu.style.setProperty('--ox', x + 'px');
+      menu.style.setProperty('--oy', y + 'px');
+      menu.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      document.documentElement.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeMenu() {
+      menu.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
+      trigger.focus();
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (menu.classList.contains('is-open')) {
+        closeMenu();
+      } else {
+        var r = trigger.getBoundingClientRect();
+        openMenu(r.left + r.width / 2, r.bottom);
+      }
+    });
+    closeBtn.addEventListener('click', closeMenu);
+    Array.prototype.slice.call(menu.querySelectorAll('a')).forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu();
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth <= 860) closeMenu();
+    });
+  })();
+
+  /* ── MICRO-INTERACTIONS: cursor parallax + magnetic buttons ──────────
+     Pointer-driven, so gated on both reduced-motion AND a real fine
+     pointer with real hover — touch fires a false "hover" on tap, and
+     without this check a phone would get a magnetic button that never
+     resets because it never receives the pointerleave that would undo it. */
+  var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (!reduce && canHover) {
+    // hero dot-grid drift toward the cursor
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      heroEl.addEventListener('pointermove', function (e) {
+        var r = heroEl.getBoundingClientRect();
+        heroEl.style.setProperty('--mx', ((e.clientX - r.left) / r.width).toFixed(3));
+        heroEl.style.setProperty('--my', ((e.clientY - r.top) / r.height).toFixed(3));
+      });
+      heroEl.addEventListener('pointerleave', function () {
+        heroEl.style.setProperty('--mx', 0.5);
+        heroEl.style.setProperty('--my', 0.5);
+      });
+    }
+
+    // services arc rail drift — see the CSS comment on .wd-rail for why this
+    // targets the rail wrapper and not the icon mark itself
+    var wdStage = document.querySelector('.wd-stage');
+    var wdRail = document.querySelector('.wd-rail');
+    if (wdStage && wdRail) {
+      wdStage.addEventListener('pointermove', function (e) {
+        var r = wdStage.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        wdRail.style.setProperty('--px', (px * -16).toFixed(2));
+        wdRail.style.setProperty('--py', (py * -16).toFixed(2));
+      });
+      wdStage.addEventListener('pointerleave', function () {
+        wdRail.style.setProperty('--px', 0);
+        wdRail.style.setProperty('--py', 0);
+      });
+    }
+
+    // magnetic pull on primary CTAs only (taste.md-style rule: a page of
+    // magnetic elements is unusable, so this is scoped to .btn.solid, the
+    // one action repeated everywhere under the same label)
+    var MAGNET_STRENGTH = 0.25;
+    var MAGNET_MAX = 10; // px, keeps the pull subtle rather than chasing the cursor
+    document.querySelectorAll('.btn.solid').forEach(function (btn) {
+      btn.addEventListener('pointermove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        var tx = Math.max(-MAGNET_MAX, Math.min(MAGNET_MAX, dx * MAGNET_STRENGTH));
+        var ty = Math.max(-MAGNET_MAX, Math.min(MAGNET_MAX, dy * MAGNET_STRENGTH));
+        btn.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px)';
+      });
+      btn.addEventListener('pointerleave', function () {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* scroll reveal */
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-group').forEach(function (el) {
+    revealObserver.observe(el);
+  });
+
+  /* count-up: real figures only (200+ clients, 8+ years, 320+ reviews) —
+     one shared driver so every stat on the page counts the same way. */
+  function countUpOnView(el, target, opts) {
+    if (!el) return;
+    var root = (opts && opts.root) || el;
+    var threshold = (opts && opts.threshold) || 0.5;
+    var duration = (opts && opts.duration) || 1400;
+    var done = false;
+    // These are real, already-published figures (200+ clients, 8+ years,
+    // 320+ reviews, 98% satisfaction) — the static "0" in the markup is only
+    // ever meant to be on screen for the instant before this runs. If
+    // IntersectionObserver isn't supported, or anything here throws, the
+    // number must resolve to the true value immediately rather than being
+    // left showing a wrong "0" indefinitely.
+    if (!('IntersectionObserver' in window)) { el.textContent = target; return; }
+    try {
+      new IntersectionObserver(function (entries) {
+        if (!entries[0].isIntersecting || done) return;
+        done = true;
+        if (reduce) { el.textContent = target; return; }
+        var start = null;
+        requestAnimationFrame(function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / duration, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(e * target);
+          if (p < 1) requestAnimationFrame(step);
+        });
+      }, { threshold: threshold }).observe(root);
+    } catch (err) {
+      el.textContent = target;
+    }
+  }
+
+  countUpOnView(document.getElementById('reviewCount'), 320, { root: document.getElementById('proof') });
+  countUpOnView(document.getElementById('resClients'), 200, { root: document.getElementById('results') });
+  countUpOnView(document.getElementById('resYears'), 8, { root: document.getElementById('results') });
+  countUpOnView(document.getElementById('resReviews'), 320, { root: document.getElementById('results') });
+  countUpOnView(document.getElementById('resSat'), 98, { root: document.getElementById('results') });
+
+  /* Meta Pixel lead event on CTA clicks. Broadened to catch #audit too: the
+     nine service-panel CTAs (wording varies per service, e.g. "Audit my
+     SEO") all link there, and those are real lead-intent clicks that were
+     going untracked — the selector only ever matched "contact" links, from
+     before the audit section existed. Matched by href, not by button text,
+     so the wording varying doesn't affect tracking. */
+  document.querySelectorAll('a[href*="contact"], a[href*="audit"]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+    });
+  });
+
+})();
+</script>
+
+<!-- ── CONSULT POPUP + STICKY CTA ────────────────────────────────
+     No backend exists yet. On submit this opens a pre-filled
+     WhatsApp chat to the studio number. When the WordPress form
+     endpoint is ready, replace the WHATSAPP_NUMBER redirect below
+     with a fetch() POST to that endpoint instead. ─────────────── -->
+<div class="mds-popup-overlay" id="mdsOverlay" hidden></div>
+<div class="mds-popup" id="mdsPopup" role="dialog" aria-modal="true" aria-labelledby="mdsPopupTitle" hidden>
+  <button type="button" class="mds-popup-close" id="mdsPopupClose" aria-label="Close">✕</button>
+  <span class="label">Free 20-min call</span>
+  <h3 id="mdsPopupTitle" class="display">Ready to fix<br>what's leaking<span class="crimson">?</span></h3>
+  <p class="mds-popup-copy">Share your name and number — we'll message you on WhatsApp to lock in a free audit call.</p>
+
+  <form id="mdsPopupForm" novalidate>
+    <label class="mds-field">
+      <span>Name</span>
+      <input type="text" name="name" id="mdsName" autocomplete="name" required>
+    </label>
+    <label class="mds-field">
+      <span>WhatsApp number</span>
+      <input type="tel" name="phone" id="mdsPhone" autocomplete="tel" inputmode="tel" required>
+    </label>
+    <label class="mds-field">
+      <span>What do you need?</span>
+      <select name="need" id="mdsNeed">
+        <option value="Meta Ads">Meta Ads</option>
+        <option value="Website">Website</option>
+        <option value="SEO / Google Ads">SEO / Google Ads</option>
+        <option value="Content &amp; social">Content &amp; social</option>
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+    </label>
+    <button type="submit" class="btn solid mds-popup-submit">Send on WhatsApp →</button>
+    <p class="mds-popup-note" id="mdsPopupNote" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+
+<style>
+.mds-popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 90; }
+.mds-popup {
+  position: fixed;
+  z-index: 91;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(420px, calc(100vw - 40px));
+  max-height: calc(100svh - 40px);
+  overflow-y: auto;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  padding: clamp(28px, 4vw, 40px);
+}
+.mds-popup[hidden], .mds-popup-overlay[hidden] { display: none; }
+.mds-popup-close {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ash);
+  font-size: 16px;
+  transition: color 0.2s;
+}
+.mds-popup-close:hover { color: var(--ink); }
+.mds-popup h3 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin: 10px 0 14px; }
+.mds-popup-copy { font-size: 13.5px; line-height: 1.6; color: var(--ash); margin-bottom: 22px; }
+.mds-field { display: block; margin-bottom: 14px; }
+.mds-field span {
+  display: block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ash);
+  margin-bottom: 6px;
+}
+.mds-field input, .mds-field select {
+  width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  padding: 12px 14px;
+  min-height: 44px;
+}
+.mds-field input:focus-visible, .mds-field select:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
+.mds-popup-submit { width: 100%; text-align: center; margin-top: 6px; }
+.mds-popup-note { font-size: 12.5px; color: var(--accent); margin-top: 10px; min-height: 1em; }
+
+</style>
+
+<script>
+(function () {
+  var overlay  = document.getElementById('mdsOverlay');
+  var popup    = document.getElementById('mdsPopup');
+  var closeBtn = document.getElementById('mdsPopupClose');
+  var form     = document.getElementById('mdsPopupForm');
+  var note     = document.getElementById('mdsPopupNote');
+  if (!popup) return;
+
+  // TODO: once the WordPress form endpoint exists, replace the
+  // wa.me redirect in the submit handler below with a fetch() POST.
+  var WHATSAPP_NUMBER = '918149105083';
+  var DONE_KEY = 'mds_consult_done';        // user submitted — never show again
+  var DISMISS_KEY = 'mds_consult_dismissed'; // user closed it manually — stop the recurring nudge this session
+  var lastFocused = null;
+
+  function isDone()      { try { return localStorage.getItem(DONE_KEY) === '1'; } catch (e) { return false; } }
+  function markDone()    { try { localStorage.setItem(DONE_KEY, '1'); } catch (e) {} }
+  function wasDismissed(){ try { return sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (e) { return false; } }
+  function markDismissed(){ try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (e) {} }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') { closePopup(true); return; }
+    if (e.key === 'Tab') {
+      var f = popup.querySelectorAll('button, input, select, a[href]');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+
+  function openPopup() {
+    if (isDone() || !popup.hidden) return;
+    lastFocused = document.activeElement;
+    overlay.hidden = false;
+    popup.hidden = false;
+    var first = popup.querySelector('input, select');
+    if (first) first.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  // dismissed=true means the visitor actively closed it (X, overlay click,
+  // Escape) — that's the signal to stop the recurring auto-open, versus a
+  // successful submit, which is caught separately by isDone().
+  function closePopup(dismissed) {
+    overlay.hidden = true;
+    popup.hidden = true;
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+    if (dismissed) markDismissed();
+  }
+
+  overlay.addEventListener('click', function () { closePopup(true); });
+  closeBtn.addEventListener('click', function () { closePopup(true); });
+
+  // Every free-audit CTA on the page (nav, hero, all nine service panels,
+  // the audit section, Why Us — wording varies per placement, offer is the
+  // same) currently just scrolls to a static block of contact details — the
+  // only place that actually captures a lead is this form. Wiring the CTAs
+  // straight to it removes a scroll-and-manually-write-a-message step
+  // between intent and an actual lead.
+  // Falls through to the normal anchor jump if the visitor already
+  // converted (isDone()), so a returning visitor still lands on real
+  // contact info instead of a silently-do-nothing click.
+  document.querySelectorAll('a.btn.solid[href="#contact"], a.btn.solid[href="#audit"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (isDone()) return;
+      e.preventDefault();
+      openPopup();
+    });
+  });
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name  = document.getElementById('mdsName').value.trim();
+      var phone = document.getElementById('mdsPhone').value.trim();
+      var need  = document.getElementById('mdsNeed').value;
+      if (!name || !phone) { note.textContent = 'Please add your name and number.'; return; }
+      var msg = "Hi, I'm " + name + ". I'd like a free audit call about " + need + '. My number: ' + phone;
+      var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+      markDone();
+      window.open(url, '_blank', 'noopener');
+      note.textContent = 'Opening WhatsApp — see you there.';
+      setTimeout(function () { closePopup(false); }, 900);
+    });
+  }
+
+  // One-time nudge: fires once, 20s after the page loads, instead of
+  // repeating every 15s for as long as the visitor stays. The earlier
+  // recurring version kept stealing focus and interrupting scroll/animation
+  // on every tick, which read as the page misbehaving rather than a gentle
+  // reminder. Still skipped entirely if the visitor already converted
+  // (isDone), already opened it manually via a CTA (popup no longer
+  // hidden), or already dismissed it once (wasDismissed).
+  setTimeout(function () {
+    if (isDone() || wasDismissed() || !popup.hidden) return;
+    openPopup();
+  }, 20000);
+})();
+</script>
+
+</body>
+</html>

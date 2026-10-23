@@ -1,0 +1,121 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 141-267 (04-header).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── HEADER — a normal in-flow bar, not fixed; it scrolls away with the
+   page like the rest of the content instead of pinning to the viewport. */
+header {
+  /* Grid rather than flex space-between: with only 3 visual slots but the
+     logo and CTA rarely matching widths, space-between leaves the centre
+     nav links off-centre. A fixed middle column keeps them dead-centre
+     regardless of how wide the logo or CTA end up being. */
+  position: relative; /* containing block for the logo, see below */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  padding: 19px var(--pad);
+  /* Soft off-white rather than pure #fff — flat white read as harsh next
+     to the page's own near-black sections. */
+  background: #f6f5f2;
+}
+
+.nav {
+  grid-column: 2;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nav-links a {
+  position: relative;
+  padding-bottom: 2px;
+  color: #3c3c3c;
+  transition: color 0.2s;
+}
+/* Enlarges the tap target without touching layout: a generated box has no
+   effect on the flow it sits in, so the link's own spacing, gap and font
+   size are untouched, but a tap landing in the invisible margin around the
+   visible text still registers on this element. Sized to stay inside half
+   the smallest inter-link gap (16px at the narrowest breakpoint) so two
+   adjacent hit areas never overlap. */
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: -10px; bottom: -10px; left: -6px; right: -6px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1.5px;
+  background: var(--dot);
+  transition: width 0.22s;
+}
+.nav-links a:hover { color: #0a0a0a; }
+.nav-links a:hover::after { width: 100%; }
+
+/* Desktop-only pill nav is replaced below 860px by the hamburger + full
+   screen drawer (.nav-burger / .mobile-nav) — no responsive tuning of the
+   pill itself is needed once it's simply hidden at that width. */
+@media (max-width: 860px) {
+  .nav { display: none; }
+}
+
+/* The logo is sized bigger than the (now much shorter) header bar on
+   purpose, so it's taken out of the grid row entirely and positioned by
+   hand — left in the grid it would force the row to stretch to its own
+   height, undoing the shorter header. Absolute + vertically centered lets
+   it bleed above/below the bar's own background instead. */
+.site-logo {
+  position: absolute;
+  left: var(--pad);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+/* The source <video> is only ever a frame supply for the canvas beside it
+   (see the chroma-key script) — visually hidden, but NOT display:none.
+   Several browsers stop decoding a display:none video entirely, which
+   would freeze the exact frames the canvas is copying from. */
+.logo-source-video {
+  position: absolute; width: 1px; height: 1px;
+  opacity: 0; pointer-events: none; overflow: hidden;
+}
+/* .site-logo-canvas also sizes the static logo <img> that stands in for
+   the canvas until the video plays (or for good, if it never can). */
+.site-logo-canvas { display: block; height: 132px; width: auto; }
+.site-logo:hover { opacity: 0.8; }
+.nav-cta {
+  grid-column: 3;
+  justify-self: end;
+  padding: 11px 22px;
+  font-size: 11px;
+}
+/* .btn.solid (2 classes) would otherwise outrank a plain .nav-cta rule
+   (1 class) regardless of order — bumped with the extra element+class here
+   so this dark override reliably wins over --ink's near-white fill, which
+   was built for a dark page and nearly vanishes on the header's light bg. */
+a.btn.nav-cta { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; }
+a.btn.nav-cta:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+/* a.nav-cta (element + class = 0,0,1,1) deliberately outranks the generic
+   .btn{display:inline-block} rule (0,0,1,0) declared later in the file —
+   equal-specificity `.nav-cta{display:none}` alone lost that tie by source
+   order, leaving this button visibly overlapping the mobile drawer/nav. */
+@media (max-width: 860px) {
+  .site-logo-canvas { height: 72px; }
+  a.nav-cta { display: none; }
+}

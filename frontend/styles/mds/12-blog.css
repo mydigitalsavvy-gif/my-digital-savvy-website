@@ -1,0 +1,19 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 755-770 (12-blog).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── BLOG ────────────────────────────────────────────────────── */
+.blog-coming {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+.blog-coming p {
+  max-width: 52ch;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.65;
+  color: var(--ash);
+}

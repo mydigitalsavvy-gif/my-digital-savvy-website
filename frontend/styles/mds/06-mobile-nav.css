@@ -1,0 +1,55 @@
+/* Ported verbatim from my-digital-savvy-v2.html lines 291-342 (06-mobile-nav).
+   The static HTML is the design contract: change values there first.
+   Only edit: 'Inter' is routed through next/font via var(--font-inter). */
+
+/* ── MOBILE NAV DRAWER ───────────────────────────────────────────── */
+.mobile-nav {
+  position: fixed; inset: 0;
+  z-index: 59;
+  display: flex; flex-direction: column; justify-content: center; gap: 36px;
+  padding: 100px var(--pad) 60px;
+  background: rgba(4, 4, 5, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.3s var(--ease-out), visibility 0.3s;
+  overflow-y: auto;
+}
+.mobile-nav.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+.mobile-nav-links { display: flex; flex-direction: column; }
+.mobile-nav-links > a,
+.mobile-nav-toggle {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 8vw, 38px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.mobile-nav-links > a {
+  display: block; padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.mobile-nav-group { border-bottom: 1px solid var(--rule); }
+.mobile-nav-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+  background: none; border: none; cursor: pointer;
+}
+.mobile-nav-toggle svg { flex-shrink: 0; transition: transform 0.25s var(--ease-out); }
+.mobile-nav-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mobile-nav-panel {
+  display: flex; flex-direction: column; gap: 2px;
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s var(--ease-out);
+}
+.mobile-nav-panel.is-open { max-height: 480px; }
+.mobile-nav-panel a {
+  padding: 10px 4px 10px 16px;
+  border-left: 1px solid var(--rule);
+  font-size: 14.5px; color: var(--ash);
+  transition: color 0.18s;
+}
+.mobile-nav-panel a:hover, .mobile-nav-panel a:focus-visible { color: var(--ink); }
+.mobile-nav-cta { align-self: flex-start; }
+@media (min-width: 861px) { .mobile-nav { display: none; } }
