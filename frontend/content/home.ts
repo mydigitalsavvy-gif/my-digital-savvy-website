@@ -15,7 +15,7 @@ export const homeContent: HomeContent = {
       home: { label: "Home", href: "/#top" },
       services: { label: "Services", href: "/#services" },
       about: { label: "About Us", href: "/#about" },
-      blog: { label: "Blog", href: "/#blog" },
+      blog: { label: "Blog", href: "/blog/" },
       contact: { label: "Contact Us", href: "/#contact" },
     },
     cta: { label: "Book a free audit", href: "/#contact" },
