@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getHomeContent } from "@/lib/content/home";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -66,6 +68,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <Footer footer={content.footer} />
         <ConsultPopup popup={content.popup} />
         <PageEffects />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
