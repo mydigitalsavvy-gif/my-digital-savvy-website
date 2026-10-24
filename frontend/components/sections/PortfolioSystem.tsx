@@ -5,7 +5,8 @@ import { PortfolioOrrery } from "@/components/interactions/PortfolioOrrery";
  * "Our work": a live solar system in place of the old Selected Work list.
  * The whole system is one link to the portfolio site, so a click on any
  * planet, moon, orbit or star goes there; it is a plain link, so it works
- * before (and without) the renderer, and ctrl/cmd-click opens a new tab.
+ * before (and without) the renderer. Opens in a new tab (target="_blank")
+ * so a visitor exploring the portfolio never loses this page.
  * The heading sits in the page's text column; the system runs edge to
  * edge.
  */
@@ -18,7 +19,13 @@ export function PortfolioSystem({ work }: { work: WorkContent }) {
           <span className="label">{work.label}</span>
         </div>
       </div>
-      <a className="orrery reveal" href={work.href} aria-label={work.ariaLabel}>
+      <a
+        className="orrery reveal"
+        href={work.href}
+        aria-label={work.ariaLabel}
+        target="_blank"
+        rel="noopener"
+      >
         <PortfolioOrrery live={work.live} />
         <span className="orrery-cta" aria-hidden="true">
           {work.cta}

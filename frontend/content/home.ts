@@ -504,7 +504,8 @@ export const homeContent: HomeContent = {
     label: "Click any planet to explore",
     href: "https://portfolio.mydigitalsavvy.com/",
     cta: "Explore the portfolio",
-    ariaLabel: "Explore our portfolio (portfolio.mydigitalsavvy.com)",
+    ariaLabel:
+      "Explore our portfolio (portfolio.mydigitalsavvy.com) — opens in a new tab",
     live: "Live · planets as of",
   },
 
