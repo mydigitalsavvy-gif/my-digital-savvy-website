@@ -99,6 +99,10 @@ export function PageEffects() {
       const MAGNET_STRENGTH = 0.25;
       const MAGNET_MAX = 10;
       document.querySelectorAll<HTMLElement>(".btn.solid").forEach((btn) => {
+        // the hero's own "free audit" CTA stays still on hover — every
+        // other solid CTA sitewide (header, mega menu, services, audit
+        // section...) keeps the magnetic pull
+        if (btn.closest(".hero")) return;
         on(btn, "pointermove", (e) => {
           const r = btn.getBoundingClientRect();
           const dx = e.clientX - (r.left + r.width / 2);

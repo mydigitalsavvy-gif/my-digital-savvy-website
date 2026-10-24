@@ -7,15 +7,18 @@ type Word = { word: string; color: string };
 
 /* One word's timeline, in ms. Deliberately slower and softer than the
    reference (3.2s loop, hard text swap, 1.1s fill); the matching CSS is
-   the "hero rotor motion" block in 32-visuals.css.
+   the "hero rotor motion" block in 32-visuals.css. Trimmed once from the
+   original 5000ms fill (6500ms/cycle) to the FILL_MS below for a slightly
+   quicker, still-unhurried rhythm — everything else in the timeline is
+   unchanged.
      0      .is-out: the coloured word drifts up and fades out  (OUT_MS)
      500    swap the text while invisible, jump below (.is-below), rise in
      1000   .go: its colour slowly fills up through it          (FILL_MS)
-     6000   fully coloured: a short beat                        (HOLD_MS)
-     6500   next word */
+     5000   fully coloured: a short beat                        (HOLD_MS)
+     5500   next word */
 const OUT_MS = 500; // = the .is-out transition duration in CSS
 const FILL_DELAY_MS = 500; // from the start of the rise to the fill
-const FILL_MS = 5000; // = the .go .fill transition duration in CSS
+const FILL_MS = 4000; // = the .go .fill transition duration in CSS
 const HOLD_MS = 500; // the finished word, before it leaves
 const CYCLE_MS = OUT_MS + FILL_DELAY_MS + FILL_MS + HOLD_MS;
 const FIRST_FILL_MS = 500; // first word is server-rendered; fill it once settled
@@ -69,10 +72,6 @@ export function HeroRotor({
       let maxW = 0;
       for (const w of words) {
         base.textContent = w.word;
-        const dot = document.createElement("span");
-        dot.className = "crimson";
-        dot.textContent = ".";
-        base.appendChild(dot);
         maxW = Math.max(maxW, btn.offsetWidth);
       }
       clone.remove();
@@ -178,14 +177,10 @@ export function HeroRotor({
       >
         <span className="base" id="rotorBase">
           {d.word}
-          <span className="crimson">.</span>
         </span>
         <span className="fill" id="rotorFill" aria-hidden="true">
           {/* colour comes from --hero-accent (32-visuals.css) */}
-          <span id="rotorTop">
-            {d.word}
-            <span className="crimson">.</span>
-          </span>
+          <span id="rotorTop">{d.word}</span>
         </span>
       </button>
     </span>

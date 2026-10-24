@@ -24,7 +24,7 @@ export const homeContent: HomeContent = {
   },
 
   hero: {
-    eyebrow: "Digital marketing agency  ·  Nagpur, Maharashtra",
+    eyebrow: "Digital marketing agency · Nagpur, Maharashtra",
     headlineLead: "Marketing that pays for itself in",
     rotorWords: [
       { word: "hospitality", color: "#43FF4C" },
@@ -35,9 +35,9 @@ export const homeContent: HomeContent = {
     ],
     rotorInitialLabel: "Show hospitality work — click to filter",
     sub: [
-      "We run ",
-      { b: "Meta Ads" },
-      ", build the site the ads land on, and write the content that keeps people coming back — for hotels, coaching academies, jewellers and builders across Maharashtra. One team, one thread, no handoffs.",
+      "We get you found on Google, run the ads that bring people in, keep your socials active, design the creative and build the website it all lands on — for hotels, coaching academies, jewellers and builders across Maharashtra. ",
+      { b: "One team, one thread" },
+      ", no handoffs.",
     ],
     primaryCta: { label: "Get your free audit", href: "#contact" },
     secondaryCta: { label: "See what we do", href: "#services" },
