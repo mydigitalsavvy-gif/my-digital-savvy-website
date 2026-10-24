@@ -73,11 +73,10 @@ export const homeContent: HomeContent = {
       // CONFIRM: 98% satisfaction is flagged in the reference for verification.
       { countTo: 98, suffix: "%", label: "Client satisfaction" },
     ],
-    note: "Review and rating figures are verifiable across our two Google Business listings, not screenshots we control.",
   },
 
   services: {
-    heading: "What we do",
+    heading: "Digital Marketing Services for Your Business",
     label: "Nine services, one focused team",
     menuHref: "/#services",
     // Order = the services section's solar system, by position (01 Sun,
@@ -105,7 +104,7 @@ export const homeContent: HomeContent = {
         ],
         outcome: "Customers in your own city finding you before a competitor.",
         cta: { label: "Audit my listings →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             {
@@ -136,7 +135,7 @@ export const homeContent: HomeContent = {
         outcome:
           "A brand that stays active and relevant without it falling on you.",
         cta: { label: "Audit my socials →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 12, y: 22, width: 96, height: 76, rx: 4 },
@@ -194,7 +193,7 @@ export const homeContent: HomeContent = {
         outcome:
           "A steadily growing audience that actually converts, not just follows.",
         cta: { label: "Audit my social ads →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 30, y: 16, width: 60, height: 88, rx: 8 },
@@ -225,7 +224,7 @@ export const homeContent: HomeContent = {
         outcome:
           "Higher rankings that put you ahead of competitors chasing the same keywords.",
         cta: { label: "Audit my SEO →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "circle", cx: 50, cy: 50, r: 30 },
@@ -257,7 +256,7 @@ export const homeContent: HomeContent = {
         outcome:
           "Qualified traffic from people already searching for what you offer.",
         cta: { label: "Audit my ad spend →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 10, y: 18, width: 100, height: 64, rx: 4 },
@@ -287,7 +286,7 @@ export const homeContent: HomeContent = {
         outcome:
           "Consistent, sharp visuals across every channel your audience sees you on.",
         cta: { label: "Audit my creative →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "path", d: "M24 96 L16 104 L30 104 Z" },
@@ -325,7 +324,7 @@ export const homeContent: HomeContent = {
         outcome:
           "A site that turns ad spend into measurable enquiries, not just visits.",
         cta: { label: "Audit my website →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 8, y: 18, width: 104, height: 84, rx: 4 },
@@ -361,7 +360,7 @@ export const homeContent: HomeContent = {
         outcome:
           "Content that holds attention long enough to actually be remembered.",
         cta: { label: "Audit my video content →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 10, y: 28, width: 100, height: 64, rx: 4 },
@@ -394,7 +393,7 @@ export const homeContent: HomeContent = {
         outcome:
           "A channel that keeps growing instead of stalling after a few uploads.",
         cta: { label: "Audit my channel →", href: "#audit" },
-        caseLink: { label: "See how we work →", href: "#case-studies" },
+        caseLink: { label: "See how we work →", href: "#process" },
         icon: {
           shapes: [
             { type: "rect", x: 8, y: 28, width: 104, height: 64, rx: 12 },
@@ -465,26 +464,38 @@ export const homeContent: HomeContent = {
 
   industries: {
     heading: "Industries we know",
-    label: "Real clients, not a generic list",
+    label: "Built around how each business wins customers",
     items: [
       {
         tag: "Hospitality",
-        clients: "Hotel Sunrise · Farm Villa 007",
+        focus:
+          "Hotels and stays compete for direct bookings against listing sites — local search, reviews and a fast, booking-ready site matter most.",
         color: "dot",
       },
       {
         tag: "Education",
-        clients:
-          "Garbha Sanskar Academy · Vidyadoot Career Institute · 1 to 1 Home Tutors",
+        focus:
+          "Academies and tutoring centres run on enquiry timing — local visibility and quick lead routing decide who gets the call first.",
         color: "green",
       },
       {
         tag: "Real estate & builders",
-        clients: "Archi Builders",
+        focus:
+          "Buyers research long before a site visit — a credible web presence and well-targeted ads do the early convincing.",
         color: "blue",
       },
-      { tag: "Jewellery", clients: "Aura Jewels", color: "magenta" },
-      { tag: "Trading & retail", clients: "Tejaswi Trades", color: "dot" },
+      {
+        tag: "Jewellery",
+        focus:
+          "High-consideration, visually led purchases — strong creative and local search drive footfall and enquiries.",
+        color: "magenta",
+      },
+      {
+        tag: "Trading & retail",
+        focus:
+          "Buyers search and message before they call — being easy to find on Google and reachable on WhatsApp matters more than a catalogue.",
+        color: "dot",
+      },
     ],
   },
 
@@ -520,7 +531,7 @@ export const homeContent: HomeContent = {
   about: {
     heading: "Who we are",
     label: "The team",
-    lead: "My Digital Savvy is a digital marketing agency based in Nagpur, working with hospitality brands, coaching academies, builders and retailers across Maharashtra, Madhya Pradesh and Telangana — from Nagpur to Indore, Raipur, Hyderabad and Jabalpur.",
+    lead: "My Digital Savvy is a digital marketing agency based in Nagpur, running SEO, paid ads, social media, creative and website development as one connected system — for hospitality brands, coaching academies, builders and retailers across Maharashtra, Madhya Pradesh and Telangana, from Nagpur to Indore, Raipur, Hyderabad and Jabalpur. One team handles the whole path from traffic to enquiry, so nothing gets lost in a hand-off between vendors.",
     // CONFIRM: verify this figure before launch (flagged in the reference).
     pullValue: "98",
     pullSuffix: "%",
@@ -529,6 +540,17 @@ export const homeContent: HomeContent = {
       "We are a small, senior team. When you hire us, ",
       { b: "you talk to the people doing the work" },
       " — not an account manager reading a report someone else wrote.",
+    ],
+    // Only genuine, CMS-tagged team photos go here (WP media library,
+    // alt/title "my digital savvy team image") — never stock or invented
+    // portraits. Currently just the one; add more as they're uploaded.
+    team: [
+      {
+        url: "https://cms.mydigitalsavvy.com/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-12-at-3.56.51-PM-scaled.jpeg",
+        alt: "The My Digital Savvy team",
+        width: 2560,
+        height: 1920,
+      },
     ],
   },
 
@@ -584,8 +606,7 @@ export const homeContent: HomeContent = {
     rating: {
       value: "4.9",
       reviewCount: 320,
-      // CONFIRM: replace with the real Google Maps review link (placeholder in the reference).
-      href: "https://g.page/r/REPLACE_WITH_YOUR_GBP_REVIEW_LINK",
+      href: "https://share.google/73uP2r05nzh95skPk",
       ariaLabel: "320 five-star Google reviews — view on Google Maps",
       textBefore: "",
       textAfter: " five-star reviews across two Google Business listings.",
@@ -726,6 +747,7 @@ export const homeContent: HomeContent = {
     email: "hello@mydigitalsavvy.com",
     whatsappDisplay: "+91 81491 05083",
     whatsappNumber: "918149105083",
+    googleBusinessUrl: "https://share.google/73uP2r05nzh95skPk",
     offices: [
       {
         label: "Ganeshpeth office",

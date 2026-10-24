@@ -53,7 +53,6 @@ export interface ResultsContent {
   heading: string;
   label: string;
   facts: ResultFact[];
-  note: string;
 }
 
 export interface ServiceIcon {
@@ -132,7 +131,8 @@ export interface GrowthContent {
 export interface IndustriesContent {
   heading: string;
   label: string;
-  items: { tag: string; clients: string; color: AccentSlot }[];
+  /** Why this industry needs what we do — never a client/results claim. */
+  items: { tag: string; focus: string; color: AccentSlot }[];
 }
 
 /** The portfolio solar system that replaced the Selected Work list. */
@@ -156,6 +156,14 @@ export interface CaseStudiesContent {
   cta: Link;
 }
 
+/** A genuine, CMS-sourced photo — never a stand-in or stock image. */
+export interface TeamImage {
+  url: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface AboutContent {
   heading: string;
   label: string;
@@ -165,6 +173,7 @@ export interface AboutContent {
   pullSuffix: string;
   pullLabelLines: string[];
   note: RichText;
+  team: TeamImage[];
 }
 
 export interface BlogPreviewContent {
@@ -224,6 +233,8 @@ export interface ContactContent {
   email: string;
   whatsappDisplay: string;
   whatsappNumber: string;
+  /** Verified Google Business Profile listing — shared by both offices. */
+  googleBusinessUrl: string;
   offices: { label: string; lines: string[] }[];
 }
 

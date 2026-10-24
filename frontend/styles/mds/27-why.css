@@ -80,14 +80,6 @@
 }
 .why-arrow:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); transform: scale(1.08); }
 .why-arrow:active { transform: scale(0.96); }
-.why-dots { display: flex; align-items: center; gap: 7px; }
-.why-dots span {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--rule);
-  transition: background 0.2s, transform 0.2s;
-}
-.why-dots span.is-on { background: var(--accent); transform: scale(1.4); }
 
 .why-foot {
   display: flex;

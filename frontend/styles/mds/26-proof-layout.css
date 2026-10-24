@@ -13,8 +13,24 @@
   gap: clamp(24px, 3vw, 44px);
   align-items: start;
 }
-.proof-featured { grid-area: featured; }
-.proof-featured .quote { margin-bottom: 16px; }
+.proof-featured { grid-area: featured; position: relative; }
+/* A single oversized opening quote, not a quote-per-voice — the point is
+   to mark the one hero testimonial as the lead voice, not to decorate
+   every card the same way. Purely decorative (aria-hidden via ::before
+   never entering the accessibility tree), sits behind the text. */
+.proof-featured::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.3em; left: -0.04em;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(5rem, 9vw, 8rem);
+  line-height: 1;
+  color: var(--rule);
+  z-index: -1;
+  pointer-events: none;
+}
+.proof-featured .quote { position: relative; margin-bottom: 16px; }
 .rating { grid-area: rating; }
 .proof-voices { grid-area: voices; display: flex; flex-direction: column; }
 .proof-voices blockquote {
@@ -32,7 +48,20 @@
   text-transform: none; font-weight: 500;
   font-size: 14.5px; line-height: 1.55; color: var(--ink);
 }
-.proof-voices .who { margin-top: 10px; font-size: 12px; color: var(--ash); }
+.proof-voices .who {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--ash);
+}
+.proof-voices .who .pip {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--c);
+  flex-shrink: 0;
+}
 
 @media (max-width: 800px) {
   .proof { grid-template-columns: 1fr; grid-template-areas: "featured" "rating" "voices"; }

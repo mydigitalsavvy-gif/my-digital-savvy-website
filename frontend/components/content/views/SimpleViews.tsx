@@ -4,13 +4,18 @@ import type {
   GenericPageModel,
   IndustryModel,
 } from "@/types/content";
+import type { AccentSlot } from "@/types/home";
 import { getHomeContent } from "@/lib/content/home";
 import { absoluteUrl } from "@/lib/site";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AuditCTA } from "@/components/sections/AuditCTA";
+import { accentStyle } from "@/components/ui/accent";
 import { Blocks, ContentImage } from "../Blocks";
 import { PageHero, SectionHead } from "../PageParts";
+
+/** Same dot/green/blue/magenta rhythm as the homepage industries cards. */
+const PAIN_COLORS: AccentSlot[] = ["dot", "green", "blue", "magenta"];
 
 const crumbSchema = (crumbs: { name: string; path: string }[]) =>
   buildBreadcrumbSchema(
@@ -45,9 +50,11 @@ export function GenericPageView({ model }: { model: GenericPageModel }) {
 /** Case study: Problem → Strategy → Execution → Result, like the homepage preview format. */
 export async function CaseStudyView({ model }: { model: CaseStudyModel }) {
   const home = await getHomeContent();
+  // No case-studies hub exists to link an intermediate crumb to (the
+  // homepage section was a placeholder, never real content) — straight
+  // from Home to the study itself rather than a dangling middle link.
   const crumbs = [
     { name: "Home", path: "/" },
-    { name: "Case studies", path: "/#case-studies" },
     { name: model.title, path: model.path },
   ];
   const parts = [
@@ -160,10 +167,17 @@ export async function IndustryView({ model }: { model: IndustryModel }) {
           <section className="wrap cx-section" aria-labelledby="pain-heading">
             <SectionHead title="What gets in the way" id="pain-heading" />
             <ul className="industry-grid" style={{ listStyle: "none" }}>
-              {model.painPoints.map((p) => (
-                <li className="industry-card" key={p.title}>
-                  <span className="label industry-tag">{p.title}</span>
-                  <p className="industry-clients">{p.body}</p>
+              {model.painPoints.map((p, i) => (
+                <li
+                  className="industry-card"
+                  key={p.title}
+                  style={accentStyle(PAIN_COLORS[i % PAIN_COLORS.length])}
+                >
+                  <span className="industry-num" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="industry-tag">{p.title}</span>
+                  <p className="industry-focus">{p.body}</p>
                 </li>
               ))}
             </ul>

@@ -3,6 +3,7 @@ import type { ServicePageModel } from "@/types/content";
 import { getHomeContent } from "@/lib/content/home";
 import { blocksToText, inlinesToText } from "@/lib/content/text";
 import { absoluteUrl } from "@/lib/site";
+import { entriesOfKind } from "@/lib/wordpress";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -21,6 +22,20 @@ export async function ServiceView({ model }: { model: ServicePageModel }) {
   const catalogue = model.catalogueSlug
     ? home.services.items.find((s) => s.slug === model.catalogueSlug)
     : undefined;
+
+  // Cross-links to sibling services that actually have a published page —
+  // never a fabricated link to a service that only exists in the catalogue.
+  const livePages = await entriesOfKind("service").catch(() => []);
+  const otherServices = home.services.items
+    .filter((s) => s.slug !== model.catalogueSlug)
+    .map((s) => ({
+      service: s,
+      page: livePages.find((p) => p.catalogueSlug === s.slug),
+    }))
+    .filter(
+      (x): x is { service: (typeof home.services.items)[number]; page: NonNullable<typeof x.page> } =>
+        Boolean(x.page)
+    );
   const crumbs = [
     { name: "Home", path: "/" },
     { name: "Services", path: "/services/" },
@@ -168,6 +183,33 @@ export async function ServiceView({ model }: { model: ServicePageModel }) {
             </ul>
           </section>
         ) : null}
+
+        <section
+          className="wrap cx-section"
+          aria-labelledby="other-services-heading"
+        >
+          <SectionHead
+            title="Explore other services"
+            label="More from My Digital Savvy"
+            id="other-services-heading"
+          />
+          {otherServices.length ? (
+            <ul className="cx-related-services">
+              {otherServices.map(({ service, page }) => (
+                <li key={service.slug}>
+                  <Link href={page.path} style={accentStyle(service.menuColor)}>
+                    <span className="cx-related-num">{service.number}</span>
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <Link href="/services/" className="btn ghost">
+              Browse all services
+            </Link>
+          )}
+        </section>
 
         <AuditCTA audit={home.audit} />
         <Contact contact={home.contact} />

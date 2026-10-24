@@ -1,7 +1,11 @@
-import type { ProofContent } from "@/types/home";
+import type { AccentSlot, ProofContent } from "@/types/home";
 import { CountUp } from "@/components/interactions/CountUp";
 import { RichText } from "@/components/ui/rich-text";
+import { accentStyle } from "@/components/ui/accent";
 import { Marquee } from "./Marquee";
+
+/** Cycles the same dot/green/blue/magenta rhythm used elsewhere (mega menu, industries). */
+const VOICE_COLORS: AccentSlot[] = ["dot", "green", "blue", "magenta"];
 
 export function Proof({ proof }: { proof: ProofContent }) {
   return (
@@ -48,13 +52,17 @@ export function Proof({ proof }: { proof: ProofContent }) {
         </a>
 
         <div className="proof-voices">
-          {proof.voices.map((v) => (
-            <blockquote key={v.name}>
+          {proof.voices.map((v, i) => (
+            <blockquote
+              key={v.name}
+              style={accentStyle(VOICE_COLORS[i % VOICE_COLORS.length])}
+            >
               <p className="quote">
                 <RichText value={v.quote} />
               </p>
               <p className="who">
-                — {v.name} · {v.source}
+                <span className="pip" aria-hidden="true"></span>
+                {v.name} · {v.source}
               </p>
             </blockquote>
           ))}

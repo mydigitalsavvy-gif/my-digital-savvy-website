@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
 import { buildLocalBusinessSchema } from "@/lib/seo/schema";
 import { getHomeContent } from "@/lib/content/home";
-import { getPageSeo, getPathIndex } from "@/lib/wordpress";
+import { getPageSeo, getPathIndex, listPosts } from "@/lib/wordpress";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { Results } from "@/components/sections/Results";
 import { ServicesSection } from "@/components/sections/services/ServicesSection";
-import { Think } from "@/components/sections/Think";
-import { GrowthSystem } from "@/components/sections/GrowthSystem";
 import { Industries } from "@/components/sections/Industries";
 import { PortfolioSystem } from "@/components/sections/PortfolioSystem";
-import { CaseStudies } from "@/components/sections/CaseStudies";
 import { About } from "@/components/sections/About";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { Process } from "@/components/sections/Process";
@@ -48,6 +45,9 @@ export async function generateMetadata(): Promise<Metadata> {
 /** Section order is the reference's order. Do not reorder. */
 export default async function HomePage() {
   const c = await getHomeContent();
+  const latestPosts = await listPosts({ perPage: 3 })
+    .then((r) => r.posts)
+    .catch(() => []);
 
   return (
     <>
@@ -56,18 +56,16 @@ export default async function HomePage() {
         <Hero hero={c.hero} />
         <Marquee
           items={c.clients}
+          className="strip client-strip reveal"
           trackId="track"
           ariaLabel="Some of our clients"
         />
         <Results results={c.results} />
         <ServicesSection services={c.services} />
-        <Think think={c.think} />
-        <GrowthSystem growth={c.growth} />
         <Industries industries={c.industries} />
         <PortfolioSystem work={c.work} />
-        <CaseStudies caseStudies={c.caseStudies} />
         <About about={c.about} />
-        <BlogPreview blog={c.blog} />
+        <BlogPreview blog={c.blog} posts={latestPosts} />
         <Process process={c.process} />
         <Proof proof={c.proof} />
         <WhyUs why={c.why} />

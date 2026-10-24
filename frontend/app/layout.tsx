@@ -49,7 +49,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang="en" className={inter.variable} data-scroll-behavior="smooth">
-      <body>
+      <body suppressHydrationWarning>
         <JsonLd data={buildOrganizationSchema()} />
         <span
           className="sr-only"

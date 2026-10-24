@@ -47,14 +47,6 @@ export function WhyUs({ why }: { why: WhyContent }) {
           >
             ←
           </button>
-          <div className="why-dots" id="whyDots" aria-hidden="true">
-            {why.items.map((item, i) => (
-              <span
-                key={item.title}
-                className={i === 0 ? "is-on" : undefined}
-              ></span>
-            ))}
-          </div>
           <button
             type="button"
             className="why-arrow"

@@ -32,7 +32,6 @@ export function Results({ results }: { results: ResultsContent }) {
           </div>
         ))}
       </div>
-      <p className="results-note">{results.note}</p>
     </section>
   );
 }

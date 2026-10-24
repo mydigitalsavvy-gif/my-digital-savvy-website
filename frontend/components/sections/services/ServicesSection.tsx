@@ -16,8 +16,8 @@ export function ServicesSection({ services }: { services: ServicesContent }) {
     <section id="services" aria-labelledby="svc-heading">
       <div className="wrap">
         <div className="head reveal">
-          <h2 id="svc-heading">{services.heading}</h2>
           <span className="label">{services.label}</span>
+          <h2 id="svc-heading">{services.heading}</h2>
         </div>
       </div>
 

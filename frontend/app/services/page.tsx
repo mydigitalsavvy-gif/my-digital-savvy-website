@@ -7,6 +7,7 @@ import { buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/content/PageParts";
 import { AuditCTA } from "@/components/sections/AuditCTA";
+import { ServiceIcon } from "@/components/sections/services/ServiceIcon";
 import { accentStyle } from "@/components/ui/accent";
 
 export const revalidate = 86400;
@@ -41,58 +42,49 @@ export default async function ServicesHub() {
           crumbs={crumbs}
           eyebrow={home.nav.megaLabel}
           heading={home.services.heading}
-        />
+          intro="Nine services, handled by one team — audits, search, paid ads, social, creative and the website that ties it together, so nothing falls through the cracks between vendors."
+        >
+          <div className="btns">
+            <Link href="/#contact" className="btn solid">
+              {home.hero.primaryCta.label}
+            </Link>
+          </div>
+        </PageHero>
         <section className="wrap cx-section" aria-label="All services">
-          <ul
-            className="industry-grid"
-            style={{
-              listStyle: "none",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            }}
-          >
+          <ul className="cx-service-grid">
             {home.services.items.map((s) => {
               const page = pages.find((p) => p.catalogueSlug === s.slug);
-              const inner = (
+              const hasPage = Boolean(page && linked.has(s.slug));
+              const content = (
                 <>
-                  <span className="label industry-tag">{s.number}</span>
-                  <p
-                    className="industry-clients"
-                    style={{ fontWeight: 700, fontSize: 17 }}
-                  >
-                    {s.name}
-                  </p>
-                  <p
-                    className="industry-clients"
-                    style={{ color: "var(--ash)", marginTop: 8 }}
-                  >
-                    {s.menuDescription}
-                  </p>
+                  <ServiceIcon icon={s.icon} />
+                  <span className="cx-service-num">{s.number}</span>
+                  <span className="cx-service-name">{s.name}</span>
+                  <p className="cx-service-desc">{s.menuDescription}</p>
+                  <span className="cx-service-cta">
+                    {hasPage ? "Explore this service" : "Get a free audit"}{" "}
+                    →
+                  </span>
                 </>
               );
               return (
                 <li
-                  className="industry-card"
+                  className="cx-service-card"
                   style={accentStyle(s.menuColor)}
                   key={s.slug}
                 >
-                  {page && linked.has(s.slug) ? (
-                    <Link href={page.path}>{inner}</Link>
-                  ) : (
-                    inner
-                  )}
+                  <Link href={hasPage ? page!.path : "/#contact"}>
+                    {content}
+                  </Link>
                 </li>
               );
             })}
             {extra.map((p) => (
-              <li className="industry-card" key={p.path}>
+              <li className="cx-service-card" key={p.path}>
                 <Link href={p.path}>
-                  <span className="label industry-tag">More</span>
-                  <p
-                    className="industry-clients"
-                    style={{ fontWeight: 700, fontSize: 17 }}
-                  >
-                    {p.title}
-                  </p>
+                  <span className="cx-service-num">More</span>
+                  <span className="cx-service-name">{p.title}</span>
+                  <span className="cx-service-cta">Explore this service →</span>
                 </Link>
               </li>
             ))}

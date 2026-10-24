@@ -1,5 +1,6 @@
 import type { AboutContent } from "@/types/home";
 import { Lines, RichText } from "@/components/ui/rich-text";
+import { TeamSlider } from "@/components/interactions/TeamSlider";
 
 export function About({ about }: { about: AboutContent }) {
   return (
@@ -23,6 +24,11 @@ export function About({ about }: { about: AboutContent }) {
         <p className="about-note">
           <RichText value={about.note} />
         </p>
+        {about.team.length ? (
+          <div className="about-team">
+            <TeamSlider images={about.team} />
+          </div>
+        ) : null}
       </div>
     </section>
   );

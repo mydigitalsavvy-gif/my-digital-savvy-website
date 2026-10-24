@@ -497,3 +497,105 @@
 .cx-body .cx-cards {
   max-width: none;
 }
+
+/* ── SERVICE CATALOGUE GRID (/services hub) ──────────────────────────
+   Same hairline-grid technique as .cx-cards above (1px gap on a --rule
+   background = borders between cells without doubling them up), with
+   the service's own mark/number/accent colour (accentStyle, --c) so the
+   hub reads as an index into the homepage's nine services rather than a
+   generic content-page list. Every card is a full-bleed <Link>: to the
+   service's own page when one is published, or to the contact section
+   when it isn't yet — never a dead tile. */
+.cx-service-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.cx-service-card {
+  background: var(--paper);
+  transition: background 0.25s;
+}
+.cx-service-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 28px 24px 32px;
+  color: inherit;
+}
+.cx-service-card:hover {
+  background: var(--paper-hi);
+}
+.cx-service-card .wd-mark {
+  margin: 0 0 16px;
+}
+.cx-service-num {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--c);
+  margin-bottom: 8px;
+}
+.cx-service-name {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.cx-service-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ash);
+  flex-grow: 1;
+}
+.cx-service-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--c);
+  transition: gap 0.2s;
+}
+.cx-service-card:hover .cx-service-cta {
+  gap: 10px;
+}
+@media (max-width: 900px) {
+  .cx-service-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .cx-service-grid { grid-template-columns: 1fr; }
+}
+
+/* ── RELATED SERVICES (service detail pages) ──────────────────────── */
+.cx-related-services {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cx-related-services a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-size: 13px;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.cx-related-services a:hover {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 10%, transparent);
+}
+.cx-related-num {
+  font-weight: 800;
+  font-size: 11px;
+  color: var(--c);
+}

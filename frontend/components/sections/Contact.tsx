@@ -1,5 +1,5 @@
 import type { ContactContent } from "@/types/home";
-import { Crimson, Lines } from "@/components/ui/rich-text";
+import { Lines } from "@/components/ui/rich-text";
 import { LottieVisual } from "@/components/interactions/LottieVisual";
 
 export function Contact({ contact }: { contact: ContactContent }) {
@@ -14,7 +14,6 @@ export function Contact({ contact }: { contact: ContactContent }) {
           <span className="label">{contact.label}</span>
           <h2 id="contact-heading" className="display">
             <Lines lines={contact.headingLines} />
-            <Crimson />
           </h2>
         </div>
         {/* your message reaches our office; a reply is already typing */}
@@ -44,9 +43,14 @@ export function Contact({ contact }: { contact: ContactContent }) {
         {contact.offices.map((o) => (
           <div key={o.label}>
             <span className="label">{o.label}</span>
-            <p>
+            <a
+              href={contact.googleBusinessUrl}
+              target="_blank"
+              rel="noopener"
+              aria-label={`${o.label} — view on Google Maps (opens in a new tab)`}
+            >
               <Lines lines={o.lines} />
-            </p>
+            </a>
           </div>
         ))}
       </div>

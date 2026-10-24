@@ -88,6 +88,37 @@ section { padding-top: clamp(64px, 7vw, 108px); }
   .rotor.go .fill { -webkit-mask-image: none; mask-image: none; }
 }
 
+/* ── HERO CLIENT STRIP: PREMIUM SLIDER ────────────────────────────────
+   No client-supplied logo artwork exists in the project or the CMS (see
+   HomeContent.clients: string[] in home.ts — names only, nothing else
+   references a logo image anywhere). Until real logo files are supplied,
+   this stays a name slider, but each name now reads as its own pill —
+   the same hairline-border language as the services section's .wd-tags —
+   instead of one middot-run sentence, so the strip reads as a row of
+   individual brands sliding past. Scoped to .client-strip only; the
+   Proof section's reviewer strip (.proof-strip, same Marquee component)
+   is untouched. The infinite scroll itself, its pause-on-hover/focus and
+   its edge fade are unchanged (.strip / .track / @keyframes slide in
+   09-marquee.css); reduced motion already freezes it via the sitewide
+   `* { animation: none }` rule in 18-reduced-motion.css. */
+.client-strip { padding: 20px 0; }
+.client-strip .track { display: inline-flex; align-items: center; }
+.client-strip .track span {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 10px 24px;
+  margin-right: 10px;
+  font-size: clamp(12px, 1.2vw, 15px);
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.client-strip .track span:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.client-strip .track i { display: none; }
+
 /* ── LOTTIE ─────────────────────────────────────────────────────────
    Accent-coloured layers (class accf / accs, set in the JSON) are
    recoloured here, so each illustration follows its section's accent. */
@@ -163,9 +194,51 @@ section { padding-top: clamp(64px, 7vw, 108px); }
   gap: clamp(28px, 5vw, 80px);
 }
 .blog-copy p { margin-bottom: 28px; }
+
+/* Real post thumbnails in the same slot the illustration used to sit in
+   (only rendered when WordPress actually returned posts — see
+   BlogPreview.tsx); the illustration is the fallback, not the default. */
+.blog-preview-posts {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+}
+.blog-preview-post {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border: 1px solid var(--rule);
+  transition: border-color 0.2s, background 0.2s;
+}
+.blog-preview-post:hover {
+  border-color: var(--ink);
+  background: var(--paper-hi);
+}
+.blog-preview-thumb {
+  display: block;
+  flex-shrink: 0;
+  width: 72px;
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.blog-preview-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 @media (max-width: 760px) {
   .blog-coming { grid-template-columns: 1fr; }
   .blog-visual { max-width: 340px; }
+  .blog-preview-posts { max-width: 100%; }
 }
 
 /* Free audit: the leaking funnel sits above the heading. */
@@ -187,6 +260,28 @@ section { padding-top: clamp(64px, 7vw, 108px); }
     width: min(21vw, 340px);
   }
 }
+
+/* ── SERVICES: CENTRED, COMPACT HEAD ──────────────────────────────────
+   The shared .head (10-sections.css) is a left/right flex row with a
+   hairline rule and up to ~78px of bottom margin+padding, sized for a
+   heading sitting beside a wide row of content. Services' head sits
+   above the pinned stage instead, so that gap just reads as dead air
+   before anything happens — scoped here (not in the shared rule, which
+   every other section still uses unchanged) to stack and centre the
+   label and heading like the mega menu's own .mega-head, drop the rule
+   that stops making sense once there's no row beside it, and shrink the
+   gap to the pinned stage. text-wrap: balance keeps the longer heading
+   from orphaning a short last line when it wraps. */
+#services .head {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+#services .head h2 { text-wrap: balance; }
 
 /* ── SERVICES: WIDER PANELS ──────────────────────────────────────────
    The reference capped each service panel at 680px and padded it again
@@ -535,3 +630,77 @@ a.btn.nav-cta { font-weight: 700; }
 .mobile-nav-links > a,
 .mobile-nav-toggle { font-weight: 800; }
 .mobile-nav-panel a { font-weight: 600; }
+
+/* ── ABOUT: TEAM SLIDER ────────────────────────────────────────────────
+   A new row below the lead/pull/note grid (grid-column: 1/-1), so the
+   established lead/pull "controlled imperfection" alignment above it is
+   untouched. Manual only, no autoplay: with one photo today there is
+   nothing to rotate, and TeamSlider.tsx skips rendering the controls
+   entirely when there's only one image, rather than showing buttons that
+   do nothing. The slide transition is already killed by the sitewide
+   reduced-motion rule, so no extra handling is needed here for that. */
+.about-team {
+  grid-column: 1 / -1;
+  margin-top: clamp(8px, 1.5vw, 16px);
+}
+.team-slider {
+  position: relative;
+  max-width: 560px;
+}
+.team-slider:focus-visible {
+  outline: 2px solid var(--dot);
+  outline-offset: 4px;
+}
+.team-slider-viewport {
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.team-slider-track {
+  display: flex;
+  transition: transform 0.4s var(--ease-out);
+}
+.team-slider-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.team-slider-slide img { display: block; }
+.team-slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8, 8, 8, 0.72);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.team-slider-nav:hover { background: var(--ink); color: #000; border-color: var(--ink); }
+.team-slider-prev { left: 12px; }
+.team-slider-next { right: 12px; }
+.team-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 14px;
+}
+.team-slider-dots button {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+.team-slider-dots button::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: background 0.2s, transform 0.2s;
+}
+.team-slider-dots button.is-active::before { background: var(--dot); transform: scale(1.3); }
+.team-slider-dots button:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
