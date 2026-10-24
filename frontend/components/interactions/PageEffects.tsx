@@ -27,6 +27,31 @@ export function PageEffects() {
       cleanups.push(() => el.removeEventListener(type, fn));
     };
 
+    // ── sticky header: real height (for the anchor-link scroll offset,
+    // see --header-h in 32-visuals.css) and a scrolled-state class for the
+    // subtle depth seam, kept in sync as fonts load / viewport resizes.
+    const header = document.querySelector<HTMLElement>("header");
+    if (header) {
+      const setHeaderHeight = () =>
+        document.documentElement.style.setProperty(
+          "--header-h",
+          `${header.offsetHeight}px`
+        );
+      setHeaderHeight();
+      const headerResize = new ResizeObserver(setHeaderHeight);
+      headerResize.observe(header);
+      cleanups.push(() => headerResize.disconnect());
+
+      const onHeaderScroll = () => {
+        header.classList.toggle("is-scrolled", window.scrollY > 4);
+      };
+      onHeaderScroll();
+      window.addEventListener("scroll", onHeaderScroll, { passive: true });
+      cleanups.push(() =>
+        window.removeEventListener("scroll", onHeaderScroll)
+      );
+    }
+
     // ── scroll reveal
     const revealObserver = new IntersectionObserver(
       (entries) => {

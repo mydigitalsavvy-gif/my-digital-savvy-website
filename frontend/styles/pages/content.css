@@ -182,7 +182,7 @@
 }
 .cx-aside {
   position: sticky;
-  top: 32px;
+  top: calc(var(--header-h, 84px) + 32px);
   border: 1px solid var(--rule);
   background: var(--paper-hi);
   padding: 28px;

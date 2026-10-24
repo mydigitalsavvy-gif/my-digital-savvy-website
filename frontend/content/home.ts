@@ -766,11 +766,19 @@ export const homeContent: HomeContent = {
     label: "Free 20-min call",
     titleLines: ["Ready to fix", "what's leaking"],
     copy: "Share your name and number — we'll message you on WhatsApp to lock in a free audit call.",
+    // Mirrors services.items[].name 1:1 (all nine official offerings), plus
+    // a catch-all for visitors who haven't settled on one yet. Keep in sync
+    // if a service is renamed, added or removed above.
     needs: [
-      "Meta Ads",
-      "Website",
-      "SEO / Google Ads",
-      "Content & social",
+      "Local SEO & GMB Optimization",
+      "Social Media Management",
+      "Social Media Marketing",
+      "Search Engine Optimization",
+      "Search Engine Marketing",
+      "Graphic Designing",
+      "Website Development",
+      "Video Editing",
+      "YouTube Management",
       "Not sure yet",
     ],
     submitLabel: "Send on WhatsApp →",

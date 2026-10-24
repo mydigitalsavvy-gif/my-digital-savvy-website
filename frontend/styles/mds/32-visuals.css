@@ -376,15 +376,76 @@ section { padding-top: clamp(64px, 7vw, 108px); }
    backdrop-filter (or filter/transform) on the header makes it the
    containing block of its position:fixed children, which clipped the
    mobile drawer and the services mega menu to the 80px bar and hid their
-   close buttons. The header stays in the page flow (two pinned 100svh
-   sections sit at top:0 further down), and gets no z-index, so the
-   drawer (59) and mega menu (70) still stack against the whole page. */
+   close buttons. Sticky positioning doesn't have that problem (only
+   transform/filter/backdrop-filter/etc. redefine a fixed descendant's
+   containing block), so it's safe to add below. */
 header {
   background: transparent;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
     inset 0 -1px 0 rgba(255, 255, 255, 0.45),
     inset 0 -10px 18px -12px rgba(255, 255, 255, 0.5);
+}
+
+/* ── HEADER: STICKY ───────────────────────────────────────────────────
+   Pinned to the viewport top instead of scrolling away, on every
+   breakpoint. It's the first element in <body> and already sits at the
+   very top of the page, so "stuck" is indistinguishable from its resting
+   position — nothing shifts on load or on the first scroll tick.
+
+   z-index: without one, header (and its children: the mobile drawer and
+   the services mega menu) would paint at the same "positioned, z-index
+   auto" layer as any absolutely/relatively positioned art further down
+   the page (.hero-visual, .growth-visual, the services solar system...),
+   and DOM order would decide the winner — i.e. that later art would win,
+   showing through a header that's supposed to stay on top while fixed in
+   place. 50 beats all of that ordinary content while staying comfortably
+   under the mobile drawer (59), the services mega menu (70/71) and the
+   consult popup (90/91), which are declared elsewhere and must keep
+   outranking it. Giving header its own z-index does turn it into a
+   stacking context, which nests those two children's z-indexes inside
+   it — harmless, since 59 and 70 only ever needed to beat *each other*
+   and header's own bar, not the popup (a sibling of <header>, not a
+   descendant, so its 90/91 still compares directly against header's 50
+   at the root and wins).
+
+   The two pinned 100svh takeovers (#services, #growth-system below) sit
+   at top:0 too, for their own scroll-driven pin effect; they now need to
+   win against the now-sticky header for the full height of that pin, see
+   the override next to each. */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+/* A faint seam once the page has actually scrolled, so the glass bar
+   reads as "above" the content sliding under it — skipped at rest so the
+   hero doesn't load with an extra line under a bar that hasn't earned it
+   yet. Toggled by PageEffects (scrollY > 4), never on the critical path. */
+header.is-scrolled {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -10px 18px -12px rgba(255, 255, 255, 0.6),
+    0 8px 24px -16px rgba(0, 0, 0, 0.35);
+}
+
+/* Real height, kept current by PageEffects (ResizeObserver) so anchor
+   links (#services, #about, #contact…) land below the bar instead of
+   under it; the static value is only the pre-hydration fallback. */
+:root { --header-h: 84px; }
+html { scroll-padding-top: var(--header-h); }
+
+/* The services and growth pinned stages are position:sticky; top:0 too,
+   for their own full-height takeover — without this they'd stick right
+   under the now-sticky header instead of behind it, cropping their top
+   ~80px behind the bar for as long as they're pinned. One z-index above
+   header (51) and an explicit background (matching what body's --paper
+   already shows through them) makes each stage fully cover the header
+   for the length of its own pin, with no seam, instead of the reverse. */
+.wd-stage, .growth-stage {
+  z-index: 51;
+  background: var(--paper);
 }
 header::before {
   content: '';

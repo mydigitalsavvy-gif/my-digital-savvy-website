@@ -67,11 +67,13 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
     lastFocused.current = document.activeElement;
     openRef.current = true;
     setOpen(true);
+    document.documentElement.style.overflow = "hidden";
   }, []);
 
   const closePopup = useCallback((dismissed: boolean) => {
     openRef.current = false;
     setOpen(false);
+    document.documentElement.style.overflow = "";
     const el = lastFocused.current as HTMLElement | null;
     if (el && typeof el.focus === "function") el.focus();
     if (dismissed) store.markDismissed();
@@ -80,7 +82,7 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
   // focus the first field on open
   useEffect(() => {
     if (!open) return;
-    popupRef.current?.querySelector<HTMLElement>("input, select")?.focus();
+    popupRef.current?.querySelector<HTMLElement>("input")?.focus();
   }, [open]);
 
   // Escape + focus trap while open
@@ -93,7 +95,7 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
       }
       if (e.key === "Tab" && popupRef.current) {
         const f = popupRef.current.querySelectorAll<HTMLElement>(
-          "button, input, select, a[href]"
+          "button, input, a[href]"
         );
         if (!f.length) return;
         const first = f[0];
@@ -140,7 +142,8 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
     const data = new FormData(e.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
-    const need = String(data.get("need") ?? "");
+    const selectedNeeds = data.getAll("need").map(String);
+    const need = selectedNeeds.length ? selectedNeeds.join(", ") : "Not sure yet";
     if (!name || !phone) {
       setNote("Please add your name and number.");
       return;
@@ -209,16 +212,17 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
               required
             />
           </label>
-          <label className="mds-field">
-            <span>What do you need?</span>
-            <select name="need" id="mdsNeed">
+          <fieldset className="mds-field mds-services">
+            <legend>What do you need? (pick any)</legend>
+            <div className="mds-services-list">
               {popup.needs.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
+                <label key={n} className="mds-service-chip">
+                  <input type="checkbox" name="need" value={n} className="sr-only" />
+                  <span>{n}</span>
+                </label>
               ))}
-            </select>
-          </label>
+            </div>
+          </fieldset>
           <button type="submit" className="btn solid mds-popup-submit">
             {popup.submitLabel}
           </button>

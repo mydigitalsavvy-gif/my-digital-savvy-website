@@ -52,3 +52,40 @@
 .mds-field input:focus-visible, .mds-field select:focus-visible { outline: 2px solid var(--dot); outline-offset: 2px; }
 .mds-popup-submit { width: 100%; text-align: center; margin-top: 6px; }
 .mds-popup-note { font-size: 12.5px; color: var(--accent); margin-top: 10px; min-height: 1em; }
+
+/* ── SERVICES — multi-select chips ───────────────────────────────────
+   A <fieldset>/<legend> pair, reset to look like the other .mds-field
+   labels. Each option is a real checkbox (name="need", repeated), so
+   FormData.getAll("need") just works and screen readers get native
+   checkbox semantics — only its box is visually hidden (.sr-only, the
+   sitewide utility), moved onto the pill via :has() so the focus ring
+   and checked state still read clearly with no custom ARIA needed. */
+.mds-services { border: 0; padding: 0; }
+.mds-services legend {
+  display: block;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ash);
+  margin-bottom: 6px;
+  padding: 0;
+}
+.mds-services-list {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  max-height: 192px; overflow-y: auto;
+  padding: 2px;
+}
+.mds-service-chip {
+  display: inline-flex; align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 8px 14px;
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--ash);
+  cursor: pointer;
+  transition: background 0.18s var(--ease-out), border-color 0.18s var(--ease-out), color 0.18s var(--ease-out);
+}
+.mds-service-chip:hover { border-color: var(--ink); color: var(--ink); }
+.mds-service-chip:has(input:checked) { background: var(--accent); color: #000; border-color: var(--accent); }
+.mds-service-chip:has(input:focus-visible) { outline: 2px solid var(--dot); outline-offset: 2px; }
