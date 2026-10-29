@@ -163,6 +163,7 @@ export function MobileNav({
           </div>
           {item(nav.links.about)}
           {item(nav.links.blog)}
+          {item(nav.links.careers)}
           {item(nav.links.contact)}
         </div>
         <a

@@ -27,7 +27,7 @@ export function Header({
         <a
           href={nav.homeHref}
           className="site-logo"
-          aria-label="My Digital Savvy — home"
+          aria-label="My Digital Savvy, home"
         >
           <AnimatedLogo
             canvasClassName="site-logo-canvas"
@@ -44,6 +44,7 @@ export function Header({
             </div>
             <a href={nav.links.about.href}>{nav.links.about.label}</a>
             <a href={nav.links.blog.href}>{nav.links.blog.label}</a>
+            <a href={nav.links.careers.href}>{nav.links.careers.label}</a>
             <a href={nav.links.contact.href}>{nav.links.contact.label}</a>
           </div>
         </nav>

@@ -8,7 +8,7 @@ import { AuditCTA } from "@/components/sections/AuditCTA";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with My Digital Savvy — Ganeshpeth and Sadar offices in Nagpur, Maharashtra.",
+    "Get in touch with My Digital Savvy: Ganeshpeth and Sadar offices in Nagpur, Maharashtra.",
   alternates: { canonical: "/contact/" },
 };
 

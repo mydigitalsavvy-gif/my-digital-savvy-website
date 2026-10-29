@@ -13,7 +13,7 @@ export async function GET(
   if (!term) return new Response("Not found", { status: 404 });
   const { posts } = await listPosts({ perPage: 20, categoryId: term.id });
   return rssResponse({
-    title: `${term.name} — My Digital Savvy`,
+    title: `${term.name} - My Digital Savvy`,
     selfPath: `/category/${term.slug}/feed/`,
     description: `Posts in ${term.name}`,
     posts,

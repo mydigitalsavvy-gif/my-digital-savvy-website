@@ -15,6 +15,9 @@
 /* Non-homepage templates (cx- prefix only, no element selectors). */
 @import "../styles/pages/content.css";
 
+/* Careers: job board, job detail, application/partnership forms (cy- prefix). */
+@import "../styles/pages/careers.css";
+
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));

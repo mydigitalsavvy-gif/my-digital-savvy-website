@@ -1229,7 +1229,7 @@ export function createSolarSystem(
     ctx.letterSpacing = spacing;
     const num = String(index + 1).padStart(2, "0");
     const wNum = ctx.measureText(num).width;
-    let rest = ` — ${bodies[index].data.name.toUpperCase()}`;
+    let rest = ` · ${bodies[index].data.name.toUpperCase()}`;
     let w = wNum + ctx.measureText(rest).width;
     if (w > W - 8) {
       rest = "";
@@ -1258,7 +1258,7 @@ export function createSolarSystem(
     return out;
   }
 
-  /** "04 — EARTH" for the focused body, cross-fading through transitions */
+  /** "04 · EARTH" for the focused body, cross-fading through transitions */
   function drawLabels() {
     const fs = W < 120 ? 9 : 10.5;
     for (const b of bodies) {

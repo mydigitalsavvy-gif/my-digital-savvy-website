@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const fallback = {
     path: "/",
     omitTwitterMisc: true,
-    title: "My Digital Savvy — Digital marketing agency in Nagpur",
+    title: "My Digital Savvy - Digital marketing agency in Nagpur",
     description:
       "My Digital Savvy runs Meta Ads, builds websites and creates content for businesses across Nagpur, Indore, Raipur, Hyderabad and Jabalpur.",
   };

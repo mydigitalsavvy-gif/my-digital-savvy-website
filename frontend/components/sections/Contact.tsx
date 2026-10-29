@@ -47,7 +47,7 @@ export function Contact({ contact }: { contact: ContactContent }) {
               href={contact.googleBusinessUrl}
               target="_blank"
               rel="noopener"
-              aria-label={`${o.label} — view on Google Maps (opens in a new tab)`}
+              aria-label={`${o.label}: view on Google Maps (opens in a new tab)`}
             >
               <Lines lines={o.lines} />
             </a>

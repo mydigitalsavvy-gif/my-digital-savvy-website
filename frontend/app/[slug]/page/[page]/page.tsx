@@ -34,7 +34,7 @@ export async function generateMetadata(
   if (r.kind !== "ok") return {};
   return buildMetadata(r.model.seo, {
     path: `${r.entry.path}page/${page}/`,
-    title: `${r.model.title} — Page ${page}`,
+    title: `${r.model.title} - Page ${page}`,
   });
 }
 

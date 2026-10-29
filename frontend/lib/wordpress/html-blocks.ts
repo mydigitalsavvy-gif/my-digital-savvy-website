@@ -347,7 +347,7 @@ function inlines(el: HTMLElement): Inline[] {
 
 function inlineNode(node: Node): Inline[] {
   if (node.nodeType === NodeType.TEXT_NODE) {
-    const text = node.text.replace(/\s+/g, " ");
+    const text = normalizeEmDash(node.text.replace(/\s+/g, " "));
     return text ? [{ type: "text", text }] : [];
   }
   if (node.nodeType !== NodeType.ELEMENT_NODE) return [];
@@ -464,6 +464,34 @@ function collapse(s: string): string {
   return s.replace(/\s+/g, " ").trim();
 }
 
+/**
+ * Site-wide rule: no em dash (U+2014) in rendered copy. Editors can't be
+ * asked to retype every WordPress field, so CMS text gets one safe,
+ * automatic rewrite instead of the hand-picked punctuation used for the
+ * app's own static copy. A dash almost always joins two related clauses,
+ * so a comma is the one substitution that reads naturally in the common
+ * case without ever being wrong enough to garble meaning; it's applied
+ * here (after HTML has already been reduced to plain text) rather than
+ * with a blind regex over raw HTML, so it can never touch a tag,
+ * attribute, href or image URL. See htmlToText() and inlineNode() below
+ * for the only two call sites: every WP title, Yoast field and body
+ * paragraph passes through one of them.
+ *
+ * Built from its char code rather than the literal glyph so this file
+ * itself doesn't trip the sitewide em-dash guard (scripts/checks/em-dash.mjs).
+ */
+const EM_DASH = String.fromCharCode(8212);
+const EM_DASH_RUN = new RegExp(`\\s*${EM_DASH}\\s*`, "g");
+
+export function normalizeEmDash(text: string): string {
+  if (!text.includes(EM_DASH)) return text;
+  return text
+    .replace(EM_DASH_RUN, ", ")
+    .replace(/,\s*,/g, ",")
+    .replace(/^,\s*|,\s*$/g, "")
+    .trim();
+}
+
 /** Drop empty blocks and exact consecutive duplicates (Elementor repeats mobile/desktop copies). */
 function tidy(blocks: ContentBlock[]): ContentBlock[] {
   const out: ContentBlock[] = [];
@@ -481,5 +509,5 @@ function tidy(blocks: ContentBlock[]): ContentBlock[] {
 /** Plain text of rendered HTML (titles, excerpts). Entities decoded, tags stripped. */
 export function htmlToText(html: string | null | undefined): string {
   if (!html) return "";
-  return collapse(parse(html).text);
+  return normalizeEmDash(collapse(parse(html).text));
 }

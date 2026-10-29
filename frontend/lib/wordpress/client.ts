@@ -132,7 +132,7 @@ async function request<T>(
   if (!WORDPRESS_API_URL) {
     if (process.env.NODE_ENV !== "production") {
       console.warn(
-        `[wordpress] WORDPRESS_API_URL is not set — returning null for "${path}"`
+        `[wordpress] WORDPRESS_API_URL is not set, returning null for "${path}"`
       );
     }
     return null;

@@ -153,7 +153,7 @@ export function ConsultPopup({ popup }: { popup: PopupContent }) {
     track("whatsapp_lead_handoff", { need });
     store.markDone();
     window.open(url, "_blank", "noopener");
-    setNote("Opening WhatsApp — see you there.");
+    setNote("Opening WhatsApp, see you there!");
     window.setTimeout(() => closePopup(false), 900);
   };
 

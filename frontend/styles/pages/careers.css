@@ -1,0 +1,454 @@
+/* ── CAREERS (hub, job detail, application + partnership forms) ─────
+   Built from the same tokens/type treatments as styles/pages/content.css
+   (--paper/--ink/--ash/--rule/--dot, .label, .btn, .cx-hero, .cx-body,
+   .cx-layout/.cx-aside). Prefix: cy-, kept separate from cx- so this
+   feature's styling can be found/changed independently of the shared
+   content-page primitives it builds on. */
+
+/* hero vacancy stat */
+.cy-vacancy-stat {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--ash);
+}
+.cy-vacancy-stat strong {
+  color: var(--dot);
+  font-size: 16px;
+}
+
+/* HR contact links (email / call / WhatsApp) — reused on the hero, the
+   closed-position fallback, and the form error states below. */
+.cy-hero-contact {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cy-contact-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cy-contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12.5px;
+  color: var(--ink);
+  transition: border-color 0.2s, background 0.2s;
+}
+.cy-contact-links a:hover {
+  border-color: var(--dot);
+  background: color-mix(in srgb, var(--dot) 8%, transparent);
+}
+
+/* opportunity categories */
+.cy-category-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.cy-category-card {
+  background: var(--paper);
+  padding: 28px 24px 32px;
+  display: flex;
+  flex-direction: column;
+}
+.cy-category-card h3 {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.cy-category-card p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ash);
+  flex-grow: 1;
+}
+.cy-category-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dot);
+}
+@media (max-width: 900px) {
+  .cy-category-grid { grid-template-columns: 1fr; }
+}
+
+/* filters */
+.cy-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 40px);
+  margin-bottom: 32px;
+}
+.cy-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cy-filter-label {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.cy-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cy-chip {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ash);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.cy-chip:hover {
+  border-color: var(--dot);
+  color: var(--ink);
+}
+.cy-chip.is-active {
+  background: var(--dot);
+  border-color: var(--dot);
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* pill metadata row (shared by job cards + job detail hero) */
+.cy-pills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.cy-pill {
+  font-size: 12px;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: 7px 14px;
+  background: var(--paper-hi);
+  white-space: nowrap;
+}
+.cy-pill-deadline {
+  color: var(--dot);
+  border-color: var(--dot);
+}
+.cy-pills-compact {
+  margin-top: 12px;
+}
+.cy-pills-compact .cy-pill {
+  padding: 5px 11px;
+  font-size: 11px;
+}
+
+/* job grid */
+.cy-job-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+@media (max-width: 760px) {
+  .cy-job-grid { grid-template-columns: 1fr; }
+}
+.cy-job-card {
+  background: var(--paper);
+  transition: background 0.25s;
+}
+.cy-job-card:hover {
+  background: var(--paper-hi);
+}
+.cy-job-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 26px 24px 30px;
+  color: inherit;
+}
+.cy-job-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.cy-job-status {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.cy-job-status[data-status="closed"],
+.cy-job-status[data-status="archived"] {
+  color: var(--ash);
+}
+.cy-job-title {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.cy-job-summary {
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ash);
+  flex-grow: 1;
+}
+.cy-job-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dot);
+}
+.cy-job-card.is-closed .cy-job-cta {
+  color: var(--ash);
+}
+.cy-job-closed-note {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--ash);
+}
+.cy-empty {
+  color: var(--ash);
+  font-size: 14px;
+  padding: 24px 0;
+}
+.cy-empty a {
+  color: var(--dot);
+  text-decoration: underline;
+}
+
+/* job detail page */
+.cy-job-hero {
+  padding-bottom: clamp(32px, 4vw, 48px);
+}
+
+/* Job detail page: a sequential, centered reading order (overview, then
+   the application form as its own moment, then role details below it),
+   not a two-column split. No sidebar, no sticky panel. .wrap carries no
+   max-width of its own (full-bleed by design), so each section below
+   centers its own content explicitly. */
+.cy-apply-section {
+  display: flex;
+  justify-content: center;
+}
+.cy-apply-panel {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid var(--rule);
+  background: var(--paper-hi);
+  padding: clamp(24px, 4vw, 48px);
+}
+.cy-apply-panel .label {
+  display: block;
+  margin-bottom: 20px;
+}
+.cy-job-details {
+  display: flex;
+  justify-content: center;
+}
+.cy-job-details-body {
+  width: 100%;
+}
+.cy-closed-banner {
+  margin-top: 24px;
+  border: 1px solid var(--rule);
+  background: var(--paper-hi);
+  padding: 14px 18px;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.cy-job-pending {
+  border: 1px solid var(--rule);
+  background: var(--paper-hi);
+  padding: 16px 20px;
+  color: var(--ash);
+  font-size: 14px;
+}
+.cy-job-pending a {
+  color: var(--dot);
+  text-decoration: underline;
+}
+
+/* forms (application + partnership) */
+.cy-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 560px;
+}
+.cy-apply-panel .cy-form {
+  max-width: none;
+}
+.cy-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.cy-field-row-reverse {
+  direction: rtl;
+}
+.cy-field-row-reverse > * {
+  direction: ltr;
+}
+@media (max-width: 560px) {
+  .cy-field-row { grid-template-columns: 1fr; }
+}
+.cy-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cy-field label,
+.cy-field-static-label {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cy-field input[type="text"],
+.cy-field input[type="email"],
+.cy-field input[type="tel"],
+.cy-field input[type="url"],
+.cy-field input[type="file"],
+.cy-field select,
+.cy-field textarea {
+  width: 100%;
+  min-height: 44px;
+  background: var(--paper-hi);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 13px 14px;
+  font-size: 14px;
+  color: var(--ink);
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cy-field input:focus-visible,
+.cy-field select:focus-visible,
+.cy-field textarea:focus-visible {
+  outline: none;
+  border-color: var(--dot);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot) 30%, transparent);
+}
+.cy-field textarea {
+  resize: vertical;
+  min-height: 44px;
+}
+.cy-field-static-value {
+  font-size: 14px;
+  color: var(--ash);
+}
+.cy-field-error {
+  font-size: 12px;
+  color: #ff6b6b;
+}
+.cy-field-hint {
+  font-size: 12px;
+  color: var(--ash);
+}
+.cy-form-error {
+  border: 1px solid #ff6b6b;
+  background: color-mix(in srgb, #ff6b6b 10%, transparent);
+  color: var(--ink);
+  padding: 12px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.cy-form-error p {
+  margin: 0;
+}
+.cy-form-error .cy-contact-links {
+  margin-top: 10px;
+}
+.cy-form-error .cy-contact-links a {
+  border-color: #ff6b6b;
+}
+.cy-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ash);
+  cursor: pointer;
+}
+.cy-consent input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--dot);
+}
+.cy-consent input:focus-visible {
+  outline: 2px solid var(--dot);
+  outline-offset: 2px;
+}
+.cy-form button[type="submit"] {
+  width: 100%;
+  text-align: center;
+  padding-block: 14px;
+}
+.cy-form-success {
+  border: 1px solid var(--rule);
+  background: var(--paper-hi);
+  padding: 28px 24px;
+  max-width: 560px;
+}
+.cy-form-success h3 {
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.cy-form-success p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ash);
+  margin-bottom: 8px;
+}
+
+/* honeypot: present in the DOM and the accessibility tree for bots that
+   read form structure, but never visible or reachable by a real visitor. */
+.cy-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

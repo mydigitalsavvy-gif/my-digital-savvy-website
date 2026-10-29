@@ -16,6 +16,7 @@ export const homeContent: HomeContent = {
       services: { label: "Services", href: "/#services" },
       about: { label: "About Us", href: "/#about" },
       blog: { label: "Blog", href: "/blog/" },
+      careers: { label: "Careers", href: "/careers/" },
       contact: { label: "Contact Us", href: "/#contact" },
     },
     cta: { label: "Book a free audit", href: "/#contact" },
@@ -33,9 +34,9 @@ export const homeContent: HomeContent = {
       { word: "jewellery", color: "#EB1C52" },
       { word: "real estate", color: "#43FF4C" },
     ],
-    rotorInitialLabel: "Show hospitality work — click to filter",
+    rotorInitialLabel: "Show hospitality work: click to filter",
     sub: [
-      "We get you found on Google, run the ads that bring people in, keep your socials active, design the creative and build the website it all lands on — for hotels, coaching academies, jewellers and builders across Maharashtra. ",
+      "We get you found on Google, run the ads that bring people in, keep your socials active, design the creative and build the website it all lands on, for hotels, coaching academies, jewellers and builders across Maharashtra. ",
       { b: "One team, one thread" },
       ", no handoffs.",
     ],
@@ -275,7 +276,7 @@ export const homeContent: HomeContent = {
         menuColor: "green",
         color: "dot",
         titleLines: ["Graphic", "Designing"],
-        sub: "From social media creatives to brand collateral — visually sharp, on-brand designs for every channel.",
+        sub: "From social media creatives to brand collateral: visually sharp, on-brand designs for every channel.",
         how: "Creative built to your brand's own visual language, not a generic template.",
         deliverables: [
           "Social Creatives",
@@ -411,16 +412,16 @@ export const homeContent: HomeContent = {
         "Most agencies hand you between a strategist, a media buyer and an account manager reading a report someone else wrote. That's where budgets get lost in translation.",
       ],
       [
-        "We don't work that way. The same people who run your ads build your site and write the content it needs — ",
+        "We don't work that way. The same people who run your ads build your site and write the content it needs: ",
         { b: "you talk to the people doing the work" },
         ", every time, not whoever picked up the account this quarter.",
       ],
     ],
-    note: "— this is why the audit, the plan and the build all sit inside one team, not three vendors.",
+    note: "This is why the audit, the plan and the build all sit inside one team, not three vendors.",
   },
 
   growth: {
-    label: "Scroll — one stage at a time",
+    label: "Scroll: one stage at a time",
     heading: "How the system connects",
     stages: [
       {
@@ -444,7 +445,7 @@ export const homeContent: HomeContent = {
       {
         railLabel: "Lead",
         title: "Lead",
-        body: "A form, a call, a message — captured, not lost.",
+        body: "A form, a call, a message: captured, not lost.",
         color: "magenta",
       },
       {
@@ -469,31 +470,31 @@ export const homeContent: HomeContent = {
       {
         tag: "Hospitality",
         focus:
-          "Hotels and stays compete for direct bookings against listing sites — local search, reviews and a fast, booking-ready site matter most.",
+          "Hotels and stays compete for direct bookings against listing sites: local search, reviews and a fast, booking-ready site matter most.",
         color: "dot",
       },
       {
         tag: "Education",
         focus:
-          "Academies and tutoring centres run on enquiry timing — local visibility and quick lead routing decide who gets the call first.",
+          "Academies and tutoring centres run on enquiry timing: local visibility and quick lead routing decide who gets the call first.",
         color: "green",
       },
       {
         tag: "Real estate & builders",
         focus:
-          "Buyers research long before a site visit — a credible web presence and well-targeted ads do the early convincing.",
+          "Buyers research long before a site visit: a credible web presence and well-targeted ads do the early convincing.",
         color: "blue",
       },
       {
         tag: "Jewellery",
         focus:
-          "High-consideration, visually led purchases — strong creative and local search drive footfall and enquiries.",
+          "High-consideration, visually led purchases: strong creative and local search drive footfall and enquiries.",
         color: "magenta",
       },
       {
         tag: "Trading & retail",
         focus:
-          "Buyers search and message before they call — being easy to find on Google and reachable on WhatsApp matters more than a catalogue.",
+          "Buyers search and message before they call: being easy to find on Google and reachable on WhatsApp matters more than a catalogue.",
         color: "dot",
       },
     ],
@@ -505,7 +506,7 @@ export const homeContent: HomeContent = {
     href: "https://portfolio.mydigitalsavvy.com/",
     cta: "Explore the portfolio",
     ariaLabel:
-      "Explore our portfolio (portfolio.mydigitalsavvy.com) — opens in a new tab",
+      "Explore our portfolio (portfolio.mydigitalsavvy.com, opens in a new tab)",
     live: "Live · planets as of",
   },
 
@@ -513,7 +514,7 @@ export const homeContent: HomeContent = {
   caseStudies: {
     heading: "Case studies",
     label: "The format, ahead of the first publish",
-    badge: "Preview — not a live case study",
+    badge: "Preview: not a live case study",
     steps: [
       {
         label: "Problem",
@@ -532,7 +533,7 @@ export const homeContent: HomeContent = {
   about: {
     heading: "Who we are",
     label: "The team",
-    lead: "My Digital Savvy is a digital marketing agency based in Nagpur, running SEO, paid ads, social media, creative and website development as one connected system — for hospitality brands, coaching academies, builders and retailers across Maharashtra, Madhya Pradesh and Telangana, from Nagpur to Indore, Raipur, Hyderabad and Jabalpur. One team handles the whole path from traffic to enquiry, so nothing gets lost in a hand-off between vendors.",
+    lead: "My Digital Savvy is a digital marketing agency based in Nagpur, running SEO, paid ads, social media, creative and website development as one connected system, for hospitality brands, coaching academies, builders and retailers across Maharashtra, Madhya Pradesh and Telangana, from Nagpur to Indore, Raipur, Hyderabad and Jabalpur. One team handles the whole path from traffic to enquiry, so nothing gets lost in a hand-off between vendors.",
     // CONFIRM: verify this figure before launch (flagged in the reference).
     pullValue: "98",
     pullSuffix: "%",
@@ -540,7 +541,7 @@ export const homeContent: HomeContent = {
     note: [
       "We are a small, senior team. When you hire us, ",
       { b: "you talk to the people doing the work" },
-      " — not an account manager reading a report someone else wrote.",
+      ", not an account manager reading a report someone else wrote.",
     ],
     // Only genuine, CMS-tagged team photos go here (WP media library,
     // alt/title "my digital savvy team image") — never stock or invented
@@ -559,7 +560,7 @@ export const homeContent: HomeContent = {
     heading: "Insights",
     label: "From the blog",
     intro:
-      "Honest writing on what actually moves the needle for Indian businesses — recent posts cover Google Ads vs. Meta Ads, why agency-hopping resets your momentum, and what's actually working in SEO this year.",
+      "Honest writing on what actually moves the needle for Indian businesses: recent posts cover Google Ads vs. Meta Ads, why agency-hopping resets your momentum, and what's actually working in SEO this year.",
     // Reference linked a non-existent blog.html. When the legacy path
     // resolver lands, point this at the live blog index /my-digital-savvy-blog/.
     cta: { label: "Read the blog", href: "/blog/" },
@@ -597,7 +598,7 @@ export const homeContent: HomeContent = {
     label: "Google reviews",
     featured: {
       quote: [
-        "Best digital marketing company in Nagpur. Team is very confident — give them the job and they deliver ",
+        "Best digital marketing company in Nagpur. Team is very confident. Give them the job and they deliver ",
         { em: "more" },
         " than expected.",
       ],
@@ -608,14 +609,14 @@ export const homeContent: HomeContent = {
       value: "4.9",
       reviewCount: 320,
       href: "https://share.google/73uP2r05nzh95skPk",
-      ariaLabel: "320 five-star Google reviews — view on Google Maps",
+      ariaLabel: "320 five-star Google reviews: view on Google Maps",
       textBefore: "",
       textAfter: " five-star reviews across two Google Business listings.",
     },
     voices: [
       {
         quote: [
-          '"I took social media marketing services and I got amazing response by the third month — all organic."',
+          '"I took social media marketing services and I got amazing response by the third month, all organic."',
         ],
         name: "Vinisha Ahuja",
         source: "Google review",
@@ -649,7 +650,7 @@ export const homeContent: HomeContent = {
       },
       {
         quote: [
-          '"An exceptional partner in helping us navigate the digital marketing world — proactive, detail-oriented, and skilled."',
+          '"An exceptional partner in helping us navigate the digital marketing world: proactive, detail-oriented, and skilled."',
         ],
         name: "Devanshi Khandelwal",
         source: "Google review",
@@ -673,27 +674,27 @@ export const homeContent: HomeContent = {
     items: [
       {
         title: "Free audit, no strings",
-        body: "We open your ad account, site and analytics and tell you what's leaking — yours to keep either way.",
+        body: "We open your ad account, site and analytics and tell you what's leaking (yours to keep either way).",
         color: "dot",
       },
       {
         title: "₹2Cr+ ad spend managed",
-        body: "Real budgets across real industries — not theory borrowed from a case-study deck.",
+        body: "Real budgets across real industries, not theory borrowed from a case-study deck.",
         color: "green",
       },
       {
         title: "320+ five-star reviews",
-        body: "Verifiable across two Google Business listings — not screenshots we control.",
+        body: "Verifiable across two Google Business listings, not screenshots we control.",
         color: "blue",
       },
       {
         title: "50+ active clients",
-        body: "Hospitality, education, trading, retail and real estate — across Maharashtra and beyond.",
+        body: "Hospitality, education, trading, retail and real estate, across Maharashtra and beyond.",
         color: "magenta",
       },
       {
         title: "Weekly reporting, plain language",
-        body: "What we spent, what came back, what changes next week — no jargon to hide behind.",
+        body: "What we spent, what came back, what changes next week, no jargon to hide behind.",
         color: "dot",
       },
       {
@@ -703,17 +704,17 @@ export const homeContent: HomeContent = {
       },
       {
         title: "Creative refreshed on performance",
-        body: "Not a fixed monthly schedule — we swap creative when it fatigues, not when the calendar says to.",
+        body: "Not a fixed monthly schedule. We swap creative when it fatigues, not when the calendar says to.",
         color: "blue",
       },
       {
         title: "Leads land on WhatsApp",
-        body: "Enquiries route straight to your phone in real time — not a weekly spreadsheet export.",
+        body: "Enquiries route straight to your phone in real time, not a weekly spreadsheet export.",
         color: "magenta",
       },
       {
         title: "Two offices, always reachable",
-        body: "Ganeshpeth and Sadar — walk in, or reach us on WhatsApp the same day.",
+        body: "Ganeshpeth and Sadar: walk in, or reach us on WhatsApp the same day.",
         color: "dot",
       },
       {
@@ -723,12 +724,12 @@ export const homeContent: HomeContent = {
       },
       {
         title: "One team, no handoffs",
-        body: "The people who run your ads build your site and write your content — nothing gets lost between departments.",
+        body: "The people who run your ads build your site and write your content. Nothing gets lost between departments.",
         color: "blue",
       },
       {
         title: "You talk to who does the work",
-        body: "No account manager reading a report someone else wrote — you get the people actually in your ad account.",
+        body: "No account manager reading a report someone else wrote. You get the people actually in your ad account.",
         color: "magenta",
       },
     ],
@@ -738,7 +739,7 @@ export const homeContent: HomeContent = {
   audit: {
     label: "No strings",
     heading: "Get a free digital audit",
-    copy: "We open your ad account, site and analytics and tell you exactly what's leaking — free, and yours to keep either way.",
+    copy: "We open your ad account, site and analytics and tell you exactly what's leaking (free, and yours to keep either way).",
     cta: { label: "Get my free audit →", href: "#contact" },
   },
 
@@ -788,7 +789,7 @@ export const homeContent: HomeContent = {
   popup: {
     label: "Free 20-min call",
     titleLines: ["Ready to fix", "what's leaking"],
-    copy: "Share your name and number — we'll message you on WhatsApp to lock in a free audit call.",
+    copy: "Share your name and number. We'll message you on WhatsApp to lock in a free audit call.",
     // Mirrors services.items[].name 1:1 (all nine official offerings), plus
     // a catch-all for visitors who haven't settled on one yet. Keep in sync
     // if a service is renamed, added or removed above.

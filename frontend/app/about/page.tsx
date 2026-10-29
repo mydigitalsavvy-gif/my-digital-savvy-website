@@ -13,7 +13,7 @@ import { AuditCTA } from "@/components/sections/AuditCTA";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "My Digital Savvy is a digital marketing agency based in Nagpur, Maharashtra — one team running Meta Ads, websites and content for businesses across Maharashtra.",
+    "My Digital Savvy is a digital marketing agency based in Nagpur, Maharashtra: one team running Meta Ads, websites and content for businesses across Maharashtra.",
   alternates: { canonical: "/about/" },
 };
 

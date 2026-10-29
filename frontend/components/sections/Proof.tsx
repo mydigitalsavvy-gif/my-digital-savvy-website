@@ -21,7 +21,7 @@ export function Proof({ proof }: { proof: ProofContent }) {
             <RichText value={proof.featured.quote} />
           </p>
           <p className="who">
-            — {proof.featured.name} · {proof.featured.source}
+            {proof.featured.name} · {proof.featured.source}
           </p>
         </blockquote>
 

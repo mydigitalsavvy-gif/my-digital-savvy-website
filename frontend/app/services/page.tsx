@@ -15,7 +15,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Meta Ads, SEO, website development, social media and more — nine services, one team, at My Digital Savvy.",
+    "Meta Ads, SEO, website development, social media and more: nine services, one team, at My Digital Savvy.",
   alternates: { canonical: "/services/" },
 };
 
@@ -42,7 +42,7 @@ export default async function ServicesHub() {
           crumbs={crumbs}
           eyebrow={home.nav.megaLabel}
           heading={home.services.heading}
-          intro="Nine services, handled by one team — audits, search, paid ads, social, creative and the website that ties it together, so nothing falls through the cracks between vendors."
+          intro="Nine services, handled by one team: audits, search, paid ads, social, creative and the website that ties it together, so nothing falls through the cracks between vendors."
         >
           <div className="btns">
             <Link href="/#contact" className="btn solid">

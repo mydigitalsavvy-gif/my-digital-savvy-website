@@ -127,7 +127,7 @@ export async function CaseStudyView({ model }: { model: CaseStudyModel }) {
             <blockquote className="proof-featured">
               <p className="quote">{model.testimonial.review}</p>
               <p className="who">
-                — {model.testimonial.name}
+                {model.testimonial.name}
                 {model.testimonial.company
                   ? ` · ${model.testimonial.company}`
                   : ""}

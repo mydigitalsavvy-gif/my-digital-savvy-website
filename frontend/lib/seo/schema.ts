@@ -149,6 +149,54 @@ export function buildServiceSchema(service: {
   };
 }
 
+/**
+ * JobPosting (Google rich-results requires title, description, datePosted,
+ * hiringOrganization and a location signal). Returns null rather than
+ * emitting a schema with fabricated/missing required fields — most seeded
+ * jobs don't have a summary or a real posted date yet, so no schema is
+ * emitted for them until the CMS supplies one.
+ */
+export function buildJobPostingSchema(job: {
+  title: string;
+  description: string | null;
+  datePosted: string | null;
+  validThrough: string | null;
+  employmentType: "full-time" | "freelance" | "white-label" | null;
+  location: string | null;
+  url: string;
+}) {
+  if (!job.description || !job.datePosted) return null;
+  const EMPLOYMENT_TYPE_SCHEMA: Record<string, string> = {
+    "full-time": "FULL_TIME",
+    freelance: "CONTRACTOR",
+    "white-label": "CONTRACTOR",
+  };
+  return {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description,
+    datePosted: job.datePosted,
+    ...(job.validThrough ? { validThrough: job.validThrough } : {}),
+    ...(job.employmentType
+      ? { employmentType: EMPLOYMENT_TYPE_SCHEMA[job.employmentType] }
+      : {}),
+    hiringOrganization: {
+      "@type": "Organization",
+      name: ORGANIZATION_FACTS.name,
+      sameAs: ORGANIZATION_FACTS.url,
+    },
+    jobLocation: job.location
+      ? {
+          "@type": "Place",
+          address: { "@type": "PostalAddress", addressLocality: job.location, addressCountry: "IN" },
+        }
+      : undefined,
+    directApply: true,
+    url: job.url,
+  };
+}
+
 /** Only for FAQs actually shown on the page. Returns null when there are none. */
 export function buildFaqSchema(faqs: { question: string; answer: string }[]) {
   const items = faqs.filter((f) => f.question && f.answer);

@@ -24,7 +24,14 @@ export interface Link {
 
 export interface NavContent {
   homeHref: string;
-  links: { home: Link; services: Link; about: Link; blog: Link; contact: Link };
+  links: {
+    home: Link;
+    services: Link;
+    about: Link;
+    blog: Link;
+    careers: Link;
+    contact: Link;
+  };
   cta: Link;
   megaLabel: string;
   megaTitle: string;
